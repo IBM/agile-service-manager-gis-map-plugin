@@ -1,0 +1,137 @@
+@import '~carbon-components/css/carbon-components.min.css';
+@import '~leaflet/dist/leaflet.css';
+@import '~leaflet-search/dist/leaflet-search.min.css';
+@import '~leaflet.markercluster/dist/MarkerCluster.css';
+@import '~leaflet.markercluster/dist/MarkerCluster.Default.css';
+
+/* Always set the map height explicitly to define the size of the div
+* element that contains the map. */
+#map {
+    height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.asm_link {
+    margin-top: 4px;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.tooltip_key {
+    font-weight: bold;
+    width: fit-content;
+    vertical-align: middle;
+}
+
+.tooltip_key_icon {
+    width: 20px;
+    border-right: 0px;
+    vertical-align: middle;
+}
+
+.tooltipTable {
+    table-layout: auto;
+}
+
+.tooltipTableCell {
+    word-wrap: break-word;
+    white-space: normal;
+    vertical-align: middle;
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    border-style: hidden;
+    min-width: 300px;
+}
+
+th,
+td {
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 2px;
+    text-align: left;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+.marker-cluster-0 {
+    background-color: rgba(143, 139, 139, 0.6);
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+    margin-top: 5px;
+    text-align: center;
+    border-radius: 15px;
+    font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+.marker-cluster-0 div {
+    background-color: rgba(143, 139, 139, 0.6);
+}
+
+.marker-cluster-1 {
+    background-color: rgba(57, 158, 65, 0.6);
+}
+
+.marker-cluster-1 div {
+    background-color: rgba(44, 125, 50, 0.6);
+}
+
+.marker-cluster-2 {
+    background-color: rgba(253, 156, 115, 0.6);
+}
+
+.marker-cluster-2 div {
+    background-color: rgba(241, 128, 23, 0.6);
+}
+
+.marker-cluster-3 {
+    background-color: rgba(44, 55, 125, 0.6);
+}
+
+.marker-cluster-3 div {
+    background-color: rgba(63, 80, 186, 0.6);
+}
+
+.marker-cluster-4 {
+    background-color: rgba(71, 91, 214, 0.6);
+}
+
+.marker-cluster-4 div {
+    background-color: rgba(71, 91, 214, 0.6);
+}
+
+.marker-cluster-5 {
+    background-color: rgba(237, 226, 76, 0.6);
+}
+
+.marker-cluster-5 div {
+    background-color: rgba(237, 226, 76, 0.6);
+}
+
+.marker-cluster-6 {
+    background-color: rgba(252, 153, 30, 0.6);
+}
+
+.marker-cluster-6 div {
+    background-color: rgba(241, 128, 23, 0.6);
+}
+
+.marker-cluster-7 {
+    background-color: rgba(209, 67, 67, 0.6);
+}
+
+.marker-cluster-7 div {
+    background-color: rgba(209, 67, 67, 0.6);
+}

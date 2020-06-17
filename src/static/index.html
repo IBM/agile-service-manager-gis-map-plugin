@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="referrer" content="no-referrer" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASM Topology Mapper</title>
+  </head>
+  <body>
+    <div class="bx--loading-overlay">
+      <div id="my-loading" data-loading class="bx--loading">
+        <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
+          <title>Loading</title>
+          <circle class="bx--loading__stroke" cx="0" cy="0" r="37.5" />
+        </svg>
+      </div>
+    </div>
+    <div id="map"></div>
+    <script>
+      /* These are populated via config.js for use elsewhere */
+      window.asmUIURL = "{{{asmUIURL}}}";
+      window.LOCATION_TYPES = "{{locationEntityTypes}}";
+      window.BOUNDARY_TYPES = "{{boundaryEntityTypes}}";
+      window.BOUNDARY_PROPS = "{{boundaryPropertyNames}}";
+      window.LONG_PROPS = "{{longitudePropertyNames}}";
+      window.LAT_PROPS = "{{latitudePropertyNames}}";
+      window.POPUP_IGNORE_PROPERTIES = "{{popupIgnoreProperties}}";
+      window.TOOLTIP_PROPERTIES = "{{tooltipProperties}}";
+      window.UPDATE_RATE = "{{updateRate}}";
+      window.LINK_TYPES = "{{linkEdgeTypes}}";
+      window.LINK_COLOR_PROPS = "{{linkColorPropertyNames}}";
+      window.AFFECTED_RADIUS_PROPS = "{{affectedRadiusPropertyNames}}";
+    </script>
+   	<script src="./bundle.js"></script>
+  </body>
+</html>
