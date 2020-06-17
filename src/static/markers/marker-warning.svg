@@ -1,7 +1,1 @@
-<svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149 178"><path fill="{mapIconColor}" stroke="#FFF" stroke-width="6" stroke-miterlimit="10" d="M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z"/>
-    <circle fill="#ffffff" cx="74" cy="75" r="61"/><circle fill="{mapIconColorInnerCircle}" cx="74" cy="75" r="{pinInnerCircleRadius}"/>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.3 -6 55 55">
-            <path fill="#408BFC" d="M26.002 4H5.998A1.998 1.998 0 0 0 4 5.998v20.004A1.998 1.998 0 0 0 5.998 28h20.004A1.998 1.998 0 0 0 28 26.002V5.998A1.998 1.998 0 0 0 26.002 4zM14.875 8h2.25v10h-2.25zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24z"/>
-            <path d="M14.875 8h2.25v10h-2.25zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24z" opacity="0"/>
-        </svg>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 149 178"><path fill="{mapIconColor}" stroke="#FFF" stroke-miterlimit="10" stroke-width="6" d="M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z"/><circle cx="74" cy="75" r="61" fill="#fff"/><circle cx="74" cy="75" r="{pinInnerCircleRadius}" fill="{mapIconColorInnerCircle}"/><svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.3 -6 55 55"><path fill="#408BFC" d="M26.002 4H5.998A1.998 1.998 0 0 0 4 5.998v20.004A1.998 1.998 0 0 0 5.998 28h20.004A1.998 1.998 0 0 0 28 26.002V5.998A1.998 1.998 0 0 0 26.002 4zM14.875 8h2.25v10h-2.25zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24z"/><path d="M14.875 8h2.25v10h-2.25zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24z" opacity="0"/></svg></svg>
