@@ -1,0 +1,156 @@
+version: '2.1'
+services:
+  ui:
+    image: agile-service-manager-gis-map-plugin:latest
+    environment:
+      #=======================================================================================================
+      #                       Web app settings
+      # UI_SERVER_PORT:
+      #     The http port used by the mapping app to serve the application.
+      #     This is exposed in Dockerfile, so shouldn't be changed
+      #     Default value: 3000
+      #
+      # UI_SERVER_SECURE_PORT:
+      #     The https port used by the mapping app to serve the application.
+      #     This is exposed in Dockerfile, so shouldn't be changed
+      #     Default value: 3443
+      #=======================================================================================================
+      UI_SERVER_PORT: 3000
+      UI_SERVER_SECURE_PORT: 3443
+      #=======================================================================================================
+      #               Connection information for the ASM topology service REST API.
+      #
+      # PS_HOST:
+      #     The name or IP address of the server which hosts the 
+      #     ASM topology serviceREST API. 
+      #     Default value: localhost
+      #
+      # PS_PORT:
+      #     The port number on the host server which is used to access 
+      #     the ASM topology service REST API via HTTPS. The value must be 
+      #     an integer.
+      #     Default value: 443
+      #
+      # PS_TENANT:
+      #     The unique tenant ID to use in ASM topology service REST 
+      #     requests in order to specify which tenant's data is 
+      #     required.
+      #     Default value: cfd95b7e-3bc7-4006-a4a8-a73a79c71255
+      #
+      # PS_USERNAME:
+      #     The username to use for accessing the ASM backend service, 
+      #     if authentication is enabled.
+      #     Default value: asm
+      #
+      # PS_PASSWORD:
+      #     The password to use for accessing the ASM backend service,
+      #     if authentication is enabled.
+      #     Default value: asm
+      #
+      # PS_ROOT_PATH:
+      #     The root URL path for the ASM topology service REST API. This 
+      #     must be set to match the corresponding ASM topology service 
+      #     configuration.
+      #     Default value: /1.0/
+      #
+      #=======================================================================================================
+      PS_HOST: localhost
+      PS_PORT: 443
+      PS_TENANT: cfd95b7e-3bc7-4006-a4a8-a73a79c71255
+      PS_USERNAME: asm
+      PS_PASSWORD: asm
+      PS_ROOT_PATH: '/1.0/'
+      #=======================================================================================================
+      #               Connection information for link back to ASM UI.
+      #
+      # asmUIURL:
+      #     The base URL to ASM Topology viewer page, with resource Id substitution.
+      #     The substitution will replace {RESOURCE_ID} with the select location marker id
+      #     Default value: https://localhost:16311/ibm/console/inasm/topology.jsp?resourceId={RESOURCE_ID}
+      #
+      #=======================================================================================================
+      ASM_UI_URL: https://localhost:16311/ibm/console/inasm/topology.jsp?resourceId={RESOURCE_ID}
+      #=======================================================================================================
+      #                             Mapping - popup configuration
+      #
+      # POPUP_IGNORE_PROPERTIES:
+      #     Comma separated list of property names which are not to be show in the popup
+      #     details table. 
+      #     Default value: _executionTime,_modifiedAt,_observedAt,_startedAt,beginTime,changeTime,createTime,_compositeId,_compositeOfIds,_createdAt,_status
+      # 
+      # tooltipProperties:
+      #     Comma separated list of property names which are to be include in the mouse over
+      #     tooltip.
+      #     Default value: ''
+      #
+      #=======================================================================================================
+      POPUP_IGNORE_PROPERTIES: '_executionTime,_modifiedAt,_observedAt,_startedAt,beginTime,changeTime,createTime,_compositeId,_compositeOfIds,_createdAt,_status'
+      TOOLTIP_PROPERTIES: ''
+      #=======================================================================================================
+      #                             Mapping - location marker configuration
+      #
+      # LOCATION_TYPES:
+      #     Comma separated list of entityTypes in ASM that represent possible locations 
+      #     on the map. The types are used to pull locations from ASM. 
+      #     Default value: location
+      # 
+      # LONG_PROPS:
+      #     Comma separated list of property names in ASM that represent possible longitude
+      #     value. The first valid value for a matching property will be used.
+      #     Default value: longitude
+      # 
+      # LAT_PROPS:
+      #     Comma separated list of property names in ASM that represent possible latitude
+      #     value. The first valid value for a matching property will be used.
+      #     Default value: latitude
+      # 
+      # AFFECTED_RADIUS_PROPS:
+      #     Comma separated list of property names in ASM that represent affected radius
+      #     of a location. This value represents the raidus in metres.
+      #     Default value: ''
+      # 
+      # LINK_TYPES:
+      #     Comma separated list of edgeTypes in ASM that are to be pulled and used to draw
+      #     links on the map. The links will be drawn if both ends of the link are represented
+      #     as location markers. The default value pulls all possible edgeTypes
+      #     Default value: *
+      # 
+      # LINK_COLOR_PROPS:
+      #     Comma separated list of property names in ASM that are to be pulled and used to colour
+      #     the links that are drawn.
+      #     Default value: ''
+      #=======================================================================================================
+      LOCATION_TYPES: location
+      LONG_PROPS: longitude
+      LAT_PROPS: latitude
+      AFFECTED_RADIUS_PROPS: ''
+      LINK_TYPES: '*'
+      LINK_COLOR_PROPS: ''
+      #=======================================================================================================
+      #                             Mapping - geo boundary configuration
+      #
+      # BOUNDARY_TYPES:
+      #     Comma separated list of entityTypes in ASM that represent possible geoBoundaries 
+      #     on the map. The types are used to pull boundaries from ASM. 
+      #     Default value: ''
+      #
+      # BOUNDARY_PROPS:
+      #     Comma separated list of property names in ASM that represent possible geoBoundaries 
+      #     value to be drawn on the map. This value should match the latlng specification described in
+      #     https://leafletjs.com/reference-1.6.0.html#polygon 
+      #     Default value: ''
+      #=======================================================================================================
+      BOUNDARY_TYPES: ''
+      BOUNDARY_PROPS: ''
+      #=======================================================================================================
+      #                             Mapping - configuration
+      #
+      # UPDATE_RATE:
+      #     Polling rate in miliseconds to pull and update the map data
+      #     Default value: 90000
+      #
+      #=======================================================================================================
+      UPDATE_RATE: 90000
+    ports:
+      - "3000:3000"
+      - "3443:3443"

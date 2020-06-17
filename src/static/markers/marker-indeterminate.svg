@@ -1,0 +1,7 @@
+<svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149 178"><path fill="{mapIconColor}" stroke="#FFF" stroke-width="6" stroke-miterlimit="10" d="M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z"/>
+    <circle fill="#ffffff" cx="74" cy="75" r="61"/><circle fill="{mapIconColorInnerCircle}" cx="74" cy="75" r="{pinInnerCircleRadius}"/>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.3 -6 55 55">
+            <path fill="#4F2196" d="M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.59a1.993 1.993 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.993 1.993 0 0 0 0-2.82zM21 18H11v-4h10z"/>
+            <path d="M11 14h10v4H11z" opacity="0"/>
+        </svg>
+</svg>

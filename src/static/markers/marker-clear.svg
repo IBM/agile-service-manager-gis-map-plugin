@@ -1,0 +1,9 @@
+<svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149 178"><path fill="{mapIconColor}" stroke="#FFF" stroke-width="6" stroke-miterlimit="10" d="M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z"/>
+    <circle fill="#ffffff" cx="74" cy="75" r="61"/><circle fill="{mapIconColorInnerCircle}" cx="74" cy="75" r="{pinInnerCircleRadius}"/>
+        <svg viewBox="-11.3 -6 55 55" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="none" stroke-width="0.1" fill="none" fill-rule="evenodd">
+                <rect fill="#24A148" x="3" y="3" width="26" height="26" rx="2"></rect>
+                <polygon fill="#FFFFFF" points="14 21.5 9 16.5 10.59 15 14 18.35 21.41 11 23 12.58"></polygon>
+            </g>
+        </svg>
+</svg>

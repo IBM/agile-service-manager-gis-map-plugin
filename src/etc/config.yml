@@ -1,0 +1,158 @@
+#=======================================================================================================
+#                      Topology mapper configuration properties
+#=======================================================================================================
+
+#=======================================================================================================
+#                       Web app settings
+# webServerPort:
+#     The http port used by the mapping app to serve the application.
+#     Default value: 3000
+
+# webServerSecurePort:
+#     The https port used by the mapping app to serve the application.
+#     Default value: 3443
+#=======================================================================================================
+webServerPort: 3000
+webServerSecurePort: 3443
+
+#=======================================================================================================
+#               Connection information for the ASM topology service REST API.
+#
+# proxyServiceHost:
+#     The name or IP address of the server which hosts the 
+#     ASM topology serviceREST API. 
+#     Default value: localhost
+#
+# proxyServicePort:
+#     The port number on the host server which is used to access 
+#     the ASM topology service REST API via HTTPS. The value must be 
+#     an integer.
+#     Default value: 443
+#
+# proxyServiceTenantId:
+#     The unique tenant ID to use in ASM topology service REST 
+#     requests in order to specify which tenant's data is 
+#     required.
+#     Default value: cfd95b7e-3bc7-4006-a4a8-a73a79c71255
+#
+# proxyServiceUsername:
+#     The username to use for accessing the ASM backend service, 
+#     if authentication is enabled.
+#     Default value: asm
+#
+# proxyServicePassword:
+#     The password to use for accessing the ASM backend service,
+#     if authentication is enabled.
+#     Default value: asm
+#
+# proxyServiceRootPath:
+#     The root URL path for the ASM topology service REST API. This 
+#     must be set to match the corresponding ASM topology service 
+#     configuration.
+#     Default value: /1.0/
+#
+#=======================================================================================================
+proxyServiceHost: localhost
+proxyServicePort: 443
+proxyServiceTenantId: cfd95b7e-3bc7-4006-a4a8-a73a79c71255
+proxyServiceUsername: asm
+proxyServicePassword: asm
+proxyServiceRootPath: /1.0/
+
+#=======================================================================================================
+#               Connection information for link back to ASM UI.
+#
+# asmUIURL:
+#     The base URL to ASM Topology viewer page, with resource Id substitution.
+#     The substitution will replace {RESOURCE_ID} with the select location marker id
+#     Default value: https://localhost:16311/ibm/console/inasm/topology.jsp?resourceId={RESOURCE_ID}
+#
+#=======================================================================================================
+asmUIURL: https://localhost:16311/ibm/console/inasm/topology.jsp?resourceId={RESOURCE_ID}
+
+
+#=======================================================================================================
+#                             Mapping - popup configuration
+#
+# popupIgnoreProperties:
+#     Comma separated list of property names which are not to be show in the popup
+#     details table. 
+#     Default value: _executionTime,_modifiedAt,_observedAt,_startedAt,beginTime,changeTime,createTime,_compositeId,_compositeOfIds,_createdAt,_status
+# 
+# tooltipProperties:
+#     Comma separated list of property names which are to be include in the mouse over
+#     tooltip.
+#     Default value: ''
+#
+#=======================================================================================================
+popupIgnoreProperties: _executionTime,_modifiedAt,_observedAt,_startedAt,beginTime,changeTime,createTime,_compositeId,_compositeOfIds,_createdAt,_status
+tooltipProperties: ''
+
+#=======================================================================================================
+#                             Mapping - location marker configuration
+#
+# locationEntityTypes:
+#     Comma separated list of entityTypes in ASM that represent possible locations 
+#     on the map. The types are used to pull locations from ASM. 
+#     Default value: location
+# 
+# longitudePropertyNames:
+#     Comma separated list of property names in ASM that represent possible longitude
+#     value. The first valid value for a matching property will be used.
+#     Default value: longitude
+# 
+# latitudePropertyNames:
+#     Comma separated list of property names in ASM that represent possible latitude
+#     value. The first valid value for a matching property will be used.
+#     Default value: latitude
+# 
+# affectedRadiusPropertyNames:
+#     Comma separated list of property names in ASM that represent affected radius
+#     of a location. This value represents the raidus in metres.
+#     Default value: ''
+# 
+# linkEdgeTypes:
+#     Comma separated list of edgeTypes in ASM that are to be pulled and used to draw
+#     links on the map. The links will be drawn if both ends of the link are represented
+#     as location markers. The default value pulls all possible edgeTypes
+#     Default value: *
+# 
+# linkColorPropertyNames:
+#     Comma separated list of property names in ASM that are to be pulled and used to colour
+#     the links that are drawn.
+#     Default value: ''
+#=======================================================================================================
+locationEntityTypes:  location
+longitudePropertyNames: longitude
+latitudePropertyNames: latitude
+affectedRadiusPropertyNames: ''
+linkEdgeTypes: '*'
+linkColorPropertyNames: ''
+
+#=======================================================================================================
+#                             Mapping - geo boundary configuration
+#
+# boundaryEntityTypes:
+#     Comma separated list of entityTypes in ASM that represent possible geoBoundaries 
+#     on the map. The types are used to pull boundaries from ASM. 
+#     Default value: ''
+#
+# boundaryPropertyNames:
+#     Comma separated list of property names in ASM that represent possible geoBoundaries 
+#     value to be drawn on the map. This value should match the latlng specification described in
+#     https://leafletjs.com/reference-1.6.0.html#polygon 
+#     Default value: ''
+#=======================================================================================================
+boundaryEntityTypes: ''
+boundaryPropertyNames: ''
+
+#=======================================================================================================
+#                             Mapping - configuration
+#
+# updateRate:
+#     Polling rate in miliseconds to pull and update the map data
+#     Default value: 90000
+#
+#=======================================================================================================
+updateRate: 90000
+
