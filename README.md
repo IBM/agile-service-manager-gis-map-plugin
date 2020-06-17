@@ -41,7 +41,8 @@ This app queries ASM for a set of specified resource types with the specified la
 Below is an example of an ASM resource that inludes location information as 'lat' and 'long' properties. To display this location, the app needs to be configured to query ASM for resources of type 'businessLocation' and to use 'lat' and 'long' as location properties. This can either be set in the [docker-compose.yml](docker-compose.yml) file if using docker, or in the `config.yaml` file found in `src/etc/config.yml`. Note that multiple location types and location properties can be configured if you need to display more than one type of location. 
 
 #### Example ASM resource
-```
+
+```json
 {
   "uniqueId": "woking_ibm",
   "name": "IBM Woking",
@@ -53,8 +54,8 @@ Below is an example of an ASM resource that inludes location information as 'lat
 }
 ```
 
-
 #### Example docker-compose.yaml extract
+
 ```
 LOCATION_TYPES: location,businessLocation
 LONG_PROPS: longitude,long
