@@ -12,7 +12,8 @@
  * @module config
  */
 
-var yaml = require('yamljs');
+var yaml = require('js-yaml');
+const fs = require('fs');
 const path = require('path');
 
 
@@ -59,14 +60,21 @@ function getDefaults() {
  * @private
  */
 function parseConfigFile() {
-    var configFile = path.join(__dirname + '/../../etc/config.yml');
-    var storedSettings = {};
+    let configFile = path.join(__dirname + '/../../etc/config.yml');
+    let storedSettings = {};
+
     try {
-        console.info('INFO:    Reading YAML config file: %s', configFile);
-        storedSettings = yaml.load(configFile);
+        if (fs.existsSync(configFile)) {
+            console.info('INFO:    Reading YAML config file: %s', configFile);
+            let ymlFile = fs.readFileSync(configFile, 'utf8');
+            storedSettings = yaml.safeLoad(ymlFile);
+        } else {
+            console.info('INFO:    Reading application config from environment variables');
+        }
     } catch (e) {
-        console.error('WARNING: A problem occurred trying to parse the YAML config file: %s', e);
+        console.error('WARNING: A problem occurred trying to parse the application config file: %s', e);
     }
+
     return storedSettings;
 }
 
