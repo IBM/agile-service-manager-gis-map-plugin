@@ -18,7 +18,7 @@ const setProperties = function(view, type, location, knownMarker) {
         props['state'] = "unknown";
     }
     let icon = severityToIcon[props['state']];
-    var latlng = new L.LatLng(location[config.latProps], location[config.longProps]);
+    var latlng = new L.LatLng(getProvidedValue(config.latProps, location), getProvidedValue(config.longProps, location));
     markerLocationsMap[location._id] = latlng;
 
     let tooltipContent = '';
