@@ -24,3 +24,28 @@ Object {
   "webServerSecurePort": 3443,
 }
 `;
+
+exports[`config readConfig: use defaults if YAML file does not exist 1`] = `
+Object {
+  "affectedRadiusPropertyNames": "",
+  "asmUIURL": "https://localhost:16311/ibm/console/inasm/topology.jsp?resourceId={RESOURCE_ID}",
+  "boundaryEntityTypes": "",
+  "boundaryPropertyNames": "",
+  "latitudePropertyNames": "latitude",
+  "linkColorPropertyNames": "",
+  "linkEdgeTypes": "*",
+  "locationEntityTypes": "location",
+  "longitudePropertyNames": "longitude",
+  "popupIgnoreProperties": "_executionTime,_modifiedAt,_observedAt,_startedAt,beginTime,changeTime,createTime,_compositeId,_compositeOfIds,_createdAt,_status",
+  "proxyServiceHost": "localhost",
+  "proxyServicePassword": "asm",
+  "proxyServicePort": 443,
+  "proxyServiceRootPath": "/1.0/",
+  "proxyServiceTenantId": "cfd95b7e-3bc7-4006-a4a8-a73a79c71255",
+  "proxyServiceUsername": "asm",
+  "tooltipProperties": "",
+  "updateRate": 90000,
+  "webServerPort": 3000,
+  "webServerSecurePort": 3443,
+}
+`;
