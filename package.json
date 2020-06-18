@@ -17,6 +17,9 @@
   },
   "author": "Kilian Collender, Matt Duggan",
   "license": "Apache2",
+  "pre-commit": [
+    "lint"
+  ],
   "dependencies": {
     "carbon-components": "^10.11.1",
     "consolidate": "^0.15.1",
@@ -45,6 +48,7 @@
     "eslint": "^5.16.0",
     "file-loader": "^6.0.0",
     "jest": "^26.0.1",
+    "pre-commit": "^1.2.2",
     "style-loader": "^1.1.4",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.10"
