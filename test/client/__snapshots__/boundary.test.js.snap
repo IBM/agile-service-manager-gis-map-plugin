@@ -1,0 +1,329 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`boundary addBoundary, no boundaries 1`] = `
+Object {
+  "boundaryTypes": Object {
+    "myType": Object {
+      "clusterGroup": Object {
+        "addLayer": [MockFunction] {
+          "calls": Array [
+            Array [
+              NewClass {
+                "_bounds": Object {},
+                "_events": Object {
+                  "click": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                  "keypress": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                  "mouseout": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                  "mouseover": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                  "move": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                  "remove": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                },
+                "_initHooksCalled": true,
+                "_latlngs": Array [
+                  Array [],
+                ],
+                "_popup": NewClass {
+                  "_content": "<h3>myLocation <img src=\\"/markers/marker-unknown.svg\\" style=\\"width:20px; height:20px\\" type=\\"image/svg\\" title=\\"State: unknown\\"></h3><h6>myType</h6>",
+                  "_initHooksCalled": true,
+                  "_source": [Circular],
+                  "options": Object {},
+                },
+                "_popupHandlersAdded": true,
+                "feature": Object {
+                  "properties": Object {
+                    "id": "id123",
+                    "name": "myLocation",
+                    "state": "unknown",
+                    "totalCases": undefined,
+                    "type": "myType",
+                    "url": "undefinedid123",
+                  },
+                },
+                "options": Object {
+                  "color": "#03d3fc",
+                },
+              },
+            ],
+          ],
+          "results": Array [
+            Object {
+              "type": "return",
+              "value": undefined,
+            },
+          ],
+        },
+      },
+    },
+  },
+  "configParams": Object {
+    "tooltipProperties": Array [],
+  },
+}
+`;
+
+exports[`boundary addBoundary, status 1`] = `
+Object {
+  "boundaryTypes": Object {
+    "myType": Object {
+      "clusterGroup": Object {
+        "addLayer": [MockFunction] {
+          "calls": Array [
+            Array [
+              NewClass {
+                "_bounds": Object {},
+                "_events": Object {
+                  "click": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                  "keypress": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                  "mouseout": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                  "mouseover": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                  "move": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                  "remove": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                },
+                "_initHooksCalled": true,
+                "_latlngs": Array [
+                  Array [],
+                ],
+                "_popup": NewClass {
+                  "_content": "<h3>myLocation <img src=\\"/markers/marker-major.svg\\" style=\\"width:20px; height:20px\\" type=\\"image/svg\\" title=\\"State: major\\"></h3><h6>myType</h6>",
+                  "_initHooksCalled": true,
+                  "_source": [Circular],
+                  "options": Object {},
+                },
+                "_popupHandlersAdded": true,
+                "feature": Object {
+                  "properties": Object {
+                    "id": "id123",
+                    "name": "myLocation",
+                    "state": "major",
+                    "totalCases": undefined,
+                    "type": "myType",
+                    "url": "undefinedid123",
+                  },
+                },
+                "options": Object {
+                  "color": "#fc991e",
+                },
+              },
+            ],
+          ],
+          "results": Array [
+            Object {
+              "type": "return",
+              "value": undefined,
+            },
+          ],
+        },
+      },
+    },
+  },
+  "configParams": Object {
+    "tooltipProperties": Array [],
+  },
+}
+`;
+
+exports[`boundary addBoundary, tooltips 1`] = `
+Object {
+  "boundaryTypes": Object {
+    "myType": Object {
+      "clusterGroup": Object {
+        "addLayer": [MockFunction] {
+          "calls": Array [
+            Array [
+              NewClass {
+                "_bounds": Object {},
+                "_events": Object {
+                  "click": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                  "keypress": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                  "mouseout": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                  "mouseover": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                  "move": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                  "remove": Array [
+                    Object {
+                      "ctx": undefined,
+                      "fn": [Function],
+                    },
+                  ],
+                },
+                "_initHooksCalled": true,
+                "_latlngs": Array [
+                  Array [],
+                ],
+                "_popup": NewClass {
+                  "_content": "<h3>myLocation <img src=\\"/markers/marker-unknown.svg\\" style=\\"width:20px; height:20px\\" type=\\"image/svg\\" title=\\"State: unknown\\"></h3><h6>myType</h6><h7> tooltipProp: showThis</h7>",
+                  "_initHooksCalled": true,
+                  "_source": [Circular],
+                  "options": Object {},
+                },
+                "_popupHandlersAdded": true,
+                "feature": Object {
+                  "properties": Object {
+                    "id": "id123",
+                    "name": "myLocation",
+                    "state": "unknown",
+                    "totalCases": undefined,
+                    "type": "myType",
+                    "url": "undefinedid123",
+                  },
+                },
+                "options": Object {
+                  "color": "#03d3fc",
+                },
+              },
+            ],
+          ],
+          "results": Array [
+            Object {
+              "type": "return",
+              "value": undefined,
+            },
+          ],
+        },
+      },
+    },
+  },
+  "configParams": Object {
+    "tooltipProperties": Array [
+      "tooltipProp",
+      "tryToShowThis",
+    ],
+  },
+}
+`;
+
+exports[`boundary updateBoundary, no boundaries 1`] = `
+Object {
+  "boundaryTypes": Object {
+    "myType": Object {
+      "clusterGroup": Object {
+        "addLayer": [MockFunction],
+      },
+    },
+  },
+  "configParams": Object {
+    "tooltipProperties": Array [],
+  },
+}
+`;
+
+exports[`boundary updateBoundary, previous boundary 1`] = `
+Object {
+  "boundaryTypes": Object {
+    "myType": Object {
+      "boundaries": Object {
+        "id123": NewClass {
+          "_bounds": Object {},
+          "_initHooksCalled": true,
+          "_latlngs": Array [
+            Array [],
+          ],
+          "feature": Object {
+            "properties": Object {
+              "id": "id123",
+              "name": "myLocation",
+              "state": "unknown",
+              "totalCases": undefined,
+              "type": "myType",
+              "url": "undefinedid123",
+            },
+          },
+          "options": Object {
+            "color": "#03d3fc",
+          },
+        },
+      },
+      "clusterGroup": Object {
+        "addLayer": [MockFunction],
+      },
+    },
+  },
+  "configParams": Object {
+    "tooltipProperties": Array [],
+  },
+}
+`;

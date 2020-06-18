@@ -14,7 +14,7 @@ var url = require('url');
 var config = require('./config').settings();
 
 var proxyReqPathResolverFactory = function(remotePath) {
-    return function(req, res) {
+    return function(req) {
         var apiPath = url.parse(req.url).path;
         return remotePath + apiPath;
     };
@@ -66,7 +66,7 @@ function init(app) {
     }));
 
     // Define an exception handler for the REST API proxy
-    app.use('/proxy_service', function(err, req, res, next) {
+    app.use('/proxy_service', function(err, req, res) {
         console.log('ERROR:   ' + JSON.stringify(err, null, 2));
         res.status(500);
         res.json({
