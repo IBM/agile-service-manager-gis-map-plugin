@@ -1,6 +1,8 @@
 // Supress console logging during execution of tests, so CLI output is
 // not cluttered with irrelevant output
 jest.spyOn(global.console, 'log').mockImplementation(() => jest.fn());
+jest.spyOn(global.console, 'info').mockImplementation(() => jest.fn());
+jest.spyOn(global.console, 'error').mockImplementation(() => jest.fn());
 
 
 
