@@ -126,6 +126,7 @@ If you want to modify the default behaviour of the app, you can use the followin
 - hideLinks [boolean]: doesn't draw links on map
 - hideGeoBoundary [boolean]: doesn't draw geoBoundaries on map
 - hideAffectedRadius [boolean]: doesn't draw affected radius areas with markers on the map
+- returnComposites [boolean]: pull composite resources from ASM default true
 - updateRate [number]: The poll interval for the page in milliseconds
 - resourceId [String]: Enables a launch to a specific marker on the map using the ASM resource id
 - locationTypes [comma separated list]: List of entityTypes to use for locations, overrides the configured value

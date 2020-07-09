@@ -46,7 +46,7 @@ export default function plotALlGeoBoundaries(view, maintainZoom) {
         }
 
         let baseUrl = '/proxy_service/topology/resources?' +
-        '&_return_composites=true' +
+        '&_return_composites=' + config.returnComposites +
         '&_field=name' +
         '&_field=entityTypes' +
         '&_limit=' + config.locationLimit +

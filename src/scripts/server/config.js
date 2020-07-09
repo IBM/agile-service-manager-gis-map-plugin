@@ -47,7 +47,8 @@ function getDefaults() {
         'linkEdgeTypes': '*',
         'linkColorPropertyNames': '',
         'affectedRadiusPropertyNames': '',
-        'updateRate': 90000
+        'updateRate': 90000,
+        'returnComposites': true
     };
 }
 
@@ -141,6 +142,7 @@ function readConfig() {
     setConfigValue('linkEdgeTypes', 'LINK_TYPES', fileConfig, false);
     setConfigValue('linkColorPropertyNames', 'LINK_COLOR_PROPS', fileConfig, false);
     setConfigValue('affectedRadiusPropertyNames', 'AFFECTED_RADIUS_PROPS', fileConfig, false);
+    setConfigValue('returnComposites', 'RETURN_COMPOSITES', fileConfig, false);
 
     return settings;
 }

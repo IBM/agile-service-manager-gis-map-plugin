@@ -22,7 +22,8 @@ function renderTemplate(fileName, request, response) {
         'linkEdgeTypes': config.linkEdgeTypes,
         'linkColorPropertyNames': config.linkColorPropertyNames,
         'affectedRadiusPropertyNames': config.affectedRadiusPropertyNames,
-        'updateRate': config.updateRate
+        'updateRate': config.updateRate,
+        'returnComposites': config.returnComposites
     });
 }
 // Handle the root URL
