@@ -93,7 +93,7 @@ function setConfigValue(name, envVarName, fileConfig, isInteger) {
             settings[name] = process.env[envVarName];
         }
         source = 'environment variable';
-    } else if (fileConfig[name]) {
+    } else if (typeof fileConfig[name] !== 'undefined') {
         settings[name] = fileConfig[name];
         source = 'config file';
     } else {
