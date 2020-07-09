@@ -21,7 +21,8 @@ export default function processUrlOptions() {
         hideLinks: false,
         hideGeoBoundary: false,
         hideAffectedRadius: false,
-        openWeatherMapApiId: ''
+        openWeatherMapApiId: '',
+        returnComposites: window.RETURN_COMPOSITES
     };
 
     if (urlParams && urlParams !== '') {
@@ -57,6 +58,9 @@ export default function processUrlOptions() {
         }
         if (urlParams['hideAffectedRadius'] && urlParams['hideAffectedRadius'] != '' && urlParams['hideAffectedRadius'] === 'true') {
             configParams.hideAffectedRadius = true;
+        }
+        if (urlParams['returnComposites'] && urlParams['returnComposites'] != '') {
+            configParams.returnComposites = urlParams['returnComposites'];
         }
 
         if(urlParams['updateRate'] && urlParams['updateRate'] != '') {

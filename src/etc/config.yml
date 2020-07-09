@@ -121,6 +121,10 @@ tooltipProperties: ''
 #     Comma separated list of property names in ASM that are to be pulled and used to colour
 #     the links that are drawn.
 #     Default value: ''
+# 
+# returnComposites:
+#     Specify if composite resources are using in the map location requests to ASM
+#     Default value: true
 #=======================================================================================================
 locationEntityTypes:  location
 longitudePropertyNames: longitude
@@ -128,6 +132,7 @@ latitudePropertyNames: latitude
 affectedRadiusPropertyNames: ''
 linkEdgeTypes: '*'
 linkColorPropertyNames: ''
+returnComposites: true
 
 #=======================================================================================================
 #                             Mapping - geo boundary configuration
