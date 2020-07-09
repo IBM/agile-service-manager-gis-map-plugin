@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`addWeatherLayers add overlay 1`] = `
+Object {
+  "Clouds": NewClass {
+    "_events": Object {
+      "tileunload": Array [
+        Object {
+          "ctx": undefined,
+          "fn": [Function],
+        },
+      ],
+    },
+    "_initHooksCalled": true,
+    "_url": "https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=myKey",
+    "options": Object {
+      "attribution": "Weather from <a href=\\"http://openweathermap.org/\\" alt=\\"World Map and worldwide Weather Forecast online\\">OpenWeatherMap</a>",
+      "maxClusterRadius": 120,
+      "maxZoom": 19,
+      "subdomains": Array [
+        "a",
+        "b",
+        "c",
+      ],
+    },
+  },
+  "Precipitation": NewClass {
+    "_events": Object {
+      "tileunload": Array [
+        Object {
+          "ctx": undefined,
+          "fn": [Function],
+        },
+      ],
+    },
+    "_initHooksCalled": true,
+    "_url": "https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=myKey",
+    "options": Object {
+      "attribution": "Weather from <a href=\\"http://openweathermap.org/\\" alt=\\"World Map and worldwide Weather Forecast online\\">OpenWeatherMap</a>",
+      "maxClusterRadius": 120,
+      "maxZoom": 19,
+      "subdomains": Array [
+        "a",
+        "b",
+        "c",
+      ],
+    },
+  },
+  "Sea level pressure": NewClass {
+    "_events": Object {
+      "tileunload": Array [
+        Object {
+          "ctx": undefined,
+          "fn": [Function],
+        },
+      ],
+    },
+    "_initHooksCalled": true,
+    "_url": "https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=myKey",
+    "options": Object {
+      "attribution": "Weather from <a href=\\"http://openweathermap.org/\\" alt=\\"World Map and worldwide Weather Forecast online\\">OpenWeatherMap</a>",
+      "maxClusterRadius": 120,
+      "maxZoom": 19,
+      "subdomains": Array [
+        "a",
+        "b",
+        "c",
+      ],
+    },
+  },
+  "Temperature": NewClass {
+    "_events": Object {
+      "tileunload": Array [
+        Object {
+          "ctx": undefined,
+          "fn": [Function],
+        },
+      ],
+    },
+    "_initHooksCalled": true,
+    "_url": "https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=myKey",
+    "options": Object {
+      "attribution": "Weather from <a href=\\"http://openweathermap.org/\\" alt=\\"World Map and worldwide Weather Forecast online\\">OpenWeatherMap</a>",
+      "maxClusterRadius": 120,
+      "maxZoom": 19,
+      "subdomains": Array [
+        "a",
+        "b",
+        "c",
+      ],
+    },
+  },
+  "Wind speed": NewClass {
+    "_events": Object {
+      "tileunload": Array [
+        Object {
+          "ctx": undefined,
+          "fn": [Function],
+        },
+      ],
+    },
+    "_initHooksCalled": true,
+    "_url": "https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=myKey",
+    "options": Object {
+      "attribution": "Weather from <a href=\\"http://openweathermap.org/\\" alt=\\"World Map and worldwide Weather Forecast online\\">OpenWeatherMap</a>",
+      "maxClusterRadius": 120,
+      "maxZoom": 19,
+      "subdomains": Array [
+        "a",
+        "b",
+        "c",
+      ],
+    },
+  },
+}
+`;

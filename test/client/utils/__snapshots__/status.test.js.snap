@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Status severityColors defaults 1`] = `
+Object {
+  "critical": "#da1e28",
+  "indeterminate": "#4F2196",
+  "information": "#054ADA",
+  "major": "#fc991e",
+  "minor": "#fdd13a",
+  "warning": "#408BFC",
+}
+`;
+
+exports[`Status severityRank defaults 1`] = `
+Object {
+  "clear": 1,
+  "critical": 7,
+  "indeterminate": 2,
+  "information": 3,
+  "major": 6,
+  "minor": 5,
+  "unknown": 0,
+  "warning": 4,
+}
+`;
