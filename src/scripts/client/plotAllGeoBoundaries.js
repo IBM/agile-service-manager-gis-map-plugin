@@ -69,6 +69,8 @@ export default function plotALlGeoBoundaries(view, maintainZoom) {
                     })
                 }
                 boundaryTypesRequestComplete(boundaryType);
+            }).fail(function() {
+                boundaryTypesRequestComplete(boundaryType);
             });
         }) 
     }
