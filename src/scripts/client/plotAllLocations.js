@@ -67,6 +67,8 @@ function getAllLocations(view, maintainZoom) {
 
         $.get(url, (data, status) => {
             if (status === 'success' && data.hasOwnProperty('_items')) {
+                console.log(`Call to process ${locationType} started`);
+                const t0 = performance.now();
                 data._items.forEach((location) => {
                     getProvidedValue(config.latProps, location)
                     if (getProvidedValue(config.latProps, location) &&
@@ -79,7 +81,11 @@ function getAllLocations(view, maintainZoom) {
                             }
                     }
                 });
+                const t1 = performance.now();
+                console.log(`Call to process ${locationType} took ${t1 - t0} milliseconds.`);
             }
+            locationTypeRequestComplete(locationType);
+        }).fail(function() {
             locationTypeRequestComplete(locationType);
         });
     }) 
@@ -87,6 +93,8 @@ function getAllLocations(view, maintainZoom) {
 
 
 function addLinks(view) {
+    console.log(`Call to process links started`);
+    const t0 = performance.now();
     let allLinkTypes = false;
     if (view.configParams.locationLinkTypes && view.configParams.locationLinkTypes.length &&
         view.configParams.locationLinkTypes[0] === '*') {
@@ -136,5 +144,7 @@ function addLinks(view) {
                 }
             })
         }
-    })
+    });
+    const t1 = performance.now();
+    console.log(`Call to process links took ${t1 - t0} milliseconds.`);
 }

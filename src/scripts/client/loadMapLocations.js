@@ -18,10 +18,10 @@ export default function loadMapLocations(view) {
                 view.loadingInstance.set(false);
                 plotAllLocations(view, true);
                 plotAllGeoBoundaries(view, true);
-            } else {
-                plotAllLocations(view);
-                plotAllGeoBoundaries(view);
             }
+        }).fail(function() {
+            plotAllLocations(view);
+            plotAllGeoBoundaries(view);
         });
     } else {
         view.loadingInstance.set(true);
