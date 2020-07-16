@@ -1,7 +1,8 @@
 import { severityRank } from "./utils/status";
 import 'leaflet.markercluster.layersupport';
 import L from 'leaflet';
-import $ from 'jquery';
+import 'whatwg-fetch';
+import 'promise-polyfill/src/polyfill';
 
 function getMarkerCss(markers) {
     let max = 0;
@@ -44,8 +45,11 @@ export default function createClusterGroup(map, config) {
     clusterGroup.on('click', function (marker) {
         let url = '/proxy_service/topology/resources/' + marker.sourceTarget.feature.properties.id + '?_follow_composites=true&_include_status=true';
 
-        $.get(url, (data, status) => {
-            if (status === 'success' && data.hasOwnProperty('uniqueId')) {
+        fetch(url)
+        .then(function(response) {
+            return response.json()
+        }).then(function(data) {
+            if (data.hasOwnProperty('uniqueId')) {
                 let tmpUrl = marker.sourceTarget.feature.properties.url;
                 tmpUrl = tmpUrl.replace('{RESOURCE_ID}', marker.sourceTarget.feature.properties.id);
                 let tooltipContent = '<div style="width:auto">';
@@ -75,9 +79,9 @@ export default function createClusterGroup(map, config) {
 
                 tooltipContent += '</div>'
                 L.popup({'maxWidth': '1500'}).setLatLng(marker.latlng).setContent(tooltipContent).openOn(map);
-            } else {
-                alert("Could not retrieve details for ASM resource _id:- " + marker.sourceTarget.feature.properties.id);
             }
+        }).catch(function(err) {
+            console.error(`Failed to request ${marker.sourceTarget.feature.properties.id} data: ${err}`);
         });
     });
 

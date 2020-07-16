@@ -1,9 +1,10 @@
-import $ from 'jquery';
 import L from 'leaflet';
 import { addMarker, updateMarker } from './marker';
 import fitMap from './fitMap';
 import addUrlParams from './utils/addUrlParams';
 import getProvidedValue from './utils/getProvidedValue';
+import 'whatwg-fetch';
+import 'promise-polyfill/src/polyfill';
 
 // Create layer filter on each location type
 // https://leafletjs.com/examples/layers-control/
@@ -65,8 +66,11 @@ function getAllLocations(view, maintainZoom) {
         let url = baseUrl +
         '&_type=' + locationType;
 
-        $.get(url, (data, status) => {
-            if (status === 'success' && data.hasOwnProperty('_items')) {
+        fetch(url)
+        .then(function(response) {
+            return response.json()
+        }).then(function(data) {
+            if (data.hasOwnProperty('_items')) {
                 console.log(`Call to process ${locationType} started`);
                 const t0 = performance.now();
                 data._items.forEach((location) => {
@@ -85,9 +89,10 @@ function getAllLocations(view, maintainZoom) {
                 console.log(`Call to process ${locationType} took ${t1 - t0} milliseconds.`);
             }
             locationTypeRequestComplete(locationType);
-        }).fail(function() {
+        }).catch(function(err) {
+            console.error(`Failed to request ${locationType} data: ${err}`);
             locationTypeRequestComplete(locationType);
-        });
+        })
     }) 
 }
 
