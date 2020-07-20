@@ -1,9 +1,10 @@
-import $ from 'jquery';
 import { severityRank, propertySortLowToHigh } from './utils/status';
 import fitMap from './fitMap';
 import { addBoundary } from './boundary';
 import addUrlParams from './utils/addUrlParams';
 import getProvidedValue from './utils/getProvidedValue';
+import 'whatwg-fetch';
+import 'promise-polyfill/src/polyfill';
 
 // create a panel
 // https://leafletjs.com/examples/map-panes/
@@ -59,8 +60,11 @@ export default function plotALlGeoBoundaries(view, maintainZoom) {
             let url = baseUrl + 
             '&_type=' + boundaryType;
 
-            $.get(url, (data, status) => {
-                if (status === 'success' && data.hasOwnProperty('_items')) {
+            fetch(url)
+            .then(function(response) {
+                return response.json()
+            }).then(function(data) {
+                if (data.hasOwnProperty('_items')) {
                     data._items.forEach((location) => {
                         const boundaryPropValue = getProvidedValue(view.configParams.boundaryProps, location);
                         if (boundaryPropValue && Array.isArray(boundaryPropValue)) {
@@ -69,9 +73,10 @@ export default function plotALlGeoBoundaries(view, maintainZoom) {
                     })
                 }
                 boundaryTypesRequestComplete(boundaryType);
-            }).fail(function() {
+            }).catch(function(err) {
+                console.error(`Failed to request boundaryType ${boundaryType} data: ${err}`);
                 boundaryTypesRequestComplete(boundaryType);
-            });
+            })
         }) 
     }
 }
