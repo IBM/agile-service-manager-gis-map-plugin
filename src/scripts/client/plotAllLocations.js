@@ -83,7 +83,6 @@ function getAllGroupLocations(view, maintainZoom) {
                 console.log(`Call to process ${groupId} started`);
                 const t0 = performance.now();
                 data._items.forEach((location) => {
-                    console.log('location => ', location)
                     if (getProvidedValue(config.latProps, location) &&
                         getProvidedValue(config.longProps, location)) {
                             console.log(getProvidedValue(config.latProps, location),
