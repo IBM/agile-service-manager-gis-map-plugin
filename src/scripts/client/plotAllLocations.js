@@ -19,7 +19,100 @@ export default function plotAllLocations(view, maintainZoom) {
     if (!maintainZoom) {
         view.loadingInstance.set(true);
     }
-    getAllLocations(view, maintainZoom);
+    if (view.configParams.groupIds.length) {
+        getAllGroupLocations(view, maintainZoom)
+    } else {
+        getAllLocations(view, maintainZoom);
+    }
+}
+
+function locationParams(config) {
+    let params = '&_return_composites=' + config.returnComposites +
+    '&_field=name' +
+    '&_field=entityTypes' +
+    '&_include_status_severity=true' +
+    '&_limit=' + config.locationLimit;
+
+    params = addUrlParams(params, config.latProps, '_field');
+    params = addUrlParams(params, config.longProps, '_field');
+
+    params = addUrlParams(params, config.affectedRadiusProps, '_field');
+    params = addUrlParams(params, config.tooltipProperties, '_field');
+
+    
+    params = addUrlParams(params, config.linkColorProps, '_field');
+
+    if(!config.hideLinks) {
+        params = addUrlParams(params, config.locationLinkTypes, '_relation');
+    }
+    return params;
+}
+
+function getAllGroupLocations(view, maintainZoom) {
+    const config = view.configParams;
+    const locationGroupArray = config.groupIds;
+    const locationTypeRequests = {};
+    locationGroupArray.forEach( locationType => {
+        locationTypeRequests[locationType] = false;
+    });
+
+    const locationTypeRequestComplete = (locationType) => {
+        locationTypeRequests[locationType] = true;
+        if (Object.values(locationTypeRequests).every( v => v)) {
+            if(!maintainZoom) {
+                fitMap(view);
+            }
+            if(!config.hideLinks) {
+                addLinks(view);
+            }
+            view.loadingInstance.set(false);
+        }
+    }
+
+    const params = locationParams(config);
+
+    locationGroupArray.forEach( groupId => {
+        let url = `/proxy_service/topology/resources/${groupId}/references/out/groups?`;
+        url += params;
+
+        fetch(url)
+        .then(function(response) {
+            return response.json()
+        }).then(function(data) {
+            if (data.hasOwnProperty('_items')) {
+                console.log(`Call to process ${groupId} started`);
+                const t0 = performance.now();
+                data._items.forEach((location) => {
+                    if (getProvidedValue(config.latProps, location) &&
+                        getProvidedValue(config.longProps, location)) {
+                            console.log(getProvidedValue(config.latProps, location),
+                            getProvidedValue(config.longProps, location));
+                            // N.B. This will only ever add location, deleted locations will remain
+
+                            // Need to pick the type of the location
+                            let type = '';
+                            for(let i = 0; i < location.entityTypes.length && type === ''; i++) {
+                                if (view.markerTypes[location.entityTypes[i]]) {
+                                    type = location.entityTypes[i];
+                                }
+                            }
+  
+                            if(type && view.markerTypes[type].locationsMap[location._id]) {
+                                updateMarker(view, type, location)
+                            } else if (type) {
+                                addMarker(view, type, location);
+                            }
+                    }
+                });
+                const t1 = performance.now();
+                console.log(`Call to process ${groupId} took ${t1 - t0} milliseconds.`);
+            }
+            locationTypeRequestComplete(groupId);
+        }).catch(function(err) {
+            console.error(`Failed to request ${groupId} data: ${err}`);
+            locationTypeRequestComplete(groupId);
+        })
+    }) 
 }
 
 function getAllLocations(view, maintainZoom) {
@@ -42,25 +135,7 @@ function getAllLocations(view, maintainZoom) {
             view.loadingInstance.set(false);
         }
     }
-    let baseUrl = '/proxy_service/topology/resources?' +
-    '&_return_composites=' + config.returnComposites +
-    '&_field=name' +
-    '&_field=entityTypes' +
-    '&_include_status_severity=true' +
-    '&_limit=' + config.locationLimit;
-
-    baseUrl = addUrlParams(baseUrl, config.latProps, '_field');
-    baseUrl = addUrlParams(baseUrl, config.longProps, '_field');
-
-    baseUrl = addUrlParams(baseUrl, config.affectedRadiusProps, '_field');
-    baseUrl = addUrlParams(baseUrl, config.tooltipProperties, '_field');
-
-    
-    baseUrl = addUrlParams(baseUrl, config.linkColorProps, '_field');
-
-    if(!config.hideLinks) {
-        baseUrl = addUrlParams(baseUrl, config.locationLinkTypes, '_relation');
-    }
+    let baseUrl = '/proxy_service/topology/resources?' + locationParams(config);
 
     locationTypesArray.forEach( locationType => {
         let url = baseUrl +
