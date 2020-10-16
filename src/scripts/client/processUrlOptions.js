@@ -18,6 +18,7 @@ export default function processUrlOptions() {
         linkColorProps:  window.LINK_COLOR_PROPS ? window.LINK_COLOR_PROPS.split(',') : [],
         affectedRadiusProps:  window.AFFECTED_RADIUS_PROPS ? window.AFFECTED_RADIUS_PROPS.split(',') : [],
         resourceId: '',
+        groupIds: [],
         hideLinks: false,
         hideGeoBoundary: false,
         hideAffectedRadius: false,
@@ -48,6 +49,10 @@ export default function processUrlOptions() {
 
         if(urlParams['resourceId'] && urlParams['resourceId'] != '') {
             configParams.resourceId = urlParams.resourceId;
+        }
+
+        if(urlParams['groupIds'] && urlParams['groupIds'] != '') {
+            configParams.groupIds = urlParams.groupIds.split(',');
         }
 
         if(urlParams['hideLinks'] && urlParams['hideLinks'] != '' && urlParams['hideLinks'] === 'true') {
