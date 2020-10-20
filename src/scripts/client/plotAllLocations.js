@@ -26,13 +26,23 @@ export default function plotAllLocations(view, maintainZoom) {
     }
 }
 
-function locationParams(config) {
+function locationParams(view, config) {
+    console.log('Map bounds', );
     let params = '&_return_composites=' + config.returnComposites +
     '&_field=name' +
     '&_field=entityTypes' +
     '&_field=geolocation' +
     '&_include_status_severity=true' +
     '&_limit=' + config.locationLimit;
+
+    // Add geobounds filtering
+    const currentBounds = view.map.getBounds();
+    if (currentBounds) {
+        params += `&_geoshape=${currentBounds._southWest.lat}`;
+        params += `&_geoshape=${currentBounds._southWest.lng}`;
+        params += `&_geoshape=${currentBounds._northEast.lat}`;
+        params += `&_geoshape=${currentBounds._northEast.lng}`;
+    }
 
     params = addUrlParams(params, config.latProps, '_field');
     params = addUrlParams(params, config.longProps, '_field');
@@ -70,7 +80,7 @@ function getAllGroupLocations(view, maintainZoom) {
         }
     }
 
-    const params = locationParams(config);
+    const params = locationParams(view, config);
 
     locationGroupArray.forEach( groupId => {
         let url = `/proxy_service/topology/resources/${groupId}/references/out/groups?`;
@@ -135,7 +145,7 @@ function getAllLocations(view, maintainZoom) {
             view.loadingInstance.set(false);
         }
     }
-    let baseUrl = '/proxy_service/topology/resources?' + locationParams(config);
+    let baseUrl = '/proxy_service/topology/resources?' + locationParams(view, config);
 
     locationTypesArray.forEach( locationType => {
         let url = baseUrl +
