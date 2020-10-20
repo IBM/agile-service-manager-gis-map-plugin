@@ -6,7 +6,13 @@ import getProvidedValue from "./utils/getProvidedValue";
 import 'whatwg-fetch';
 import 'promise-polyfill/src/polyfill';
 
-export default function loadMapLocations(view) {
+let intervalId = null;
+
+export default function loadMapLocations(view, hideLoading) {
+    if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+    }
     if (view.configParams.resourceId) {
         let url = '/proxy_service/topology/resources/' + view.configParams.resourceId + '?_include_status_severity=true';
 
@@ -29,12 +35,19 @@ export default function loadMapLocations(view) {
             plotAllGeoBoundaries(view);
         })
     } else {
-        view.loadingInstance.set(true);
-        plotAllLocations(view);
-        plotAllGeoBoundaries(view);
+        if (!hideLoading) {
+            view.loadingInstance.set(true);
+            plotAllLocations(view);
+            plotAllGeoBoundaries(view);
+        } else {
+            plotAllLocations(view, true);
+            plotAllGeoBoundaries(view, true);
+        }
+        
     }
+    
 
-    setInterval(function(){
+    intervalId = setInterval(function(){
         console.log('Fetch Marker data');
         plotAllLocations(view, true);
         plotAllGeoBoundaries(view, true);

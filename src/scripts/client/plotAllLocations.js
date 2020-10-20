@@ -6,6 +6,8 @@ import getProvidedValue from './utils/getProvidedValue';
 import 'whatwg-fetch';
 import 'promise-polyfill/src/polyfill';
 
+const TIMING_INFO = false;
+
 // Create layer filter on each location type
 // https://leafletjs.com/examples/layers-control/
 
@@ -91,7 +93,7 @@ function getAllGroupLocations(view, maintainZoom) {
             return response.json()
         }).then(function(data) {
             if (data.hasOwnProperty('_items')) {
-                console.log(`Call to process ${groupId} started`);
+                TIMING_INFO && console.log(`Call to process ${groupId} started`);
                 const t0 = performance.now();
                 data._items.forEach((location) => {
                     if (location.geolocation || 
@@ -115,11 +117,11 @@ function getAllGroupLocations(view, maintainZoom) {
                     }
                 });
                 const t1 = performance.now();
-                console.log(`Call to process ${groupId} took ${t1 - t0} milliseconds.`);
+                TIMING_INFO && console.log(`Call to process ${groupId} took ${t1 - t0} milliseconds.`);
             }
             locationTypeRequestComplete(groupId);
         }).catch(function(err) {
-            console.error(`Failed to request ${groupId} data: ${err}`);
+            TIMING_INFO && console.error(`Failed to request ${groupId} data: ${err}`);
             locationTypeRequestComplete(groupId);
         })
     }) 
@@ -156,7 +158,7 @@ function getAllLocations(view, maintainZoom) {
             return response.json()
         }).then(function(data) {
             if (data.hasOwnProperty('_items')) {
-                console.log(`Call to process ${locationType} started`);
+                TIMING_INFO && console.log(`Call to process ${locationType} started`);
                 const t0 = performance.now();
                 data._items.forEach((location) => {
                     if (location.geolocation || 
@@ -171,7 +173,7 @@ function getAllLocations(view, maintainZoom) {
                     }
                 });
                 const t1 = performance.now();
-                console.log(`Call to process ${locationType} took ${t1 - t0} milliseconds.`);
+                TIMING_INFO && console.log(`Call to process ${locationType} took ${t1 - t0} milliseconds.`);
             }
             locationTypeRequestComplete(locationType);
         }).catch(function(err) {
@@ -183,7 +185,7 @@ function getAllLocations(view, maintainZoom) {
 
 
 function addLinks(view) {
-    console.log(`Call to process links started`);
+    TIMING_INFO && console.log(`Call to process links started`);
     const t0 = performance.now();
     let allLinkTypes = false;
     if (view.configParams.locationLinkTypes && view.configParams.locationLinkTypes.length &&
@@ -236,5 +238,5 @@ function addLinks(view) {
         }
     });
     const t1 = performance.now();
-    console.log(`Call to process links took ${t1 - t0} milliseconds.`);
+    TIMING_INFO && console.log(`Call to process links took ${t1 - t0} milliseconds.`);
 }

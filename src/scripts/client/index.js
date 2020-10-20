@@ -15,6 +15,8 @@ import { createBoundaryType } from './createBoundaryType';
 import { createLinkType } from './createLinkType';
 import addWeatherLayers from './addWeatherLayers';
 
+var moveTimeoutId = null;
+
 (function() {
     const configParams = processUrlOptions();
     // Pull the map tiles from wikimedia
@@ -103,6 +105,20 @@ import addWeatherLayers from './addWeatherLayers';
 
     const loadingInstance = Loading.create(document.getElementById('my-loading'));
 
+    
+
+    const view = {
+        map,
+        layerControl,
+        markerTypes,
+        boundaryTypes,
+        linkTypes,
+        linkMap: {},
+        clusterGroup,
+        configParams,
+        loadingInstance
+    };
+
     map.on('zoomend', function () {
         console.log('Zoom level', map.getZoom());
         console.log('Map bounds', map.getBounds());
@@ -123,21 +139,19 @@ import addWeatherLayers from './addWeatherLayers';
         // }
     });
 
-    const view = {
-        map,
-        layerControl,
-        markerTypes,
-        boundaryTypes,
-        linkTypes,
-        linkMap: {},
-        clusterGroup,
-        configParams,
-        loadingInstance
-    };
 
     // Add the search control
     const searchControl = createSearchControl(view);
     map.addControl(searchControl);
 
-    map.whenReady(loadMapLocations.bind(this, view));
+    map.whenReady(() => {
+        loadMapLocations(view);
+        map.on('moveend', function () {
+            if(moveTimeoutId) {
+                clearTimeout(moveTimeoutId);
+                moveTimeoutId = null;
+            }
+            moveTimeoutId = setTimeout(loadMapLocations.bind(null, view, true), 1000);
+        });
+    });
 })()
