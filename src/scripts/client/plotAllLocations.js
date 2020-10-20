@@ -29,7 +29,6 @@ export default function plotAllLocations(view, maintainZoom) {
 }
 
 function locationParams(view, config) {
-    console.log('Map bounds', );
     let params = '&_return_composites=' + config.returnComposites +
     '&_field=name' +
     '&_field=entityTypes' +
