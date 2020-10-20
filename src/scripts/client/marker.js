@@ -18,7 +18,10 @@ const setProperties = function(view, type, location, knownMarker) {
         props['state'] = "unknown";
     }
     let icon = severityToIcon[props['state']];
-    var latlng = new L.LatLng(getProvidedValue(config.latProps, location), getProvidedValue(config.longProps, location));
+    
+    var latlng = location.geolocation ?
+        new L.LatLng(location.geolocation.latitude, location.geolocation.longitude) :
+        new L.LatLng(getProvidedValue(config.latProps, location), getProvidedValue(config.longProps, location));
     markerLocationsMap[location._id] = latlng;
 
     let tooltipContent = '';
@@ -70,7 +73,9 @@ const addAffectRadiusMarker = function(view, type, location, props) {
 
     let marker = affectedRadiusMarkers[location._id];
 
-    var latlng = new L.LatLng(getProvidedValue(config.latProps, location) , getProvidedValue(config.longProps, location));
+    var latlng = location.geolocation ?
+        new L.LatLng(location.geolocation.latitude, location.geolocation.longitude) :
+        new L.LatLng(getProvidedValue(config.latProps, location), getProvidedValue(config.longProps, location));
 
     let radius = getProvidedValue(config.affectedRadiusProps, location) || 0;
 

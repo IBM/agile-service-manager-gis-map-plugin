@@ -30,6 +30,7 @@ function locationParams(config) {
     let params = '&_return_composites=' + config.returnComposites +
     '&_field=name' +
     '&_field=entityTypes' +
+    '&_field=geolocation' +
     '&_include_status_severity=true' +
     '&_limit=' + config.locationLimit;
 
@@ -83,8 +84,9 @@ function getAllGroupLocations(view, maintainZoom) {
                 console.log(`Call to process ${groupId} started`);
                 const t0 = performance.now();
                 data._items.forEach((location) => {
-                    if (getProvidedValue(config.latProps, location) &&
-                        getProvidedValue(config.longProps, location)) {
+                    if (location.geolocation || 
+                        (getProvidedValue(config.latProps, location) && getProvidedValue(config.longProps, location))
+                        ) {
                             // N.B. This will only ever add location, deleted locations will remain
 
                             // Need to pick the type of the location
@@ -147,9 +149,9 @@ function getAllLocations(view, maintainZoom) {
                 console.log(`Call to process ${locationType} started`);
                 const t0 = performance.now();
                 data._items.forEach((location) => {
-                    getProvidedValue(config.latProps, location)
-                    if (getProvidedValue(config.latProps, location) &&
-                        getProvidedValue(config.longProps, location)) {
+                    if (location.geolocation || 
+                        (getProvidedValue(config.latProps, location) && getProvidedValue(config.longProps, location))
+                        ) {
                             // N.B. This will only ever add location, deleted locations will remain
                             if(view.markerTypes[locationType].locationsMap[location._id]) {
                                 updateMarker(view, locationType, location)
