@@ -103,6 +103,26 @@ import addWeatherLayers from './addWeatherLayers';
 
     const loadingInstance = Loading.create(document.getElementById('my-loading'));
 
+    map.on('zoomend', function () {
+        console.log('Zoom level', map.getZoom());
+        console.log('Map bounds', map.getBounds());
+        // if (map.getZoom() < 5) {
+        //     map.removeLayer(localgroups);
+        //     map.addLayer(countries);
+        // }
+        // if (map.getZoom() > 5) {
+        //     map.removeLayer(countries);
+        //     map.addLayer(localgroups);
+        // }
+        // if (map.getZoom() > 8) {
+        //     map.removeLayer(localgroups);
+        //     map.addLayer(hosts);
+        // }
+        // if (map.getZoom() < 8) {
+        //     map.removeLayer(hosts);
+        // }
+    });
+
     const view = {
         map,
         layerControl,

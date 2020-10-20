@@ -59,6 +59,7 @@ function init(app) {
 
     // Define the /proxy_service routing behaviour
     app.use('/proxy_service', proxy(remoteHost, {
+        timeout: 120000,
         proxyReqPathResolver: proxyReqPathResolverFactory(remotePath),
         proxyReqOptDecorator: proxyReqOptDecoratorFactory(config.proxyServiceTenantId,
                                                           config.proxyServiceUsername,

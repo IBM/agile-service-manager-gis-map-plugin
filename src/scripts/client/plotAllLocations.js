@@ -85,8 +85,6 @@ function getAllGroupLocations(view, maintainZoom) {
                 data._items.forEach((location) => {
                     if (getProvidedValue(config.latProps, location) &&
                         getProvidedValue(config.longProps, location)) {
-                            console.log(getProvidedValue(config.latProps, location),
-                            getProvidedValue(config.longProps, location));
                             // N.B. This will only ever add location, deleted locations will remain
 
                             // Need to pick the type of the location
