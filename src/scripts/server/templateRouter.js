@@ -23,7 +23,9 @@ function renderTemplate(fileName, request, response) {
         'linkColorPropertyNames': config.linkColorPropertyNames,
         'affectedRadiusPropertyNames': config.affectedRadiusPropertyNames,
         'updateRate': config.updateRate,
-        'returnComposites': config.returnComposites
+        'returnComposites': config.returnComposites,
+        'initialViewLocation': config.initialViewLocation,
+        'initialZoomLevel': config.initialZoomLevel
     });
 }
 // Handle the root URL

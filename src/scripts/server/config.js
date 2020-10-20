@@ -49,7 +49,9 @@ function getDefaults() {
         'linkColorPropertyNames': '',
         'affectedRadiusPropertyNames': '',
         'updateRate': 90000,
-        'returnComposites': true
+        'returnComposites': true,
+        'initialViewLocation': '51.505,-0.09',
+        'initialZoomLevel': 11
     };
 }
 
@@ -151,6 +153,8 @@ function readConfig() {
     setConfigValue('linkColorPropertyNames', 'LINK_COLOR_PROPS', fileConfig, false);
     setConfigValue('affectedRadiusPropertyNames', 'AFFECTED_RADIUS_PROPS', fileConfig, false);
     setConfigValue('returnComposites', 'RETURN_COMPOSITES', fileConfig, false);
+    setConfigValue('initialViewLocation', 'INIT_VIEW_LOCATION', fileConfig, false);
+    setConfigValue('initialZoomLevel', 'INIT_ZOOM_LEVEL', fileConfig, false);
 
     return settings;
 }

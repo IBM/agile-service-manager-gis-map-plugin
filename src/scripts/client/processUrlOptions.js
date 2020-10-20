@@ -11,6 +11,8 @@ export default function processUrlOptions() {
         longProps: window.LONG_PROPS ? window.LONG_PROPS.split(',') : [],
         latProps: window.LAT_PROPS ? window.LAT_PROPS.split(',') : [],
         updateRate: window.UPDATE_RATE,
+        initialViewLocation: window.INIT_VIEW_LOCATION,
+        initialZoomLevel: window.INIT_ZOOM_LEVEL,
         popupIgnoreProperties: window.POPUP_IGNORE_PROPERTIES ? window.POPUP_IGNORE_PROPERTIES.split(',') : [],
         tooltipProperties: window.TOOLTIP_PROPERTIES ? window.TOOLTIP_PROPERTIES.split(',') : [],
         locationLimit: 1000,
@@ -70,6 +72,14 @@ export default function processUrlOptions() {
 
         if(urlParams['updateRate'] && urlParams['updateRate'] != '') {
             configParams.updateRate = urlParams.updateRate;
+        }
+
+        if(urlParams['initialViewLocation'] && urlParams['initialViewLocation'] != '') {
+            configParams.initialViewLocation = urlParams.initialViewLocation;
+        }
+
+        if(urlParams['initialZoomLevel'] && urlParams['initialZoomLevel'] != '') {
+            configParams.initialZoomLevel = urlParams.initialZoomLevel;
         }
 
         if(urlParams['openWeatherMapApiId'] && urlParams['openWeatherMapApiId'] != '') {

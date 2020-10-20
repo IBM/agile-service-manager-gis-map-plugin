@@ -25,8 +25,8 @@ import addWeatherLayers from './addWeatherLayers';
     });
 
     var map = L.map('map', {
-        center: [51.505, -0.09],
-        zoom: 11,
+        center: configParams.initialViewLocation.split(','),
+        zoom: configParams.initialZoomLevel,
         layers: [wikimedia]
     });
 

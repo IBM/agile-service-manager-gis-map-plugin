@@ -1,6 +1,6 @@
 import L from 'leaflet';
 import { addMarker, updateMarker } from './marker';
-import fitMap from './fitMap';
+// import fitMap from './fitMap';
 import addUrlParams from './utils/addUrlParams';
 import getProvidedValue from './utils/getProvidedValue';
 import 'whatwg-fetch';
@@ -71,7 +71,7 @@ function getAllGroupLocations(view, maintainZoom) {
         locationTypeRequests[locationType] = true;
         if (Object.values(locationTypeRequests).every( v => v)) {
             if(!maintainZoom) {
-                fitMap(view);
+                // fitMap(view);
             }
             if(!config.hideLinks) {
                 addLinks(view);
@@ -137,7 +137,7 @@ function getAllLocations(view, maintainZoom) {
         locationTypeRequests[locationType] = true;
         if (Object.values(locationTypeRequests).every( v => v)) {
             if(!maintainZoom) {
-                fitMap(view);
+                // fitMap(view);
             }
             if(!config.hideLinks) {
                 addLinks(view);

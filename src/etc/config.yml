@@ -68,7 +68,8 @@ proxyServiceRootPath: /1.0/
 #     Default value: https://localhost:16311/ibm/console/inasm/topology.jsp?resourceId={RESOURCE_ID}
 #
 #=======================================================================================================
-asmUIURL: https://localhost:16311/ibm/console/inasm/topology.jsp?resourceId={RESOURCE_ID}
+asmUIURL: https://localhost:8443/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-viewer?resourceId={RESOURCE_ID}
+
 
 
 #=======================================================================================================
@@ -158,6 +159,15 @@ boundaryPropertyNames: ''
 #     Polling rate in miliseconds to pull and update the map data
 #     Default value: 90000
 #
+# initialViewLocation:
+#     Initial view center location when map loads
+#     Default value: '51.505,-0.09'
+#
+# initialZoomLevel:
+#     Initial view zoom level when map loads
+#     Default value: 11
+#
 #=======================================================================================================
 updateRate: 90000
-
+initialViewLocation: '51.505,-0.09'
+initialZoomLevel: 11

@@ -1,6 +1,6 @@
 import plotAllGeoBoundaries from "./plotAllGeoBoundaries";
 import plotAllLocations from "./plotAllLocations";
-import fitMap from "./fitMap";
+// import fitMap from "./fitMap";
 import { addMarker } from "./marker";
 import getProvidedValue from "./utils/getProvidedValue";
 import 'whatwg-fetch';
@@ -18,7 +18,7 @@ export default function loadMapLocations(view) {
                 getProvidedValue(view.configParams.longProps, data)) {
                 addMarker(view, data.entityTypes[0], data);
                 // Zoom to marker
-                fitMap(view);
+                // fitMap(view);
                 view.loadingInstance.set(false);
                 plotAllLocations(view, true);
                 plotAllGeoBoundaries(view, true);

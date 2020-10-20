@@ -128,6 +128,8 @@ If you want to modify the default behaviour of the app, you can use the followin
 - hideAffectedRadius [boolean]: doesn't draw affected radius areas with markers on the map
 - returnComposites [boolean]: pull composite resources from ASM default true
 - updateRate [number]: The poll interval for the page in milliseconds
+- initialViewLocation [string]: Initial map center location on load
+- initialZoomLevel [number]: Initial map zoom level on load
 - resourceId [String]: Enables a launch to a specific marker on the map using the ASM resource id
 - groupIds [comma separated list]: List of groupIds to use for locations, overrides the configured location type requests
 - locationTypes [comma separated list]: List of entityTypes to use for locations, overrides the configured value

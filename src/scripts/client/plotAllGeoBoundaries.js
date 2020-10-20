@@ -1,5 +1,5 @@
 import { severityRank, propertySortLowToHigh } from './utils/status';
-import fitMap from './fitMap';
+// import fitMap from './fitMap';
 import { addBoundary } from './boundary';
 import addUrlParams from './utils/addUrlParams';
 import getProvidedValue from './utils/getProvidedValue';
@@ -40,7 +40,7 @@ export default function plotALlGeoBoundaries(view, maintainZoom) {
                 })
                 
                 if(!maintainZoom) {
-                    fitMap(view)
+                    // fitMap(view)
                 }
                 view.loadingInstance.set(false);
             }
