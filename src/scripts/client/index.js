@@ -22,14 +22,21 @@ var moveTimeoutId = null;
     // Pull the map tiles from wikimedia
     var wikimedia = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}@2x.png', {
         attribution: 'Wikimedia maps beta | &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19,
-        maxClusterRadius: 120
+        maxZoom: 19, // Make official zoom range 0-15
+        minZoom: 4,
+        maxClusterRadius: 120,
+        noWrap: true
     });
 
     var map = L.map('map', {
         center: configParams.initialViewLocation.split(','),
         zoom: configParams.initialZoomLevel,
-        layers: [wikimedia]
+        layers: [wikimedia],
+        // Set max bounds to be the world
+        maxBounds: [
+            [90, 180],
+            [-90, -180]
+        ]
     });
 
     // Create marker groups for each location type
@@ -151,7 +158,7 @@ var moveTimeoutId = null;
                 clearTimeout(moveTimeoutId);
                 moveTimeoutId = null;
             }
-            moveTimeoutId = setTimeout(loadMapLocations.bind(null, view, true), 1000);
+            moveTimeoutId = setTimeout(loadMapLocations.bind(null, view, true), 500);
         });
     });
 })()
