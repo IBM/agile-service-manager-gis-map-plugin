@@ -25,6 +25,7 @@ function renderTemplate(fileName, request, response) {
         'affectedRadiusPropertyNames': config.affectedRadiusPropertyNames,
         'updateRate': config.updateRate,
         'returnComposites': config.returnComposites,
+        'zoomTypeMap': JSON.stringify(config.zoomTypeMap),
         'initialViewLocation': config.initialViewLocation,
         'initialZoomLevel': config.initialZoomLevel
     });

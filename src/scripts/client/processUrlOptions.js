@@ -14,6 +14,7 @@ export default function processUrlOptions() {
         updateRate: window.UPDATE_RATE,
         initialViewLocation: window.INIT_VIEW_LOCATION,
         initialZoomLevel: window.INIT_ZOOM_LEVEL,
+        zoomTypeMap: JSON.parse(window.ZOOM_TYPE_MAP.replace(/&quot;/g,'"')),
         popupIgnoreProperties: window.POPUP_IGNORE_PROPERTIES ? window.POPUP_IGNORE_PROPERTIES.split(',') : [],
         tooltipProperties: window.TOOLTIP_PROPERTIES ? window.TOOLTIP_PROPERTIES.split(',') : [],
         locationLimit: 1000,

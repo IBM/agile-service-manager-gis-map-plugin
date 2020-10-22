@@ -52,7 +52,8 @@ function getDefaults() {
         'updateRate': 90000,
         'returnComposites': true,
         'initialViewLocation': '51.505,-0.09',
-        'initialZoomLevel': 11
+        'initialZoomLevel': 11,
+        'zoomTypeMap': {}
     };
 }
 
@@ -94,12 +95,18 @@ function parseConfigFile() {
  * @param   {boolean}  isInteger        a flag to indicate that the setting is an integer
  * @private
  */
-function setConfigValue(name, envVarName, fileConfig, isInteger) {
+function setConfigValue(name, envVarName, fileConfig, isInteger, isObject) {
     var source = null;
 
     if (process.env[envVarName] && process.env[envVarName] !== null &&
             (!isInteger || !isNaN(process.env[envVarName]))) {
-        if (isInteger) {
+        if (isObject) {
+            try {
+                settings[name] = JSON.parse(process.env[envVarName]);
+            } catch (error) {
+                console.error('Failed to parse env value: ', name)
+            }
+        } else if (isInteger) {
             settings[name] = parseInt(process.env[envVarName]);
         } else {
             settings[name] = process.env[envVarName];
@@ -157,6 +164,7 @@ function readConfig() {
     setConfigValue('returnComposites', 'RETURN_COMPOSITES', fileConfig, false);
     setConfigValue('initialViewLocation', 'INIT_VIEW_LOCATION', fileConfig, false);
     setConfigValue('initialZoomLevel', 'INIT_ZOOM_LEVEL', fileConfig, false);
+    setConfigValue('zoomTypeMap', 'ZOOM_TYPE_MAP', fileConfig, false, true);
 
     return settings;
 }

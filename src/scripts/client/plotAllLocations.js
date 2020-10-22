@@ -160,26 +160,23 @@ function getAllGroupLocations(groupIds, view, maintainZoom) {
 
 function getAllLocations(view, maintainZoom) {
     const config = view.configParams;
-    const zoomLevel = view.map.getZoom();
-    console.log('zoomLevel', zoomLevel);
-    // const locationTypesArray = config.locationTypes;
+    // Adjusted zoom level as min zoom 4 and max 19, config range 0 - 15 
+    const zoomLevel = view.map.getZoom() - 4;
+    // console.log('zoomLevel', zoomLevel, 'zoomTypeMap', config.zoomTypeMap);
     let locationTypesArray = [];
-    if (zoomLevel >= 12) {
-        locationTypesArray.push('site');
+    if (config.zoomTypeMap && Object.keys(config.zoomTypeMap).length) {
+        // Zoom map provided don't get all location types
         view.clusterGroup.clearLayers();
-        view.clusterGroup.addLayer(view.markerTypes['site'].clusterGroup);
-    } else if (zoomLevel > 6) {
-        locationTypesArray.push('city');
-        view.clusterGroup.clearLayers();
-        view.clusterGroup.addLayer(view.markerTypes['city'].clusterGroup);
-    } else if (zoomLevel > 3) {
-        locationTypesArray.push('province');
-        view.clusterGroup.clearLayers();
-        view.clusterGroup.addLayer(view.markerTypes['province'].clusterGroup);
+        config.locationTypes.forEach( type => {
+            if (config.zoomTypeMap[type] &&
+                config.zoomTypeMap[type].minZoom <= zoomLevel &&
+                config.zoomTypeMap[type].maxZoom >= zoomLevel) {
+                    locationTypesArray.push(type);
+                    view.clusterGroup.addLayer(view.markerTypes[type].clusterGroup);
+            }
+        })
     } else {
-        locationTypesArray.push('country');
-        view.clusterGroup.clearLayers();
-        view.clusterGroup.addLayer(view.markerTypes['country'].clusterGroup);
+        locationTypesArray = config.locationTypes;
     }
     const locationTypeRequests = {};
     locationTypesArray.forEach( locationType => {
