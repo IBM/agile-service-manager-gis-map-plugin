@@ -22,7 +22,9 @@ export default function plotAllLocations(view, maintainZoom) {
         view.loadingInstance.set(true);
     }
     if (view.configParams.groupIds.length) {
-        getAllGroupLocations(view, maintainZoom)
+        getAllGroupLocations(view.configParams.groupIds, view, maintainZoom)
+    } else if(view.configParams.locationGroupTypes.length) {
+        getGroupTypeIds(view);
     } else {
         getAllLocations(view, maintainZoom);
     }
@@ -60,11 +62,38 @@ function locationParams(view, config) {
     return params;
 }
 
-function getAllGroupLocations(view, maintainZoom) {
+function getGroupTypeIds(view) {
     const config = view.configParams;
-    const locationGroupArray = config.groupIds;
+    const locationGroupTypesArray = config.locationGroupTypes;
+    console.log('locationGroupTypesArray', locationGroupTypesArray);
+    locationGroupTypesArray.forEach(type => {
+        let url = `/proxy_service/topology/groups?_type=${type}&_limit=5000`;
+
+        fetch(url)
+        .then(function(response) {
+            return response.json()
+        }).then(function(data) {
+            if (data.hasOwnProperty('_items')) {
+                const groupIds = data._items.map(item => item._id);
+                console.log('data', type, groupIds.toString());
+                getAllGroupLocations(groupIds, view, true);
+            }
+        }).catch(function(err) {
+            console.error(`Failed to get group type ids ${type} data: ${err}`);
+        })
+    })
+}
+
+function getAllGroupLocations(groupIds, view, maintainZoom) {
+    const config = view.configParams;
+    const numIds = groupIds.length;
+    const maxConcurrentRequests = 6;
+    const numberOfRequests = Math.floor(numIds/maxConcurrentRequests) < maxConcurrentRequests ? 1 : maxConcurrentRequests;
+    const requestIndexArray = Array.apply(null, {length: numberOfRequests}).map(function(value, index) {
+        return index + 1;
+    });
     const locationTypeRequests = {};
-    locationGroupArray.forEach( locationType => {
+    requestIndexArray.forEach( locationType => {
         locationTypeRequests[locationType] = false;
     });
 
@@ -80,19 +109,22 @@ function getAllGroupLocations(view, maintainZoom) {
             view.loadingInstance.set(false);
         }
     }
+    const params = locationParams(view, config)
+    const segmentSize = Math.floor(numIds/numberOfRequests)
 
-    const params = locationParams(view, config);
-
-    locationGroupArray.forEach( groupId => {
-        let url = `/proxy_service/topology/resources/${groupId}/references/out/groups?`;
+    requestIndexArray.forEach( reqIndex => {
+        const startSegmentIndex = (reqIndex - 1) * segmentSize;
+        const endSegmentIndex = reqIndex * segmentSize;
+        const ids = reqIndex === numberOfRequests ?
+        groupIds.slice(startSegmentIndex).toString() : groupIds.slice(startSegmentIndex, endSegmentIndex).toString();
+        let url = `/proxy_service/topology/resources/${ids}/references/out/groups?`;
         url += params;
-
         fetch(url)
         .then(function(response) {
             return response.json()
         }).then(function(data) {
             if (data.hasOwnProperty('_items')) {
-                TIMING_INFO && console.log(`Call to process ${groupId} started`);
+                TIMING_INFO && console.log(`Call to process ${reqIndex} started`);
                 const t0 = performance.now();
                 data._items.forEach((location) => {
                     if (location.geolocation || 
@@ -116,12 +148,12 @@ function getAllGroupLocations(view, maintainZoom) {
                     }
                 });
                 const t1 = performance.now();
-                TIMING_INFO && console.log(`Call to process ${groupId} took ${t1 - t0} milliseconds.`);
+                TIMING_INFO && console.log(`Call to process ${reqIndex} took ${t1 - t0} milliseconds.`);
             }
-            locationTypeRequestComplete(groupId);
+            locationTypeRequestComplete(reqIndex);
         }).catch(function(err) {
-            TIMING_INFO && console.error(`Failed to request ${groupId} data: ${err}`);
-            locationTypeRequestComplete(groupId);
+            console.error(`Failed to request ${reqIndex} data: ${err}`);
+            locationTypeRequestComplete(reqIndex);
         })
     }) 
 }
