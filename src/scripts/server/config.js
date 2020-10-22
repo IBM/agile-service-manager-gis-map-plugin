@@ -41,6 +41,7 @@ function getDefaults() {
         'popupIgnoreProperties': '_executionTime,_modifiedAt,_observedAt,_startedAt,beginTime,changeTime,createTime,_compositeId,_compositeOfIds,_createdAt,_status',
         'tooltipProperties': '',
         'locationEntityTypes': 'location',
+        'locationGroupEntityTypes': '',
         'boundaryEntityTypes': '',
         'boundaryPropertyNames': '',
         'longitudePropertyNames': 'longitude',
@@ -144,6 +145,7 @@ function readConfig() {
     setConfigValue('popupIgnoreProperties', 'POPUP_IGNORE_PROPERTIES', fileConfig, false);
     setConfigValue('tooltipProperties', 'TOOLTIP_PROPERTIES', fileConfig, false);
     setConfigValue('locationEntityTypes', 'LOCATION_TYPES', fileConfig, false);
+    setConfigValue('locationGroupEntityTypes', 'LOCATION_GROUP_TYPES', fileConfig, false);
     setConfigValue('boundaryEntityTypes', 'BOUNDARY_TYPES', fileConfig, false);
     setConfigValue('boundaryPropertyNames', 'BOUNDARY_PROPS', fileConfig, false);
     setConfigValue('longitudePropertyNames', 'LONG_PROPS', fileConfig, false);

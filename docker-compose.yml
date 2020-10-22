@@ -121,6 +121,7 @@ services:
       #     Default value: ''
       #=======================================================================================================
       LOCATION_TYPES: location
+      LOCATION_GROUP_TYPES: ''
       LONG_PROPS: longitude
       LAT_PROPS: latitude
       AFFECTED_RADIUS_PROPS: ''

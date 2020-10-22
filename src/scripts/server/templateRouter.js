@@ -15,6 +15,7 @@ function renderTemplate(fileName, request, response) {
         'tooltipProperties': config.tooltipProperties,
         'asmUIURL': '' + config.asmUIURL,
         'locationEntityTypes': config.locationEntityTypes,
+        'locationGroupEntityTypes': config.locationGroupEntityTypes,
         'boundaryEntityTypes': config.boundaryEntityTypes,
         'boundaryPropertyNames': config.boundaryPropertyNames,
         'longitudePropertyNames': config.longitudePropertyNames,

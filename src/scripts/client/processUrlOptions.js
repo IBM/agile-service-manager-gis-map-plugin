@@ -6,6 +6,7 @@ export default function processUrlOptions() {
     const configParams = {
         url,
         locationTypes: window.LOCATION_TYPES ? window.LOCATION_TYPES.split(',') : [],
+        locationGroupTypes: window.LOCATION_GROUP_TYPES ? window.LOCATION_GROUP_TYPES.split(',') : [],
         geoBoundaryTypes: window.BOUNDARY_TYPES ? window.BOUNDARY_TYPES.split(',') : [],
         boundaryProps: window.BOUNDARY_PROPS ? window.BOUNDARY_PROPS.split(',') : [],
         longProps: window.LONG_PROPS ? window.LONG_PROPS.split(',') : [],
@@ -31,6 +32,10 @@ export default function processUrlOptions() {
     if (urlParams && urlParams !== '') {
         if(urlParams['locationTypes'] && urlParams['locationTypes'] != '') {
             configParams.locationTypes = urlParams.locationTypes.split(',');
+        }
+
+        if(urlParams['locationGroupTypes'] && urlParams['locationGroupTypes'] != '') {
+            configParams.locationGroupTypes = urlParams.locationGroupTypes.split(',');
         }
 
         if(urlParams['geoBoundaryTypes'] && urlParams['geoBoundaryTypes'] != '') {
