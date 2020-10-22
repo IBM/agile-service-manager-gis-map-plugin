@@ -128,7 +128,27 @@ function getAllGroupLocations(view, maintainZoom) {
 
 function getAllLocations(view, maintainZoom) {
     const config = view.configParams;
-    const locationTypesArray = config.locationTypes;
+    const zoomLevel = view.map.getZoom();
+    console.log('zoomLevel', zoomLevel);
+    // const locationTypesArray = config.locationTypes;
+    let locationTypesArray = [];
+    if (zoomLevel >= 12) {
+        locationTypesArray.push('site');
+        view.clusterGroup.clearLayers();
+        view.clusterGroup.addLayer(view.markerTypes['site'].clusterGroup);
+    } else if (zoomLevel > 6) {
+        locationTypesArray.push('city');
+        view.clusterGroup.clearLayers();
+        view.clusterGroup.addLayer(view.markerTypes['city'].clusterGroup);
+    } else if (zoomLevel > 3) {
+        locationTypesArray.push('province');
+        view.clusterGroup.clearLayers();
+        view.clusterGroup.addLayer(view.markerTypes['province'].clusterGroup);
+    } else {
+        locationTypesArray.push('country');
+        view.clusterGroup.clearLayers();
+        view.clusterGroup.addLayer(view.markerTypes['country'].clusterGroup);
+    }
     const locationTypeRequests = {};
     locationTypesArray.forEach( locationType => {
         locationTypeRequests[locationType] = false;
@@ -150,6 +170,7 @@ function getAllLocations(view, maintainZoom) {
 
     locationTypesArray.forEach( locationType => {
         let url = baseUrl +
+        // '&_filter=entityTypes=' + locationType;
         '&_type=' + locationType;
 
         fetch(url)
