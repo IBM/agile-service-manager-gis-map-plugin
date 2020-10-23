@@ -153,12 +153,14 @@ var moveTimeoutId = null;
 
     map.whenReady(() => {
         loadMapLocations(view);
-        map.on('moveend', function () {
-            if(moveTimeoutId) {
-                clearTimeout(moveTimeoutId);
-                moveTimeoutId = null;
-            }
-            moveTimeoutId = setTimeout(loadMapLocations.bind(null, view, true), 500);
-        });
+        if (configParams.useViewPortFiltering || (configParams.zoomTypeMap && Object.keys(configParams.zoomTypeMap).length)) {
+            map.on('moveend', function () {
+                if(moveTimeoutId) {
+                    clearTimeout(moveTimeoutId);
+                    moveTimeoutId = null;
+                }
+                moveTimeoutId = setTimeout(loadMapLocations.bind(null, view, true), 500);
+            });
+        }
     });
 })()

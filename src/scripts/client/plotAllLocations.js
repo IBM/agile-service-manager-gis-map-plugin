@@ -39,14 +39,21 @@ function locationParams(view, config) {
     '&_limit=' + config.locationLimit;
 
     // Add geobounds filtering
-    const currentBounds = view.map.getBounds();
-    if (currentBounds) {
-        params += `&_geoshape=${currentBounds._southWest.lat}`;
-        params += `&_geoshape=${currentBounds._southWest.lng}`;
-        params += `&_geoshape=${currentBounds._northEast.lat}`;
-        params += `&_geoshape=${currentBounds._northEast.lng}`;
+    console.log('config.useViewPortFiltering', config.useViewPortFiltering);
+    if (config.useViewPortFiltering) {
+        const currentBounds = view.map.getBounds();
+        if (currentBounds) {
+            // New model
+            params += `&_geoshape=box%2C${currentBounds._southWest.lat}%2C${currentBounds._southWest.lng}%2C${currentBounds._northEast.lat}%2C${currentBounds._northEast.lng}`;
+    
+            // Old model
+            // params += `&_geoshape=${currentBounds._southWest.lat}`;
+            // params += `&_geoshape=${currentBounds._southWest.lng}`;
+            // params += `&_geoshape=${currentBounds._northEast.lat}`;
+            // params += `&_geoshape=${currentBounds._northEast.lng}`;
+        }
     }
-
+    
     params = addUrlParams(params, config.latProps, '_field');
     params = addUrlParams(params, config.longProps, '_field');
 

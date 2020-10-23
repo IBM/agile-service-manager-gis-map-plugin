@@ -53,7 +53,8 @@ function getDefaults() {
         'returnComposites': true,
         'initialViewLocation': '51.505,-0.09',
         'initialZoomLevel': 11,
-        'zoomTypeMap': {}
+        'zoomTypeMap': {},
+        'useViewPortFiltering': false
     };
 }
 
@@ -165,6 +166,7 @@ function readConfig() {
     setConfigValue('initialViewLocation', 'INIT_VIEW_LOCATION', fileConfig, false);
     setConfigValue('initialZoomLevel', 'INIT_ZOOM_LEVEL', fileConfig, false);
     setConfigValue('zoomTypeMap', 'ZOOM_TYPE_MAP', fileConfig, false, true);
+    setConfigValue('useViewPortFiltering', 'USE_VIEW_PORT_FILTERING', fileConfig, false);
 
     return settings;
 }

@@ -27,7 +27,8 @@ export default function processUrlOptions() {
         hideGeoBoundary: false,
         hideAffectedRadius: false,
         openWeatherMapApiId: '',
-        returnComposites: window.RETURN_COMPOSITES
+        returnComposites: window.RETURN_COMPOSITES,
+        useViewPortFiltering: window.USE_VIEW_PORT_FILTERING === 'true'
     };
 
     if (urlParams && urlParams !== '') {
