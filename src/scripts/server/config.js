@@ -54,7 +54,7 @@ function getDefaults() {
         'initialViewLocation': '51.505,-0.09',
         'initialZoomLevel': 11,
         'zoomTypeMap': {},
-        'useViewPortFiltering': false
+        'useViewPortFiltering': true
     };
 }
 

@@ -69,9 +69,49 @@ function locationParams(view, config) {
     return params;
 }
 
+function getZoomLevel(view) {
+     // Adjusted zoom level as min zoom 4 and max 19, config range 0 - 15 
+    return view.map.getZoom() - 4;
+}
+function setZoomLayerLocationTypes(view) {
+    const zoomLevel = getZoomLevel(view);
+    const config = view.configParams;
+    if (config.zoomTypeMap && Object.keys(config.zoomTypeMap).length) {
+        // Zoom map provided don't get all location types
+        view.clusterGroup.clearLayers();
+        config.locationTypes.forEach( type => {
+            if (config.zoomTypeMap[type] &&
+                config.zoomTypeMap[type].minZoom <= zoomLevel &&
+                config.zoomTypeMap[type].maxZoom >= zoomLevel) {
+                    view.clusterGroup.addLayer(view.markerTypes[type].clusterGroup);
+            }
+        })
+    }
+}
+
+function getZoomLevelTypes (view, types) {
+    const config = view.configParams;
+    const zoomLevel = getZoomLevel(view);
+
+    let typesArray = [];
+    if (config.zoomTypeMap && Object.keys(config.zoomTypeMap).length) {
+        // Zoom map provided don't get all location types
+        types.forEach( type => {
+            if (config.zoomTypeMap[type] &&
+                config.zoomTypeMap[type].minZoom <= zoomLevel &&
+                config.zoomTypeMap[type].maxZoom >= zoomLevel) {
+                    typesArray.push(type);
+            }
+        })
+    } else {
+        typesArray = types;
+    }
+    return typesArray;
+}
+
 function getGroupTypeIds(view) {
     const config = view.configParams;
-    const locationGroupTypesArray = config.locationGroupTypes;
+    const locationGroupTypesArray = getZoomLevelTypes(view, config.locationGroupTypes);
     console.log('locationGroupTypesArray', locationGroupTypesArray);
     locationGroupTypesArray.forEach(type => {
         let url = `/proxy_service/topology/groups?_type=${type}&_limit=5000`;
@@ -103,6 +143,7 @@ function getAllGroupLocations(groupIds, view, maintainZoom) {
     requestIndexArray.forEach( locationType => {
         locationTypeRequests[locationType] = false;
     });
+    setZoomLayerLocationTypes(view)
 
     const locationTypeRequestComplete = (locationType) => {
         locationTypeRequests[locationType] = true;
@@ -167,24 +208,9 @@ function getAllGroupLocations(groupIds, view, maintainZoom) {
 
 function getAllLocations(view, maintainZoom) {
     const config = view.configParams;
-    // Adjusted zoom level as min zoom 4 and max 19, config range 0 - 15 
-    const zoomLevel = view.map.getZoom() - 4;
-    // console.log('zoomLevel', zoomLevel, 'zoomTypeMap', config.zoomTypeMap);
-    let locationTypesArray = [];
-    if (config.zoomTypeMap && Object.keys(config.zoomTypeMap).length) {
-        // Zoom map provided don't get all location types
-        view.clusterGroup.clearLayers();
-        config.locationTypes.forEach( type => {
-            if (config.zoomTypeMap[type] &&
-                config.zoomTypeMap[type].minZoom <= zoomLevel &&
-                config.zoomTypeMap[type].maxZoom >= zoomLevel) {
-                    locationTypesArray.push(type);
-                    view.clusterGroup.addLayer(view.markerTypes[type].clusterGroup);
-            }
-        })
-    } else {
-        locationTypesArray = config.locationTypes;
-    }
+    let locationTypesArray = getZoomLevelTypes(view, config.locationTypes);
+    setZoomLayerLocationTypes(view)
+
     const locationTypeRequests = {};
     locationTypesArray.forEach( locationType => {
         locationTypeRequests[locationType] = false;
