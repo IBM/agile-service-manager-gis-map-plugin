@@ -43,14 +43,8 @@ function locationParams(view, config) {
     if (config.useViewPortFiltering) {
         const currentBounds = view.map.getBounds();
         if (currentBounds) {
-            // New model
-            params += `&_geoshape=box%2C${currentBounds._southWest.lat}%2C${currentBounds._southWest.lng}%2C${currentBounds._northEast.lat}%2C${currentBounds._northEast.lng}`;
-    
-            // Old model
-            // params += `&_geoshape=${currentBounds._southWest.lat}`;
-            // params += `&_geoshape=${currentBounds._southWest.lng}`;
-            // params += `&_geoshape=${currentBounds._northEast.lat}`;
-            // params += `&_geoshape=${currentBounds._northEast.lng}`;
+            //_filter=geolocation<box,51.5,0.11,1       // WITHIN    any geolocation within the box   
+            params += `&_filter=geolocation%3Cbox%2C${currentBounds._southWest.lat}%2C${currentBounds._southWest.lng}%2C${currentBounds._northEast.lat}%2C${currentBounds._northEast.lng}`;
         }
     }
     
