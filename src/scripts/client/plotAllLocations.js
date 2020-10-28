@@ -5,6 +5,7 @@ import addUrlParams from './utils/addUrlParams';
 import getProvidedValue from './utils/getProvidedValue';
 import 'whatwg-fetch';
 import 'promise-polyfill/src/polyfill';
+import getZoomLevel from './utils/getZoomLevel';
 
 const TIMING_INFO = false;
 
@@ -63,10 +64,6 @@ function locationParams(view, config) {
     return params;
 }
 
-function getZoomLevel(view) {
-     // Adjusted zoom level as min zoom 4 and max 19, config range 0 - 15 
-    return view.map.getZoom() - 4;
-}
 function setZoomLayerLocationTypes(view) {
     const zoomLevel = getZoomLevel(view);
     const config = view.configParams;

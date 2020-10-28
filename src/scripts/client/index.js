@@ -14,6 +14,7 @@ import { createMarkerType } from './createMarkerType';
 import { createBoundaryType } from './createBoundaryType';
 import { createLinkType } from './createLinkType';
 import addWeatherLayers from './addWeatherLayers';
+import getZoomLevel from './utils/getZoomLevel';
 
 var moveTimeoutId = null;
 
@@ -123,7 +124,8 @@ var moveTimeoutId = null;
         linkMap: {},
         clusterGroup,
         configParams,
-        loadingInstance
+        loadingInstance,
+        currentZoomLevel: configParams.initialZoomLevel
     };
 
     // map.on('zoomend', function () {
@@ -155,11 +157,22 @@ var moveTimeoutId = null;
         loadMapLocations(view);
         if (configParams.useViewPortFiltering || (configParams.zoomTypeMap && Object.keys(configParams.zoomTypeMap).length)) {
             map.on('moveend', function () {
-                if(moveTimeoutId) {
-                    clearTimeout(moveTimeoutId);
-                    moveTimeoutId = null;
+                const newZoomLevel = getZoomLevel(view);
+                if(newZoomLevel > view.currentZoomLevel &&
+                    (Object.keys(configParams.zoomTypeMap).length === 0 ||
+                    JSON.stringify(configParams.zoomLevelTypeMap[newZoomLevel]) === JSON.stringify(configParams.zoomLevelTypeMap[view.currentZoomLevel]))) {
+                    // When zooming in don't need to fecth location data again unless the zoom level causes type change
+                    console.log('Optimised zoom not fetching data')
+                } else {
+                    // Need to get the marker locations data
+                    if(moveTimeoutId) {
+                        clearTimeout(moveTimeoutId);
+                        moveTimeoutId = null;
+                    }
+                    moveTimeoutId = setTimeout(loadMapLocations.bind(null, view, true), 500);
                 }
-                moveTimeoutId = setTimeout(loadMapLocations.bind(null, view, true), 500);
+                
+                view.currentZoomLevel = getZoomLevel(view);
             });
         }
     });
