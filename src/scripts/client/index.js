@@ -124,9 +124,10 @@ var moveTimeoutId = null;
         linkMap: {},
         clusterGroup,
         configParams,
-        loadingInstance,
-        currentZoomLevel: configParams.initialZoomLevel
+        loadingInstance
     };
+
+    view.currentZoomLevel = getZoomLevel(view);
 
     // map.on('zoomend', function () {
     //     console.log('Zoom level', map.getZoom());

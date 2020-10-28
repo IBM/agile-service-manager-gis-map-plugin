@@ -5,7 +5,6 @@ import addUrlParams from './utils/addUrlParams';
 import getProvidedValue from './utils/getProvidedValue';
 import 'whatwg-fetch';
 import 'promise-polyfill/src/polyfill';
-import getZoomLevel from './utils/getZoomLevel';
 
 const TIMING_INFO = false;
 
@@ -65,33 +64,28 @@ function locationParams(view, config) {
 }
 
 function setZoomLayerLocationTypes(view) {
-    const zoomLevel = getZoomLevel(view);
     const config = view.configParams;
     if (config.zoomTypeMap && Object.keys(config.zoomTypeMap).length) {
         // Zoom map provided don't get all location types
         view.clusterGroup.clearLayers();
-        config.locationTypes.forEach( type => {
-            if (config.zoomTypeMap[type] &&
-                config.zoomTypeMap[type].minZoom <= zoomLevel &&
-                config.zoomTypeMap[type].maxZoom >= zoomLevel) {
-                    view.clusterGroup.addLayer(view.markerTypes[type].clusterGroup);
+        config.zoomLevelTypeMap[view.currentZoomLevel].forEach( type => {
+            if (view.markerTypes[type]) {
+                view.clusterGroup.addLayer(view.markerTypes[type].clusterGroup);
             }
-        })
+        });
     }
 }
 
 function getZoomLevelTypes (view, types) {
     const config = view.configParams;
-    const zoomLevel = getZoomLevel(view);
 
     let typesArray = [];
     if (config.zoomTypeMap && Object.keys(config.zoomTypeMap).length) {
         // Zoom map provided don't get all location types
+        const currentZoomTypes = config.zoomLevelTypeMap[view.currentZoomLevel];
         types.forEach( type => {
-            if (config.zoomTypeMap[type] &&
-                config.zoomTypeMap[type].minZoom <= zoomLevel &&
-                config.zoomTypeMap[type].maxZoom >= zoomLevel) {
-                    typesArray.push(type);
+            if (currentZoomTypes.includes(type)) {
+                typesArray.push(type);
             }
         })
     } else {
