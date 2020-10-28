@@ -15,6 +15,24 @@ export default function processUrlOptions() {
         initialViewLocation: window.INIT_VIEW_LOCATION,
         initialZoomLevel: window.INIT_ZOOM_LEVEL,
         zoomTypeMap: JSON.parse(window.ZOOM_TYPE_MAP.replace(/&quot;/g,'"')),
+        zoomLevelTypeMap: {
+            0: [],
+            1: [],
+            2: [],
+            3: [],
+            4: [],
+            5: [],
+            6: [],
+            7: [],
+            8: [],
+            9: [],
+            10: [],
+            11: [],
+            12: [],
+            13: [],
+            14: [],
+            15: []
+        },
         popupIgnoreProperties: window.POPUP_IGNORE_PROPERTIES ? window.POPUP_IGNORE_PROPERTIES.split(',') : [],
         tooltipProperties: window.TOOLTIP_PROPERTIES ? window.TOOLTIP_PROPERTIES.split(',') : [],
         locationLimit: 1000,
@@ -30,6 +48,19 @@ export default function processUrlOptions() {
         returnComposites: window.RETURN_COMPOSITES,
         useViewPortFiltering: window.USE_VIEW_PORT_FILTERING === 'true'
     };
+
+    if (configParams.zoomTypeMap && Object.keys(configParams.zoomTypeMap).length) {
+        for(let type in configParams.zoomTypeMap) {
+            let def = configParams.zoomTypeMap[type];
+            if (def && typeof def.minZoom !== undefined && typeof def.maxZoom !== undefined) {
+                for(let i = def.minZoom; i <= def.maxZoom; i++) {
+                    configParams.zoomLevelTypeMap[i].push(type);
+                }
+            }
+        }
+    }
+
+    console.log(configParams.zoomTypeMap, configParams.zoomLevelTypeMap);
 
     if (urlParams && urlParams !== '') {
         if(urlParams['locationTypes'] && urlParams['locationTypes'] != '') {
