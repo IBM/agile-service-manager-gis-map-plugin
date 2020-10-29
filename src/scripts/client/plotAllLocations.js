@@ -30,6 +30,34 @@ export default function plotAllLocations(view, maintainZoom) {
     }
 }
 
+function addGeoFilter(view, filterMode) {
+    let filterCondition= '';
+    switch (filterMode) {
+        case 'CONTAINS': // CONTAINS  any geolocation that contains the circle 
+            filterCondition = '>';
+            break;
+        case 'INTERSECT':  // INTERSECT any geolocation that intersects with the circle 
+            filterCondition = ':';
+            break;
+        case 'DISJOINT': // DISJOINT  any geolocation not intersecting the circle
+            filterCondition = "!:";
+            break;
+        case 'WITHIN': // WITHIN    any geolocation within the box   
+        default:
+            filterCondition = '<';
+            break;
+    }
+    // Add geobounds filtering
+    if (view.configParams.useViewPortFiltering) {
+        const currentBounds = view.map.getBounds();
+        if (currentBounds) {
+            const filter = encodeURIComponent(`geolocation${filterCondition}box,${currentBounds._southWest.lat},${currentBounds._southWest.lng},${currentBounds._northEast.lat},${currentBounds._northEast.lng}`);
+            return `&_filter=${filter}`;
+        }
+    }
+    return '';
+}
+
 function locationParams(view, config) {
     let params = '&_return_composites=' + config.returnComposites +
     '&_field=name' +
@@ -38,15 +66,7 @@ function locationParams(view, config) {
     '&_include_status_severity=true' +
     '&_limit=' + config.locationLimit;
 
-    // Add geobounds filtering
-    console.log('config.useViewPortFiltering', config.useViewPortFiltering);
-    if (config.useViewPortFiltering) {
-        const currentBounds = view.map.getBounds();
-        if (currentBounds) {
-            //_filter=geolocation<box,51.5,0.11,1       // WITHIN    any geolocation within the box   
-            params += `&_filter=geolocation%3Cbox%2C${currentBounds._southWest.lat}%2C${currentBounds._southWest.lng}%2C${currentBounds._northEast.lat}%2C${currentBounds._northEast.lng}`;
-        }
-    }
+    params += addGeoFilter(view, 'WITHIN');
     
     params = addUrlParams(params, config.latProps, '_field');
     params = addUrlParams(params, config.longProps, '_field');
@@ -101,14 +121,19 @@ function getGroupTypeIds(view) {
     locationGroupTypesArray.forEach(type => {
         let url = `/proxy_service/topology/groups?_type=${type}&_limit=5000`;
 
+        url += addGeoFilter(view, 'INTERSECT');
+
         fetch(url)
         .then(function(response) {
             return response.json()
         }).then(function(data) {
             if (data.hasOwnProperty('_items')) {
                 const groupIds = data._items.map(item => item._id);
-                console.log('data', type, groupIds.toString());
-                getAllGroupLocations(groupIds, view, true);
+                if (groupIds.length) {
+                    getAllGroupLocations(groupIds, view, true);
+                } else {
+                    view.loadingInstance.set(false);
+                }
             }
         }).catch(function(err) {
             console.error(`Failed to get group type ids ${type} data: ${err}`);
