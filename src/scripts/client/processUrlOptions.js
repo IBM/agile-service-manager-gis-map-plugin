@@ -13,7 +13,7 @@ export default function processUrlOptions() {
         latProps: window.LAT_PROPS ? window.LAT_PROPS.split(',') : [],
         updateRate: window.UPDATE_RATE,
         initialViewLocation: window.INIT_VIEW_LOCATION,
-        initialZoomLevel: window.INIT_ZOOM_LEVEL,
+        initialZoomLevel: parseInt(window.INIT_ZOOM_LEVEL),
         zoomTypeMap: JSON.parse(window.ZOOM_TYPE_MAP.replace(/&quot;/g,'"')),
         zoomLevelTypeMap: {
             0: [],
@@ -117,7 +117,7 @@ export default function processUrlOptions() {
         }
 
         if(urlParams['initialZoomLevel'] && urlParams['initialZoomLevel'] != '') {
-            configParams.initialZoomLevel = urlParams.initialZoomLevel;
+            configParams.initialZoomLevel = parseInt(urlParams.initialZoomLevel);
         }
 
         if(urlParams['openWeatherMapApiId'] && urlParams['openWeatherMapApiId'] != '') {

@@ -31,7 +31,8 @@ var moveTimeoutId = null;
 
     var map = L.map('map', {
         center: configParams.initialViewLocation.split(','),
-        zoom: configParams.initialZoomLevel,
+        // Adjusted zoom level as min zoom 4 and max 19, config range 0 - 15 
+        zoom: configParams.initialZoomLevel + 4,
         layers: [wikimedia],
         // Set max bounds to be the world
         maxBounds: [

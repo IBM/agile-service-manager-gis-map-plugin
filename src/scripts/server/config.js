@@ -52,7 +52,7 @@ function getDefaults() {
         'updateRate': 90000,
         'returnComposites': true,
         'initialViewLocation': '51.505,-0.09',
-        'initialZoomLevel': 11,
+        'initialZoomLevel': 7,
         'zoomTypeMap': {},
         'useViewPortFiltering': true
     };
