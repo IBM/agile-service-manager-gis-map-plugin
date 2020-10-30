@@ -37,7 +37,7 @@ function getDefaults() {
         'proxyServiceUsername': 'asm',
         'proxyServicePassword': 'asm',
         'proxyServiceRootPath': '/1.0/',
-        'asmUIURL': 'https://localhost:16311/ibm/console/inasm/topology.jsp?resourceId={RESOURCE_ID}',
+        'asmUIURL': 'https://localhost/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-viewer?resourceId={RESOURCE_ID}',
         'popupIgnoreProperties': '_executionTime,_modifiedAt,_observedAt,_startedAt,beginTime,changeTime,createTime,_compositeId,_compositeOfIds,_createdAt,_status',
         'tooltipProperties': '',
         'locationEntityTypes': 'location',
