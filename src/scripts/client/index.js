@@ -162,8 +162,8 @@ var moveTimeoutId = null;
                 const newZoomLevel = getZoomLevel(view);
                 if(newZoomLevel > view.currentZoomLevel &&
                     (Object.keys(configParams.zoomTypeMap).length === 0 ||
-                    JSON.stringify(configParams.zoomLevelTypeMap[newZoomLevel]) === JSON.stringify(configParams.zoomLevelTypeMap[view.currentZoomLevel]))) {
-                    // When zooming in don't need to fecth location data again unless the zoom level causes type change
+                    JSON.stringify(configParams.zoomLevelTypeMap[newZoomLevel].dataTypes) === JSON.stringify(configParams.zoomLevelTypeMap[view.currentZoomLevel].dataTypes))) {
+                    // When zooming in don't need to fecth location data again unless the zoom level causes dataType change
                     console.log('Optimised zoom not fetching data')
                 } else {
                     // Need to get the marker locations data

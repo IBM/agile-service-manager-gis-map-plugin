@@ -15,24 +15,7 @@ export default function processUrlOptions() {
         initialViewLocation: window.INIT_VIEW_LOCATION,
         initialZoomLevel: parseInt(window.INIT_ZOOM_LEVEL),
         zoomTypeMap: JSON.parse(window.ZOOM_TYPE_MAP.replace(/&quot;/g,'"')),
-        zoomLevelTypeMap: {
-            0: [],
-            1: [],
-            2: [],
-            3: [],
-            4: [],
-            5: [],
-            6: [],
-            7: [],
-            8: [],
-            9: [],
-            10: [],
-            11: [],
-            12: [],
-            13: [],
-            14: [],
-            15: []
-        },
+        zoomLevelTypeMap: {},
         popupIgnoreProperties: window.POPUP_IGNORE_PROPERTIES ? window.POPUP_IGNORE_PROPERTIES.split(',') : [],
         tooltipProperties: window.TOOLTIP_PROPERTIES ? window.TOOLTIP_PROPERTIES.split(',') : [],
         locationLimit: 1000,
@@ -49,18 +32,29 @@ export default function processUrlOptions() {
         useViewPortFiltering: window.USE_VIEW_PORT_FILTERING === 'true'
     };
 
+    // Build up zoomLevelTypeMap structure
+    for(let i = 0; i <= 15; i++) {
+        configParams.zoomLevelTypeMap[i] = {
+            dataTypes: [],
+            locationTypes: [] 
+        }
+    }
+
     if (configParams.zoomTypeMap && Object.keys(configParams.zoomTypeMap).length) {
         for(let type in configParams.zoomTypeMap) {
             let def = configParams.zoomTypeMap[type];
             if (def && typeof def.minZoom !== undefined && typeof def.maxZoom !== undefined) {
                 for(let i = def.minZoom; i <= def.maxZoom; i++) {
-                    configParams.zoomLevelTypeMap[i].push(type);
+                    configParams.zoomLevelTypeMap[i].dataTypes.push(type);
+                    if(def.locationTypes) {
+                        configParams.zoomLevelTypeMap[i].locationTypes = [...configParams.zoomLevelTypeMap[i].locationTypes, ...def.locationTypes]
+                    } else {
+                        configParams.zoomLevelTypeMap[i].locationTypes = [...configParams.zoomLevelTypeMap[i].locationTypes, type]
+                    }
                 }
             }
         }
     }
-
-    console.log(configParams.zoomTypeMap, configParams.zoomLevelTypeMap);
 
     if (urlParams && urlParams !== '') {
         if(urlParams['locationTypes'] && urlParams['locationTypes'] != '') {

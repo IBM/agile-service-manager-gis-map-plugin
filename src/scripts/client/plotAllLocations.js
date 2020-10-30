@@ -23,9 +23,10 @@ export default function plotAllLocations(view, maintainZoom) {
     }
     if (view.configParams.groupIds.length) {
         getAllGroupLocations(view.configParams.groupIds, view, maintainZoom)
-    } else if(view.configParams.locationGroupTypes.length) {
-        getGroupTypeIds(view);
     } else {
+        if (view.configParams.locationGroupTypes.length) {
+            getGroupTypeIds(view);
+        }
         getAllLocations(view, maintainZoom);
     }
 }
@@ -88,7 +89,7 @@ function setZoomLayerLocationTypes(view) {
     if (config.zoomTypeMap && Object.keys(config.zoomTypeMap).length) {
         // Zoom map provided don't get all location types
         view.clusterGroup.clearLayers();
-        config.zoomLevelTypeMap[view.currentZoomLevel].forEach( type => {
+        config.zoomLevelTypeMap[view.currentZoomLevel].locationTypes.forEach( type => {
             if (view.markerTypes[type]) {
                 view.clusterGroup.addLayer(view.markerTypes[type].clusterGroup);
             }
@@ -102,7 +103,7 @@ function getZoomLevelTypes (view, types) {
     let typesArray = [];
     if (config.zoomTypeMap && Object.keys(config.zoomTypeMap).length) {
         // Zoom map provided don't get all location types
-        const currentZoomTypes = config.zoomLevelTypeMap[view.currentZoomLevel];
+        const currentZoomTypes = config.zoomLevelTypeMap[view.currentZoomLevel].dataTypes;
         types.forEach( type => {
             if (currentZoomTypes.includes(type)) {
                 typesArray.push(type);
