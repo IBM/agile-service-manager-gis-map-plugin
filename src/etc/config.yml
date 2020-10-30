@@ -96,6 +96,12 @@ tooltipProperties: ''
 #     Comma separated list of entityTypes in ASM that represent possible locations 
 #     on the map. The types are used to pull locations from ASM. 
 #     Default value: location
+#
+# locationGroupEntityTypes:
+#     Comma separated list of group entityTypes in ASM that represent possible groups of locations 
+#     on the map. The types are used to pull locations from ASM, but require the actualy location entityTypes
+#     to be added to the locationEntityTypes. 
+#     Default value: ''
 # 
 # longitudePropertyNames:
 #     Comma separated list of property names in ASM that represent possible longitude
@@ -127,11 +133,12 @@ tooltipProperties: ''
 #     Specify if composite resources are using in the map location requests to ASM
 #     Default value: true
 #=======================================================================================================
-locationEntityTypes:  location
+locationEntityTypes: site,city,province
+locationGroupEntityTypes: 'provinceInCountry,cityInProvince,siteInCity'
 longitudePropertyNames: longitude
 latitudePropertyNames: latitude
 affectedRadiusPropertyNames: ''
-linkEdgeTypes: '*'
+linkEdgeTypes: ''
 linkColorPropertyNames: ''
 returnComposites: true
 
@@ -163,11 +170,34 @@ boundaryPropertyNames: ''
 #     Initial view center location when map loads
 #     Default value: '51.505,-0.09'
 #
+# useViewPortFiltering:
+#     Uses the current viewport area to geo filter the markers, only works with geoLocation data.
+#     This is recommended with larger datasets to boost performance.
+#     Default value: true
+#
 # initialZoomLevel:
 #     Initial view zoom level when map loads
 #     Default value: 11
 #
+# zoomTypeMap:
+#     Location data Type map for zoom min and max level range between 0 and 15. If a group type is provided
+#     requires the addition of a locationTypes array with the expected location types for that group.
+#     Default value: {}
+#
 #=======================================================================================================
-updateRate: 90000
-initialViewLocation: '51.505,-0.09'
-initialZoomLevel: 11
+updateRate: 900000
+# useViewPortFiltering: false
+initialViewLocation: '51.035535,-114.043873'
+initialZoomLevel: 7
+zoomTypeMap:
+  province:
+    minZoom: 0
+    maxZoom: 2
+  city:
+    minZoom: 3
+    maxZoom: 7
+  siteInCity:
+    locationTypes:
+      - site
+    minZoom: 8
+    maxZoom: 15
