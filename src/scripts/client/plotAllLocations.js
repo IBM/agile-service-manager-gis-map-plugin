@@ -122,7 +122,7 @@ function getGroupTypeIds(view) {
     locationGroupTypesArray.forEach(type => {
         let url = `/proxy_service/topology/groups?_type=${type}&_limit=5000`;
 
-        url += addGeoFilter(view, 'INTERSECT');
+        url += addGeoFilter(view, 'CONTAINS');
 
         fetch(url)
         .then(function(response) {
@@ -146,7 +146,7 @@ function getAllGroupLocations(groupIds, view, maintainZoom) {
     const config = view.configParams;
     const numIds = groupIds.length;
     const maxConcurrentRequests = 6;
-    const numberOfRequests = Math.floor(numIds/maxConcurrentRequests) < maxConcurrentRequests ? 1 : maxConcurrentRequests;
+    const numberOfRequests = numIds < maxConcurrentRequests ? 1 : maxConcurrentRequests;
     const requestIndexArray = Array.apply(null, {length: numberOfRequests}).map(function(value, index) {
         return index + 1;
     });
@@ -169,7 +169,7 @@ function getAllGroupLocations(groupIds, view, maintainZoom) {
         }
     }
     const params = locationParams(view, config)
-    const segmentSize = Math.floor(numIds/numberOfRequests)
+    const segmentSize = Math.ceil(numIds/numberOfRequests)
 
     requestIndexArray.forEach( reqIndex => {
         const startSegmentIndex = (reqIndex - 1) * segmentSize;
