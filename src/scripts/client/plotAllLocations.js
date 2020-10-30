@@ -115,7 +115,11 @@ function getZoomLevelTypes (view, types) {
     return typesArray;
 }
 
+let currentGroupIdRequest = 0;
+
 function getGroupTypeIds(view) {
+    currentGroupIdRequest++;
+    const requestId = currentGroupIdRequest;
     const config = view.configParams;
     const locationGroupTypesArray = getZoomLevelTypes(view, config.locationGroupTypes);
     console.log('locationGroupTypesArray', locationGroupTypesArray);
@@ -131,7 +135,7 @@ function getGroupTypeIds(view) {
             if (data.hasOwnProperty('_items')) {
                 const groupIds = data._items.map(item => item._id);
                 if (groupIds.length) {
-                    getAllGroupLocations(groupIds, view, true);
+                    getAllGroupLocations(groupIds, view, true, requestId);
                 } else {
                     view.loadingInstance.set(false);
                 }
@@ -142,7 +146,11 @@ function getGroupTypeIds(view) {
     })
 }
 
-function getAllGroupLocations(groupIds, view, maintainZoom) {
+function getAllGroupLocations(groupIds, view, maintainZoom, requestId) {
+    if (requestId && currentGroupIdRequest !== requestId) {
+        console.log('Drop previous group request', { currentGroupIdRequest, requestId });
+        return;
+    } 
     const config = view.configParams;
     const numIds = groupIds.length;
     const maxConcurrentRequests = 6;
@@ -178,6 +186,11 @@ function getAllGroupLocations(groupIds, view, maintainZoom) {
         groupIds.slice(startSegmentIndex).toString() : groupIds.slice(startSegmentIndex, endSegmentIndex).toString();
         let url = `/proxy_service/topology/resources/${ids}/references/out/groups?`;
         url += params;
+        if (ids === '') {
+            // No ids
+            locationTypeRequestComplete(reqIndex);
+            return;
+        }
         fetch(url)
         .then(function(response) {
             return response.json()
