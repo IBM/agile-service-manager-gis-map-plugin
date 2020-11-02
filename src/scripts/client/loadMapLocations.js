@@ -65,7 +65,7 @@ export default function loadMapLocations(view) {
     
 
     intervalId = setInterval(function(){
-        console.log('Fetch Marker data');
+        console.log('Clear marker cache');
         view.gridCache = {};
     }, view.configParams.updateRate);
 }

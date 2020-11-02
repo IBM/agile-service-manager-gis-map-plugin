@@ -17,19 +17,21 @@ const TIMING_INFO = false;
 
 // _at time to get view of world ar time point
 
-export function plotAllLocations(view, maintainZoom) {
-    if (!maintainZoom) {
-        view.loadingInstance.set(true);
-    }
-    if (view.configParams.groupIds.length) {
-        getAllGroupLocations(view.configParams.groupIds, view, maintainZoom)
-    } else {
-        if (view.configParams.locationGroupTypes.length) {
-            getGroupTypeIds({view, geoFilterMode: 'CONTAINS'});
-        }
-        getAllLocations(view, maintainZoom);
-    }
-}
+
+// TODO remove as not used any longer
+// export function plotAllLocations(view, maintainZoom) {
+//     if (!maintainZoom) {
+//         view.loadingInstance.set(true);
+//     }
+//     if (view.configParams.groupIds.length) {
+//         getAllGroupLocations({groupIds: view.configParams.groupIds, view, maintainZoom})
+//     } else {
+//         if (view.configParams.locationGroupTypes.length) {
+//             getGroupTypeIds({view, geoFilterMode: 'CONTAINS'});
+//         }
+//         getAllLocations(view, maintainZoom);
+//     }
+// }
 
 function addGeoFilter(view, filterMode, geoBounds) {
     let filterCondition= '';
@@ -111,11 +113,8 @@ function getZoomLevelTypes (view, types) {
     return typesArray;
 }
 
-let currentGroupIdRequest = 0;
 
 function getGroupTypeIds({view, groupTypes, geoBounds, geoFilterMode}) {
-    currentGroupIdRequest++;
-    const requestId = currentGroupIdRequest;
     const config = view.configParams;
     const locationGroupTypesArray = groupTypes || getZoomLevelTypes(view, config.locationGroupTypes);
     console.log('locationGroupTypesArray', locationGroupTypesArray);
@@ -129,7 +128,7 @@ function getGroupTypeIds({view, groupTypes, geoBounds, geoFilterMode}) {
             if (data.hasOwnProperty('_items')) {
                 const groupIds = data._items.map(item => item._id);
                 if (groupIds.length) {
-                    getAllGroupLocations(groupIds, view, true, requestId);
+                    getAllGroupLocations({groupIds, view, geoBounds, geoFilterMode});
                 } else {
                     view.loadingInstance.set(false);
                 }
@@ -141,11 +140,7 @@ function getGroupTypeIds({view, groupTypes, geoBounds, geoFilterMode}) {
 }
 
 
-function getAllGroupLocations(groupIds, view, maintainZoom, requestId) {
-    if (requestId && currentGroupIdRequest !== requestId) {
-        console.log('Drop previous group request', { currentGroupIdRequest, requestId });
-        return;
-    } 
+function getAllGroupLocations({groupIds, view, geoBounds, geoFilterMode}) {
     const config = view.configParams;
     const numIds = groupIds.length;
     const maxConcurrentRequests = 6;
@@ -162,16 +157,13 @@ function getAllGroupLocations(groupIds, view, maintainZoom, requestId) {
     const locationTypeRequestComplete = (locationType) => {
         locationTypeRequests[locationType] = true;
         if (Object.values(locationTypeRequests).every( v => v)) {
-            if(!maintainZoom) {
-                // fitMap(view);
-            }
             if(!config.hideLinks) {
                 addLinks(view);
             }
             view.loadingInstance.set(false);
         }
     }
-    const params = locationParams(view, config)
+    const params = locationParams(view, config, geoFilterMode, geoBounds)
     const segmentSize = Math.ceil(numIds/numberOfRequests)
 
     requestIndexArray.forEach( reqIndex => {
@@ -225,33 +217,34 @@ function getAllGroupLocations(groupIds, view, maintainZoom, requestId) {
     }) 
 }
 
-function getAllLocations(view, maintainZoom) {
-    const config = view.configParams;
-    let locationTypesArray = getZoomLevelTypes(view, config.locationTypes);
-    setZoomLayerLocationTypes(view)
+// TODO do not need this mow as the grid covers the zoomless types option
+// function getAllLocations(view, maintainZoom) {
+//     const config = view.configParams;
+//     let locationTypesArray = getZoomLevelTypes(view, config.locationTypes);
+//     setZoomLayerLocationTypes(view)
 
-    const locationTypeRequests = {};
-    locationTypesArray.forEach( locationType => {
-        locationTypeRequests[locationType] = false;
-    });
+//     const locationTypeRequests = {};
+//     locationTypesArray.forEach( locationType => {
+//         locationTypeRequests[locationType] = false;
+//     });
 
-    const locationTypeRequestComplete = (locationType) => {
-        locationTypeRequests[locationType] = true;
-        if (Object.values(locationTypeRequests).every( v => v)) {
-            if(!maintainZoom) {
-                // fitMap(view);
-            }
-            if(!config.hideLinks) {
-                addLinks(view);
-            }
-            view.loadingInstance.set(false);
-        }
-    }
+//     const locationTypeRequestComplete = (locationType) => {
+//         locationTypeRequests[locationType] = true;
+//         if (Object.values(locationTypeRequests).every( v => v)) {
+//             if(!maintainZoom) {
+//                 // fitMap(view);
+//             }
+//             if(!config.hideLinks) {
+//                 addLinks(view);
+//             }
+//             view.loadingInstance.set(false);
+//         }
+//     }
 
-    locationTypesArray.forEach( locationType => {
-        getLocations({view, locationType, callback: locationTypeRequestComplete.bind(null, locationType)});
-    }) 
-}
+//     locationTypesArray.forEach( locationType => {
+//         getLocations({view, locationType, callback: locationTypeRequestComplete.bind(null, locationType)});
+//     }) 
+// }
 
 export function getGridTileLocations({view, locationType, geoBounds, groupType}) {
     const config = view.configParams;
