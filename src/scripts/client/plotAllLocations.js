@@ -48,15 +48,11 @@ function addGeoFilter(view, filterMode, geoBounds) {
             filterCondition = '<';
             break;
     }
-    // Add geobounds filtering
-    if (view.configParams.useViewPortFiltering) {
-        const currentBounds = geoBounds || view.map.getBounds();
-        if (currentBounds) {
-            const filter = encodeURIComponent(`geolocation${filterCondition}box,${currentBounds._southWest.lat},${currentBounds._southWest.lng},${currentBounds._northEast.lat},${currentBounds._northEast.lng}`);
-            return `&_filter=${filter}`;
-        }
+    const currentBounds = geoBounds || view.map.getBounds();
+    if (currentBounds) {
+        const filter = encodeURIComponent(`geolocation${filterCondition}box,${currentBounds._southWest.lat},${currentBounds._southWest.lng},${currentBounds._northEast.lat},${currentBounds._northEast.lng}`);
+        return `&_filter=${filter}`;
     }
-    return '';
 }
 
 function locationParams(view, config, geoFilterMode, geoBounds) {

@@ -29,7 +29,6 @@ export default function processUrlOptions() {
         hideAffectedRadius: false,
         openWeatherMapApiId: '',
         returnComposites: window.RETURN_COMPOSITES,
-        useViewPortFiltering: window.USE_VIEW_PORT_FILTERING === 'true'
     };
 
     // Build up zoomLevelTypeMap structure

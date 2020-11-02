@@ -4,7 +4,7 @@ import booleanContains from '@turf/boolean-contains';
 import L from 'leaflet';
 import { getGridTileLocations } from './plotAllLocations';
 
-export function createGridTypeLayer({view, type, showDataTileCache}) {
+export function createGridTypeLayer({view, type, isGroupType, showDataTileCache}) {
     const map = view.map;
     let visitedArea = null;
     
@@ -60,7 +60,7 @@ export function createGridTypeLayer({view, type, showDataTileCache}) {
                     }
                 }
             };
-            if (typeConfig.locationTypes) {
+            if (isGroupType || typeConfig.locationTypes) {
                 tileLocationsDataConfig.groupType = type;
             } else {
                 tileLocationsDataConfig.locationType = type;

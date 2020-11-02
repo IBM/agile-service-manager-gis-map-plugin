@@ -146,18 +146,22 @@ const showDataTileCache = true;
     map.whenReady(() => {
         // TODO work out how to refrsh and get all types when not using zoomType
         // loadMapLocations(view);
-        if (configParams.useViewPortFiltering || (configParams.zoomTypeMap && Object.keys(configParams.zoomTypeMap).length)) {
-            if (Object.keys(configParams.zoomTypeMap).length) {
-                for(let type in configParams.zoomTypeMap) {
-                    view.gridCache[type] = createGridTypeLayer({view, type, showDataTileCache});
-                }
-            } else {
-                view.gridCache['ALL_MAP_TYPE'] = createGridTypeLayer({view, showDataTileCache});
+        if (Object.keys(configParams.zoomTypeMap).length) {
+            for(let type in configParams.zoomTypeMap) {
+                view.gridCache[type] = createGridTypeLayer({view, type, showDataTileCache});
             }
-            map.on('zoomend', function () {
-                view.currentZoomLevel = getZoomLevel(view);
-                setZoomLayerLocationTypes(view);
+        } else {
+            configParams.locationTypes.forEach(type => {
+                view.gridCache[type] = createGridTypeLayer({view, type, showDataTileCache});
             });
+            configParams.locationGroupTypes.forEach(type => {
+                view.gridCache[type] = createGridTypeLayer({view, type, showDataTileCache, isGroupType: true});
+            })
+            
         }
+        map.on('zoomend', function () {
+            view.currentZoomLevel = getZoomLevel(view);
+            setZoomLayerLocationTypes(view);
+        });
     });
 })()
