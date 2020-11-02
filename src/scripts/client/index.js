@@ -6,7 +6,7 @@ import {
     Loading
 } from 'carbon-components';
 
-// import loadMapLocations from './loadMapLocations';
+import loadMapLocations from './loadMapLocations';
 import createClusterGroup from './createClusterGroup';
 import createSearchControl from './createSearchControl';
 import processUrlOptions from './processUrlOptions';
@@ -15,13 +15,7 @@ import { createBoundaryType } from './createBoundaryType';
 import { createLinkType } from './createLinkType';
 import addWeatherLayers from './addWeatherLayers';
 import getZoomLevel from './utils/getZoomLevel';
-import { createGridTypeLayer } from './createGridTypeLayer';
 import { setZoomLayerLocationTypes } from './plotAllLocations';
-
-// var moveTimeoutId = null;
-
-// Used to show caching
-const showDataTileCache = true;
 
 (function() {
     const configParams = processUrlOptions();
@@ -140,28 +134,12 @@ const showDataTileCache = true;
     const searchControl = createSearchControl(view);
     map.addControl(searchControl);
     
-
-    // TODO remove
-    loadingInstance.set(false);
     map.whenReady(() => {
         // TODO work out how to refrsh and get all types when not using zoomType
-        // loadMapLocations(view);
-        if (Object.keys(configParams.zoomTypeMap).length) {
-            for(let type in configParams.zoomTypeMap) {
-                view.gridCache[type] = createGridTypeLayer({view, type, showDataTileCache});
-            }
-        } else {
-            configParams.locationTypes.forEach(type => {
-                view.gridCache[type] = createGridTypeLayer({view, type, showDataTileCache});
-            });
-            configParams.locationGroupTypes.forEach(type => {
-                view.gridCache[type] = createGridTypeLayer({view, type, showDataTileCache, isGroupType: true});
-            })
-            
-        }
         map.on('zoomend', function () {
             view.currentZoomLevel = getZoomLevel(view);
             setZoomLayerLocationTypes(view);
         });
+        loadMapLocations(view);
     });
 })()

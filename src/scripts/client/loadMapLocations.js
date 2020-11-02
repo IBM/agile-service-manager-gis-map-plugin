@@ -1,14 +1,35 @@
-import plotAllGeoBoundaries from "./plotAllGeoBoundaries";
-import {plotAllLocations} from "./plotAllLocations";
-// import fitMap from "./fitMap";
+// import plotAllGeoBoundaries from "./plotAllGeoBoundaries";
+// import {plotAllLocations} from "./plotAllLocations";
 import { addMarker } from "./marker";
 import getProvidedValue from "./utils/getProvidedValue";
 import 'whatwg-fetch';
 import 'promise-polyfill/src/polyfill';
+import { createGridTypeLayer } from "./createGridTypeLayer";
+import fitMap from "./fitMap";
 
 let intervalId = null;
+// Used to show caching
+const showDataTileCache = true;
 
-export default function loadMapLocations(view, hideLoading) {
+export default function loadMapLocations(view) {
+    const setUpGridTiles = function() {
+        if (Object.keys(view.configParams.zoomTypeMap).length) {
+            for(let type in view.configParams.zoomTypeMap) {
+                view.gridCache[type] = createGridTypeLayer({view, type, showDataTileCache});
+            }
+        } else {
+            view.configParams.locationTypes.forEach(type => {
+                view.gridCache[type] = createGridTypeLayer({view, type, showDataTileCache});
+            });
+            view.configParams.locationGroupTypes.forEach(type => {
+                view.gridCache[type] = createGridTypeLayer({view, type, showDataTileCache, isGroupType: true});
+            })
+            
+        }
+    };
+
+    view.loadingInstance.set(true);
+   
     if (intervalId) {
         clearInterval(intervalId);
         intervalId = null;
@@ -24,32 +45,27 @@ export default function loadMapLocations(view, hideLoading) {
                 getProvidedValue(view.configParams.longProps, data)) {
                 addMarker(view, data.entityTypes[0], data);
                 // Zoom to marker
-                // fitMap(view);
+                fitMap(view);
                 view.loadingInstance.set(false);
-                plotAllLocations(view, true);
-                plotAllGeoBoundaries(view, true);
+
+                // TODO handle these correctly
+                // plotAllLocations(view, true);
+                // plotAllGeoBoundaries(view, true);
+                setUpGridTiles();
             }
         }).catch(function(err) {
             console.error(`Failed to request resourceId ${view.configParams.resourceId} data: ${err}`);
-            plotAllLocations(view);
-            plotAllGeoBoundaries(view);
+            // plotAllLocations(view);
+            // plotAllGeoBoundaries(view);
+            setUpGridTiles();
         })
     } else {
-        if (!hideLoading) {
-            view.loadingInstance.set(true);
-            plotAllLocations(view);
-            plotAllGeoBoundaries(view);
-        } else {
-            plotAllLocations(view, true);
-            plotAllGeoBoundaries(view, true);
-        }
-        
+        setUpGridTiles();
     }
     
 
     intervalId = setInterval(function(){
         console.log('Fetch Marker data');
-        plotAllLocations(view, true);
-        plotAllGeoBoundaries(view, true);
+        view.gridCache = {};
     }, view.configParams.updateRate);
 }
