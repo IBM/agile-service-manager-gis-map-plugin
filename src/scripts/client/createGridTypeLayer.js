@@ -6,17 +6,21 @@ import { getGridTileLocations } from './plotAllLocations';
 
 export function createGridTypeLayer({view, type, isGroupType, showDataTileCache}) {
     const map = view.map;
-    let visitedArea = null;
     
     const typeConfig = view.configParams.zoomTypeMap[type] || {};
 
     var tiles = new L.GridLayer({
-        tileSize: 512,
-        // tileSize: 1024,
+        // tileSize: 512,
+        tileSize: 1024,
         // Adjusted zoom level as min zoom 4 and max 19, config range 0 - 15 
         maxZoom: typeConfig.maxZoom ? typeConfig.maxZoom + 4 : 19,
         minZoom: typeConfig.minZoom ? typeConfig.minZoom + 4 : 4,
     });
+
+    const instance = {
+        visitedArea: null,
+        tiles
+    };
 
     tiles.createTile = function(coords) {
         var size = this.getTileSize()
@@ -66,21 +70,21 @@ export function createGridTypeLayer({view, type, isGroupType, showDataTileCache}
                 tileLocationsDataConfig.locationType = type;
             }
             const gridPolygon = bboxPolygon([nw.lat, nw.lng, se.lat, se.lng]);
-            if (visitedArea) {
-                if (booleanContains(visitedArea, gridPolygon)) {
+            if (instance.visitedArea) {
+                if (booleanContains(instance.visitedArea, gridPolygon)) {
                     cachedTile = true;
                 } else {
                     // Add to visted area
-                    const calculatedUnion = union(visitedArea, gridPolygon);
+                    const calculatedUnion = union(instance.visitedArea, gridPolygon);
                     if (calculatedUnion && calculatedUnion.geometry.type === 'Polygon') {
-                        visitedArea = calculatedUnion;
+                        instance.visitedArea = calculatedUnion;
                         // Fetch the data for this tile here
                         console.log('fetch data for tile', type);
                         getGridTileLocations(tileLocationsDataConfig);
                     }
                 }
             } else {
-                visitedArea = gridPolygon;
+                instance.visitedArea = gridPolygon;
                 getGridTileLocations(tileLocationsDataConfig);
             }
         } catch (error) {
@@ -127,5 +131,6 @@ export function createGridTypeLayer({view, type, isGroupType, showDataTileCache}
     }
 
     tiles.addTo(map);
+    return instance;
 }
 
