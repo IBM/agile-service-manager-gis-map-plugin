@@ -15,8 +15,13 @@ import { createBoundaryType } from './createBoundaryType';
 import { createLinkType } from './createLinkType';
 import addWeatherLayers from './addWeatherLayers';
 import getZoomLevel from './utils/getZoomLevel';
+import { createGridTypeLayer } from './createGridTypeLayer';
+import { setZoomLayerLocationTypes } from './plotAllLocations';
 
 var moveTimeoutId = null;
+
+// Used to show caching
+const showDataTileCache = true;
 
 (function() {
     const configParams = processUrlOptions();
@@ -123,6 +128,7 @@ var moveTimeoutId = null;
         boundaryTypes,
         linkTypes,
         linkMap: {},
+        gridCache: {},
         clusterGroup,
         configParams,
         loadingInstance
@@ -130,51 +136,27 @@ var moveTimeoutId = null;
 
     view.currentZoomLevel = getZoomLevel(view);
 
-    // map.on('zoomend', function () {
-    //     console.log('Zoom level', map.getZoom());
-    //     console.log('Map bounds', map.getBounds());
-    //     // if (map.getZoom() < 5) {
-    //     //     map.removeLayer(localgroups);
-    //     //     map.addLayer(countries);
-    //     // }
-    //     // if (map.getZoom() > 5) {
-    //     //     map.removeLayer(countries);
-    //     //     map.addLayer(localgroups);
-    //     // }
-    //     // if (map.getZoom() > 8) {
-    //     //     map.removeLayer(localgroups);
-    //     //     map.addLayer(hosts);
-    //     // }
-    //     // if (map.getZoom() < 8) {
-    //     //     map.removeLayer(hosts);
-    //     // }
-    // });
-
-
     // Add the search control
     const searchControl = createSearchControl(view);
     map.addControl(searchControl);
+    
 
+    // TODO remove
+    loadingInstance.set(false);
     map.whenReady(() => {
-        loadMapLocations(view);
+        // TODO work out how to refrsh and get all types when not using zoomType
+        // loadMapLocations(view);
         if (configParams.useViewPortFiltering || (configParams.zoomTypeMap && Object.keys(configParams.zoomTypeMap).length)) {
-            map.on('moveend', function () {
-                const newZoomLevel = getZoomLevel(view);
-                if(newZoomLevel > view.currentZoomLevel &&
-                    (Object.keys(configParams.zoomTypeMap).length === 0 ||
-                    JSON.stringify(configParams.zoomLevelTypeMap[newZoomLevel].dataTypes) === JSON.stringify(configParams.zoomLevelTypeMap[view.currentZoomLevel].dataTypes))) {
-                    // When zooming in don't need to fecth location data again unless the zoom level causes dataType change
-                    console.log('Optimised zoom not fetching data')
-                } else {
-                    // Need to get the marker locations data
-                    if(moveTimeoutId) {
-                        clearTimeout(moveTimeoutId);
-                        moveTimeoutId = null;
-                    }
-                    moveTimeoutId = setTimeout(loadMapLocations.bind(null, view, true), 500);
+            if (Object.keys(configParams.zoomTypeMap).length) {
+                for(let type in configParams.zoomTypeMap) {
+                    view.gridCache[type] = createGridTypeLayer({view, type, showDataTileCache});
                 }
-                
+            } else {
+                view.gridCache['ALL_MAP_TYPE'] = createGridTypeLayer({view, showDataTileCache});
+            }
+            map.on('zoomend', function () {
                 view.currentZoomLevel = getZoomLevel(view);
+                setZoomLayerLocationTypes(view);
             });
         }
     });

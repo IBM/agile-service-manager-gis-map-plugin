@@ -21,6 +21,7 @@
     "lint"
   ],
   "dependencies": {
+    "@turf/turf": "^5.1.6",
     "carbon-components": "^10.11.1",
     "consolidate": "^0.15.1",
     "express": "^4.17.1",

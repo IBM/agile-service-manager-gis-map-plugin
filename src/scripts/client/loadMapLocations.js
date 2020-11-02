@@ -1,5 +1,5 @@
 import plotAllGeoBoundaries from "./plotAllGeoBoundaries";
-import plotAllLocations from "./plotAllLocations";
+import {plotAllLocations} from "./plotAllLocations";
 // import fitMap from "./fitMap";
 import { addMarker } from "./marker";
 import getProvidedValue from "./utils/getProvidedValue";

@@ -17,7 +17,7 @@ const TIMING_INFO = false;
 
 // _at time to get view of world ar time point
 
-export default function plotAllLocations(view, maintainZoom) {
+export function plotAllLocations(view, maintainZoom) {
     if (!maintainZoom) {
         view.loadingInstance.set(true);
     }
@@ -25,13 +25,13 @@ export default function plotAllLocations(view, maintainZoom) {
         getAllGroupLocations(view.configParams.groupIds, view, maintainZoom)
     } else {
         if (view.configParams.locationGroupTypes.length) {
-            getGroupTypeIds(view);
+            getGroupTypeIds({view, geoFilterMode: 'CONTAINS'});
         }
         getAllLocations(view, maintainZoom);
     }
 }
 
-function addGeoFilter(view, filterMode) {
+function addGeoFilter(view, filterMode, geoBounds) {
     let filterCondition= '';
     switch (filterMode) {
         case 'CONTAINS': // CONTAINS  any geolocation that contains the circle 
@@ -50,7 +50,7 @@ function addGeoFilter(view, filterMode) {
     }
     // Add geobounds filtering
     if (view.configParams.useViewPortFiltering) {
-        const currentBounds = view.map.getBounds();
+        const currentBounds = geoBounds || view.map.getBounds();
         if (currentBounds) {
             const filter = encodeURIComponent(`geolocation${filterCondition}box,${currentBounds._southWest.lat},${currentBounds._southWest.lng},${currentBounds._northEast.lat},${currentBounds._northEast.lng}`);
             return `&_filter=${filter}`;
@@ -59,7 +59,7 @@ function addGeoFilter(view, filterMode) {
     return '';
 }
 
-function locationParams(view, config) {
+function locationParams(view, config, geoFilterMode, geoBounds) {
     let params = '&_return_composites=' + config.returnComposites +
     '&_field=name' +
     '&_field=entityTypes' +
@@ -67,7 +67,7 @@ function locationParams(view, config) {
     '&_include_status_severity=true' +
     '&_limit=' + config.locationLimit;
 
-    params += addGeoFilter(view, 'WITHIN');
+    params += addGeoFilter(view, geoFilterMode, geoBounds);
     
     params = addUrlParams(params, config.latProps, '_field');
     params = addUrlParams(params, config.longProps, '_field');
@@ -84,7 +84,7 @@ function locationParams(view, config) {
     return params;
 }
 
-function setZoomLayerLocationTypes(view) {
+export function setZoomLayerLocationTypes(view) {
     const config = view.configParams;
     if (config.zoomTypeMap && Object.keys(config.zoomTypeMap).length) {
         // Zoom map provided don't get all location types
@@ -117,17 +117,15 @@ function getZoomLevelTypes (view, types) {
 
 let currentGroupIdRequest = 0;
 
-function getGroupTypeIds(view) {
+function getGroupTypeIds({view, groupTypes, geoBounds, geoFilterMode}) {
     currentGroupIdRequest++;
     const requestId = currentGroupIdRequest;
     const config = view.configParams;
-    const locationGroupTypesArray = getZoomLevelTypes(view, config.locationGroupTypes);
+    const locationGroupTypesArray = groupTypes || getZoomLevelTypes(view, config.locationGroupTypes);
     console.log('locationGroupTypesArray', locationGroupTypesArray);
     locationGroupTypesArray.forEach(type => {
         let url = `/proxy_service/topology/groups?_type=${type}&_limit=5000`;
-
-        url += addGeoFilter(view, 'CONTAINS');
-
+        url += addGeoFilter(view, geoFilterMode, geoBounds);
         fetch(url)
         .then(function(response) {
             return response.json()
@@ -145,6 +143,7 @@ function getGroupTypeIds(view) {
         })
     })
 }
+
 
 function getAllGroupLocations(groupIds, view, maintainZoom, requestId) {
     if (requestId && currentGroupIdRequest !== requestId) {
@@ -252,41 +251,65 @@ function getAllLocations(view, maintainZoom) {
             view.loadingInstance.set(false);
         }
     }
-    let baseUrl = '/proxy_service/topology/resources?' + locationParams(view, config);
 
     locationTypesArray.forEach( locationType => {
-        let url = baseUrl +
-        // '&_filter=entityTypes=' + locationType;
-        '&_type=' + locationType;
-
-        fetch(url)
-        .then(function(response) {
-            return response.json()
-        }).then(function(data) {
-            if (data.hasOwnProperty('_items')) {
-                TIMING_INFO && console.log(`Call to process ${locationType} started`);
-                const t0 = performance.now();
-                data._items.forEach((location) => {
-                    if (location.geolocation || 
-                        (getProvidedValue(config.latProps, location) && getProvidedValue(config.longProps, location))
-                        ) {
-                            // N.B. This will only ever add location, deleted locations will remain
-                            if(view.markerTypes[locationType].locationsMap[location._id]) {
-                                updateMarker(view, locationType, location)
-                            } else {
-                                addMarker(view, locationType, location);
-                            }
-                    }
-                });
-                const t1 = performance.now();
-                TIMING_INFO && console.log(`Call to process ${locationType} took ${t1 - t0} milliseconds.`);
-            }
-            locationTypeRequestComplete(locationType);
-        }).catch(function(err) {
-            console.error(`Failed to request ${locationType} data: ${err}`);
-            locationTypeRequestComplete(locationType);
-        })
+        getLocations({view, locationType, callback: locationTypeRequestComplete.bind(null, locationType)});
     }) 
+}
+
+export function getGridTileLocations({view, locationType, geoBounds, groupType}) {
+    const config = view.configParams;
+    const geoFilterMode = 'INTERSECT';
+    setZoomLayerLocationTypes(view);
+    if (groupType) {
+        getGroupTypeIds({view, groupTypes: [groupType], geoBounds, geoFilterMode});
+    } else {
+        const locationTypeRequestComplete = () => {
+            if(!config.hideLinks) {
+                addLinks(view);
+            }
+            view.loadingInstance.set(false);
+        }
+    
+        getLocations({view, locationType, callback: locationTypeRequestComplete, geoFilterMode, geoBounds});
+    }
+}
+
+function getLocations({view, locationType, callback, geoBounds, geoFilterMode}) {
+    const config = view.configParams;
+    const baseUrl = '/proxy_service/topology/resources?' + locationParams(view, config, geoFilterMode, geoBounds);
+    const url = baseUrl + '&_type=' + locationType;
+    fetch(url)
+    .then(function(response) {
+        return response.json()
+    }).then(function(data) {
+        if (data.hasOwnProperty('_items')) {
+            TIMING_INFO && console.log(`Call to process ${locationType} started`);
+            const t0 = performance.now();
+            data._items.forEach((location) => {
+                if (location.geolocation || 
+                    (getProvidedValue(config.latProps, location) && getProvidedValue(config.longProps, location))
+                    ) {
+                        // N.B. This will only ever add location, deleted locations will remain
+                        if(view.markerTypes[locationType].locationsMap[location._id]) {
+                            updateMarker(view, locationType, location)
+                        } else {
+                            addMarker(view, locationType, location);
+                        }
+                }
+            });
+            const t1 = performance.now();
+            TIMING_INFO && console.log(`Call to process ${locationType} took ${t1 - t0} milliseconds.`);
+        }
+        if (callback && typeof callback === 'function') {
+            callback();
+        }
+    }).catch(function(err) {
+        console.error(`Failed to request ${locationType} data: ${err}`);
+        if (callback && typeof callback === 'function') {
+            callback();
+        }
+    })
 }
 
 
