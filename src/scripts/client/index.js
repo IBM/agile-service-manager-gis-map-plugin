@@ -6,7 +6,7 @@ import {
     Loading
 } from 'carbon-components';
 
-import loadMapLocations from './loadMapLocations';
+// import loadMapLocations from './loadMapLocations';
 import createClusterGroup from './createClusterGroup';
 import createSearchControl from './createSearchControl';
 import processUrlOptions from './processUrlOptions';
@@ -18,7 +18,7 @@ import getZoomLevel from './utils/getZoomLevel';
 import { createGridTypeLayer } from './createGridTypeLayer';
 import { setZoomLayerLocationTypes } from './plotAllLocations';
 
-var moveTimeoutId = null;
+// var moveTimeoutId = null;
 
 // Used to show caching
 const showDataTileCache = true;
