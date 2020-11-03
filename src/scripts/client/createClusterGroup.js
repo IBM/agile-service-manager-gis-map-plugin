@@ -39,7 +39,8 @@ export default function createClusterGroup(map, config) {
                 iconSize: new L.Point(iconSize, iconSize)
             });
         },
-        spiderfyOnMaxZoom: true
+        spiderfyOnMaxZoom: true,
+        maxClusterRadius: 80
     });
 
     clusterGroup.on('click', function (marker) {

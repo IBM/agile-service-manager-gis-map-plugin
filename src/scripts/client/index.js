@@ -24,7 +24,6 @@ import { setZoomLayerLocationTypes } from './plotAllLocations';
         attribution: 'Wikimedia maps beta | &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 19, // Make official zoom range 0-15
         minZoom: 4,
-        maxClusterRadius: 120,
         noWrap: true
     });
 
