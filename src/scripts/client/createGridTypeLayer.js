@@ -79,7 +79,7 @@ export function createGridTypeLayer({view, type, isGroupType, showDataTileCache}
                     if (calculatedUnion && calculatedUnion.geometry.type === 'Polygon') {
                         instance.visitedArea = calculatedUnion;
                         // Fetch the data for this tile here
-                        console.log('fetch data for tile', type);
+                        showDataTileCache && console.log('fetch data for tile', type);
                         getGridTileLocations(tileLocationsDataConfig);
                     }
                 }

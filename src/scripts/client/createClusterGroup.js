@@ -40,7 +40,8 @@ export default function createClusterGroup(map, config) {
             });
         },
         spiderfyOnMaxZoom: true,
-        maxClusterRadius: 80
+        maxClusterRadius: 80,
+        removeOutsideVisibleBounds: true
     });
 
     clusterGroup.on('click', function (marker) {
@@ -87,8 +88,23 @@ export default function createClusterGroup(map, config) {
     });
 
     clusterGroup.on('clustermouseover', function (c) {
+        let mouseOverLabel = '';
+        const childMarkers = c.layer.getAllChildMarkers();
+        for(let i = 0; i < childMarkers.length && i < 4; i++) {
+            const loc = childMarkers[i];
+            if (loc && loc.feature && loc.feature.properties && loc.feature.properties.name) {
+                mouseOverLabel += `${loc.feature.properties.name},</br>`;
+            }
+        }
+
+        if (childMarkers.length <= 4) {
+            mouseOverLabel += '(click to Zoom)';
+        } else {
+            mouseOverLabel += `+${childMarkers.length - 4} Other locations (click to zoom)`
+        }
+
         L.popup().setLatLng(c.layer.getLatLng())
-            .setContent(c.layer.getAllChildMarkers().length + ' Locations (click to Zoom)')
+            .setContent(mouseOverLabel)
             .openOn(map);
     }).on('clustermouseout', function () {
         map.closePopup();
