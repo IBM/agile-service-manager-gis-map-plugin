@@ -15,6 +15,20 @@
         </svg>
       </div>
     </div>
+
+
+    <div id="my-inline-loading" data-inline-loading class="bx--inline-loading inline-loading" role="alert" aria-live="assertive">
+      <div class="bx--inline-loading__animation">
+        <div data-inline-loading-spinner class="bx--loading bx--loading--small">
+          <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
+            <circle class="bx--loading__background" cx="0" cy="0" r="26.8125" />
+            <circle class="bx--loading__stroke" cx="0" cy="0" r="26.8125"/>
+          </svg>
+        </div>
+      </div>
+      <p data-inline-loading-text-active class="bx--inline-loading__text">Loading locations...</p>
+    </div>
+
     <div id="map"></div>
     <script>
       /* These are populated via config.js for use elsewhere */

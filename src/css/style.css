@@ -18,6 +18,13 @@ body {
     padding: 0;
 }
 
+.inline-loading {
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    z-index: 1000;
+}
+
 .asm_link {
     margin-top: 4px;
     margin-bottom: 8px;

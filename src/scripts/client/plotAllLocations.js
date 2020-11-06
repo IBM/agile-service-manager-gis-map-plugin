@@ -118,9 +118,15 @@ function getGroupTypeIds({view, groupTypes, geoBounds, geoFilterMode}) {
     const config = view.configParams;
     const locationGroupTypesArray = groupTypes || getZoomLevelTypes(view, config.locationGroupTypes);
     console.log('locationGroupTypesArray', locationGroupTypesArray);
-    locationGroupTypesArray.forEach(type => {
+    locationGroupTypesArray.forEach((type, index) => {
+        const timestamp = new Date();
+        let requestId = `getGroupTypeIds-${type}-${index}-${timestamp.getTime()}`;
+        if (geoBounds) {
+            requestId += `-${JSON.stringify(geoBounds)}`;
+        }
         let url = `/proxy_service/topology/groups?_type=${type}&_limit=5000`;
         url += addGeoFilter(view, geoFilterMode, geoBounds);
+        view.startRequest(view, requestId);
         fetch(url)
         .then(function(response) {
             return response.json()
@@ -133,8 +139,10 @@ function getGroupTypeIds({view, groupTypes, geoBounds, geoFilterMode}) {
                     view.loadingInstance.set(false);
                 }
             }
+            view.endRequest(view, requestId);
         }).catch(function(err) {
             console.error(`Failed to get group type ids ${type} data: ${err}`);
+            view.endRequest(view, requestId);
         })
     })
 }
@@ -143,7 +151,7 @@ function getGroupTypeIds({view, groupTypes, geoBounds, geoFilterMode}) {
 function getAllGroupLocations({groupIds, view, geoBounds, geoFilterMode}) {
     const config = view.configParams;
     const numIds = groupIds.length;
-    const maxConcurrentRequests = 6;
+    const maxConcurrentRequests = 1;
     const numberOfRequests = numIds < maxConcurrentRequests ? 1 : maxConcurrentRequests;
     const requestIndexArray = Array.apply(null, {length: numberOfRequests}).map(function(value, index) {
         return index + 1;
@@ -178,6 +186,13 @@ function getAllGroupLocations({groupIds, view, geoBounds, geoFilterMode}) {
             locationTypeRequestComplete(reqIndex);
             return;
         }
+
+        const timestamp = new Date();
+        let requestId = `getAllGroupLocations-${ids.slice(0, 5)}-${reqIndex}-${timestamp.getTime()}`;
+        if (geoBounds) {
+            requestId += `-${JSON.stringify(geoBounds)}`;
+        }
+        view.startRequest(view, requestId);
         fetch(url)
         .then(function(response) {
             return response.json()
@@ -208,11 +223,13 @@ function getAllGroupLocations({groupIds, view, geoBounds, geoFilterMode}) {
                 });
                 const t1 = performance.now();
                 TIMING_INFO && console.log(`Call to process ${reqIndex} took ${t1 - t0} milliseconds.`);
+                view.endRequest(view, requestId);
             }
             locationTypeRequestComplete(reqIndex);
         }).catch(function(err) {
             console.error(`Failed to request ${reqIndex} data: ${err}`);
             locationTypeRequestComplete(reqIndex);
+            view.endRequest(view, requestId);
         })
     }) 
 }
@@ -253,11 +270,18 @@ export function getGridTileLocations({view, locationType, geoBounds, groupType})
     if (groupType) {
         getGroupTypeIds({view, groupTypes: [groupType], geoBounds, geoFilterMode});
     } else {
+        const timestamp = new Date();
+        let requestId = `getGridTileLocations-${locationType}-${timestamp.getTime()}`;
+        if (geoBounds) {
+            requestId += `-${JSON.stringify(geoBounds)}`;
+        }
+        view.startRequest(view, requestId);
         const locationTypeRequestComplete = () => {
             if(!config.hideLinks) {
                 addLinks(view);
             }
             view.loadingInstance.set(false);
+            view.endRequest(view, requestId);
         }
     
         getLocations({view, locationType, callback: locationTypeRequestComplete, geoFilterMode, geoBounds});

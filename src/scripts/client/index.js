@@ -3,7 +3,8 @@ import 'leaflet-search';
 import 'leaflet.markercluster';
 import L from 'leaflet';
 import {
-    Loading
+    Loading,
+    InlineLoading,
 } from 'carbon-components';
 
 import loadMapLocations from './loadMapLocations';
@@ -16,6 +17,7 @@ import { createLinkType } from './createLinkType';
 import addWeatherLayers from './addWeatherLayers';
 import getZoomLevel from './utils/getZoomLevel';
 import { setZoomLayerLocationTypes } from './plotAllLocations';
+import { endRequest, startRequest } from './requestHandler';
 
 (function() {
     const configParams = processUrlOptions();
@@ -111,8 +113,8 @@ import { setZoomLayerLocationTypes } from './plotAllLocations';
     const layerControl = L.control.layers(null, overlays).addTo(map);
 
     const loadingInstance = Loading.create(document.getElementById('my-loading'));
-
-    
+    const inlineLoadingInstance = InlineLoading.create(document.getElementById('my-inline-loading'))
+    inlineLoadingInstance.setState(InlineLoading.states.FINISHED);
 
     const view = {
         map,
@@ -122,9 +124,13 @@ import { setZoomLayerLocationTypes } from './plotAllLocations';
         linkTypes,
         linkMap: {},
         gridCache: {},
+        activeRequests: {},
+        endRequest: endRequest,
+        startRequest: startRequest,
         clusterGroup,
         configParams,
-        loadingInstance
+        loadingInstance,
+        inlineLoadingInstance
     };
 
     view.currentZoomLevel = getZoomLevel(view);
