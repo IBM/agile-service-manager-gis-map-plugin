@@ -9,7 +9,7 @@ import fitMap from "./fitMap";
 
 let intervalId = null;
 // Used to show caching
-const showDataTileCache = true;
+const showDataTileCache = false;
 
 export default function loadMapLocations(view) {
     const setUpGridTiles = function() {
