@@ -2,6 +2,7 @@ import { severityToIcon } from './utils/iconDefinitions';
 import L from 'leaflet';
 import { severityColors } from './utils/status';
 import getProvidedValue from './utils/getProvidedValue';
+import getLocationLatLng from './utils/getLocationLatLng';
 
 const setProperties = function(view, type, location, knownMarker) {
     const config = view.configParams;
@@ -19,7 +20,7 @@ const setProperties = function(view, type, location, knownMarker) {
     }
     let icon = severityToIcon[props['state']];
     
-    var latlng = new L.LatLng(location.geolocation.latitude, location.geolocation.longitude);
+    var latlng = getLocationLatLng(location);
     markerLocationsMap[location._id] = latlng;
 
     let tooltipContent = '';
@@ -71,7 +72,7 @@ const addAffectRadiusMarker = function(view, type, location, props) {
 
     let marker = affectedRadiusMarkers[location._id];
 
-    var latlng = new L.LatLng(location.geolocation.latitude, location.geolocation.longitude);
+    var latlng = getLocationLatLng(location);
 
     let radius = getProvidedValue(config.affectedRadiusProps, location) || 0;
 
