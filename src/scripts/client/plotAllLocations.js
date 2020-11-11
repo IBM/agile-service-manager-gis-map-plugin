@@ -50,9 +50,6 @@ function locationParams(view, config, geoFilterMode, geoBounds) {
 
     params += addGeoFilter(view, geoFilterMode, geoBounds);
     
-    params = addUrlParams(params, config.latProps, '_field');
-    params = addUrlParams(params, config.longProps, '_field');
-
     params = addUrlParams(params, config.affectedRadiusProps, '_field');
     params = addUrlParams(params, config.tooltipProperties, '_field');
 
@@ -184,9 +181,7 @@ function getAllGroupLocations({groupIds, view, geoBounds, geoFilterMode}) {
                 TIMING_INFO && console.log(`Call to process ${reqIndex} started`);
                 const t0 = performance.now();
                 data._items.forEach((location) => {
-                    if (location.geolocation || 
-                        (getProvidedValue(config.latProps, location) && getProvidedValue(config.longProps, location))
-                        ) {
+                    if (location.geolocation) {
                             // N.B. This will only ever add location, deleted locations will remain
 
                             // Need to pick the type of the location
@@ -254,9 +249,7 @@ function getLocations({view, locationType, callback, geoBounds, geoFilterMode}) 
             TIMING_INFO && console.log(`Call to process ${locationType} started`);
             const t0 = performance.now();
             data._items.forEach((location) => {
-                if (location.geolocation || 
-                    (getProvidedValue(config.latProps, location) && getProvidedValue(config.longProps, location))
-                    ) {
+                if (location.geolocation) {
                         // N.B. This will only ever add location, deleted locations will remain
                         if(view.markerTypes[locationType].locationsMap[location._id]) {
                             updateMarker(view, locationType, location)

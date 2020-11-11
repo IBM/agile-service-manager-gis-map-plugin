@@ -57,8 +57,6 @@ Below is an example of an ASM resource that inludes location information as 'lat
 #### Example docker-compose.yaml extract
 ```
 LOCATION_TYPES: location,businessLocation
-LONG_PROPS: longitude,long
-LAT_PROPS: latitude,lat
 ```
 
 ## Building & Running

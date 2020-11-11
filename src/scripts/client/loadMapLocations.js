@@ -1,7 +1,6 @@
 // import plotAllGeoBoundaries from "./plotAllGeoBoundaries";
 // import {plotAllLocations} from "./plotAllLocations";
 import { addMarker } from "./marker";
-import getProvidedValue from "./utils/getProvidedValue";
 import 'whatwg-fetch';
 import 'promise-polyfill/src/polyfill';
 import { createGridTypeLayer } from "./createGridTypeLayer";
@@ -41,8 +40,7 @@ export default function loadMapLocations(view) {
         .then(function(response) {
             return response.json()
         }).then(function(data) {
-            if (getProvidedValue(view.configParams.latProps, data) &&
-                getProvidedValue(view.configParams.longProps, data)) {
+            if (data.geolocation) {
                 addMarker(view, data.entityTypes[0], data);
                 // Zoom to marker
                 fitMap(view);

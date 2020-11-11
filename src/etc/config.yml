@@ -103,16 +103,6 @@ tooltipProperties: ''
 #     to be added to the locationEntityTypes. 
 #     Default value: ''
 # 
-# longitudePropertyNames:
-#     Comma separated list of property names in ASM that represent possible longitude
-#     value. The first valid value for a matching property will be used.
-#     Default value: longitude
-# 
-# latitudePropertyNames:
-#     Comma separated list of property names in ASM that represent possible latitude
-#     value. The first valid value for a matching property will be used.
-#     Default value: latitude
-# 
 # affectedRadiusPropertyNames:
 #     Comma separated list of property names in ASM that represent affected radius
 #     of a location. This value represents the raidus in metres.
@@ -135,8 +125,6 @@ tooltipProperties: ''
 #=======================================================================================================
 locationEntityTypes: site,city,province
 locationGroupEntityTypes: 'provinceInCountry,cityInProvince,siteInCity'
-longitudePropertyNames: longitude
-latitudePropertyNames: latitude
 affectedRadiusPropertyNames: ''
 linkEdgeTypes: ''
 linkColorPropertyNames: ''
@@ -170,11 +158,6 @@ boundaryPropertyNames: ''
 #     Initial view center location when map loads
 #     Default value: '51.505,-0.09'
 #
-# useViewPortFiltering:
-#     Uses the current viewport area to geo filter the markers, only works with geoLocation data.
-#     This is recommended with larger datasets to boost performance.
-#     Default value: true
-#
 # initialZoomLevel:
 #     Initial view zoom level when map loads
 #     Default value: 11
@@ -186,7 +169,6 @@ boundaryPropertyNames: ''
 #
 #=======================================================================================================
 updateRate: 900000
-# useViewPortFiltering: false
 initialViewLocation: '51.035535,-114.043873'
 initialZoomLevel: 7
 zoomTypeMap:

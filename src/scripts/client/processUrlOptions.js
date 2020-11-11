@@ -9,8 +9,6 @@ export default function processUrlOptions() {
         locationGroupTypes: window.LOCATION_GROUP_TYPES ? window.LOCATION_GROUP_TYPES.split(',') : [],
         geoBoundaryTypes: window.BOUNDARY_TYPES ? window.BOUNDARY_TYPES.split(',') : [],
         boundaryProps: window.BOUNDARY_PROPS ? window.BOUNDARY_PROPS.split(',') : [],
-        longProps: window.LONG_PROPS ? window.LONG_PROPS.split(',') : [],
-        latProps: window.LAT_PROPS ? window.LAT_PROPS.split(',') : [],
         updateRate: window.UPDATE_RATE,
         initialViewLocation: window.INIT_VIEW_LOCATION,
         initialZoomLevel: parseInt(window.INIT_ZOOM_LEVEL),

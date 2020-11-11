@@ -18,8 +18,6 @@ function renderTemplate(fileName, request, response) {
         'locationGroupEntityTypes': config.locationGroupEntityTypes,
         'boundaryEntityTypes': config.boundaryEntityTypes,
         'boundaryPropertyNames': config.boundaryPropertyNames,
-        'longitudePropertyNames': config.longitudePropertyNames,
-        'latitudePropertyNames': config.latitudePropertyNames,
         'linkEdgeTypes': config.linkEdgeTypes,
         'linkColorPropertyNames': config.linkColorPropertyNames,
         'affectedRadiusPropertyNames': config.affectedRadiusPropertyNames,

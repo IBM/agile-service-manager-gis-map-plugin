@@ -24,8 +24,10 @@ describe('marker', function() {
             _id: 'id123',
             name: 'myLocation',
             entityTypes: ['myType'],
-            long: 1,
-            lat: 2
+            geolocation: {
+                latitude: 2,
+                longitude: 1
+            }
         };
         marker.addMarker(view, 'myType', location);
         expect(addLayer).toHaveBeenCalled();
@@ -54,8 +56,10 @@ describe('marker', function() {
             _id: 'id123',
             name: 'myLocation',
             entityTypes: ['myType'],
-            long: 1,
-            lat: 2
+            geolocation: {
+                latitude: 2,
+                longitude: 1
+            }
         };
         marker.addMarker(view, 'myType', location);
         expect(addLayer).toHaveBeenCalled();
@@ -83,8 +87,10 @@ describe('marker', function() {
             _id: 'id123',
             name: 'myLocation',
             entityTypes: ['myType'],
-            long: 1,
-            lat: 2
+            geolocation: {
+                latitude: 2,
+                longitude: 1
+            }
         };
         marker.addMarker(view, 'myType', location);
         expect(addLayer).toHaveBeenCalled();
@@ -113,8 +119,10 @@ describe('marker', function() {
             _id: 'id123',
             name: 'myLocation',
             entityTypes: ['myType'],
-            long: 1,
-            lat: 2,
+            geolocation: {
+                latitude: 2,
+                longitude: 1
+            },
             _hasStatus: 'warning'
         };
         marker.addMarker(view, 'myType', location);
@@ -143,8 +151,10 @@ describe('marker', function() {
             _id: 'id123',
             name: 'myLocation',
             entityTypes: ['myType'],
-            long: 1,
-            lat: 2,
+            geolocation: {
+                latitude: 2,
+                longitude: 1
+            },
             tooltipProp: 'showThis'
         };
         marker.addMarker(view, 'myType', location);
@@ -178,8 +188,10 @@ describe('marker', function() {
             _id: 'id123',
             name: 'myLocation',
             entityTypes: ['myType'],
-            long: 1,
-            lat: 2,
+            geolocation: {
+                latitude: 2,
+                longitude: 1
+            },
             radius: 5
         };
         marker.addMarker(view, 'myType', location);
@@ -211,8 +223,10 @@ describe('marker', function() {
             _id: 'id123',
             name: 'myLocation',
             entityTypes: ['myType'],
-            long: 1,
-            lat: 2,
+            geolocation: {
+                latitude: 2,
+                longitude: 1
+            },
             radius: 5
         };
         marker.addMarker(view, 'myType', location);
@@ -248,8 +262,10 @@ describe('marker', function() {
             _id: 'id123',
             name: 'myLocation',
             entityTypes: ['myType'],
-            long: 1,
-            lat: 2
+            geolocation: {
+                latitude: 2,
+                longitude: 1
+            }
         };
         marker.addMarker(view, 'myType', location);
         expect(addLayer).toHaveBeenCalled();
@@ -278,8 +294,10 @@ describe('marker', function() {
             _id: 'id123',
             name: 'myLocation',
             entityTypes: ['myType'],
-            long: 1,
-            lat: 2
+            geolocation: {
+                latitude: 2,
+                longitude: 1
+            }
         };
         marker.updateMarker(view, 'myType', location);
         expect(addLayer).not.toHaveBeenCalled();
@@ -310,8 +328,10 @@ describe('marker', function() {
             _id: 'id123',
             name: 'myLocation',
             entityTypes: ['myType'],
-            long: 1,
-            lat: 2
+            geolocation: {
+                latitude: 2,
+                longitude: 1
+            }
         };
         marker.updateMarker(view, 'myType', location);
         expect(addLayer).not.toHaveBeenCalled();

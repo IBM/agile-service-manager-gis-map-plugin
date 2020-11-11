@@ -94,16 +94,6 @@ services:
       #     on the map. The types are used to pull locations from ASM. 
       #     Default value: location
       # 
-      # LONG_PROPS:
-      #     Comma separated list of property names in ASM that represent possible longitude
-      #     value. The first valid value for a matching property will be used.
-      #     Default value: longitude
-      # 
-      # LAT_PROPS:
-      #     Comma separated list of property names in ASM that represent possible latitude
-      #     value. The first valid value for a matching property will be used.
-      #     Default value: latitude
-      # 
       # AFFECTED_RADIUS_PROPS:
       #     Comma separated list of property names in ASM that represent affected radius
       #     of a location. This value represents the raidus in metres.
@@ -122,8 +112,6 @@ services:
       #=======================================================================================================
       LOCATION_TYPES: location
       LOCATION_GROUP_TYPES: ''
-      LONG_PROPS: longitude
-      LAT_PROPS: latitude
       AFFECTED_RADIUS_PROPS: ''
       LINK_TYPES: '*'
       LINK_COLOR_PROPS: ''

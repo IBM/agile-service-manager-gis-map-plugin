@@ -44,8 +44,6 @@ function getDefaults() {
         'locationGroupEntityTypes': '',
         'boundaryEntityTypes': '',
         'boundaryPropertyNames': '',
-        'longitudePropertyNames': 'longitude',
-        'latitudePropertyNames': 'latitude',
         'linkEdgeTypes': '*',
         'linkColorPropertyNames': '',
         'affectedRadiusPropertyNames': '',
@@ -155,8 +153,6 @@ function readConfig() {
     setConfigValue('locationGroupEntityTypes', 'LOCATION_GROUP_TYPES', fileConfig, false);
     setConfigValue('boundaryEntityTypes', 'BOUNDARY_TYPES', fileConfig, false);
     setConfigValue('boundaryPropertyNames', 'BOUNDARY_PROPS', fileConfig, false);
-    setConfigValue('longitudePropertyNames', 'LONG_PROPS', fileConfig, false);
-    setConfigValue('latitudePropertyNames', 'LAT_PROPS', fileConfig, false);
     setConfigValue('updateRate', 'UPDATE_RATE', fileConfig, false);
     setConfigValue('linkEdgeTypes', 'LINK_TYPES', fileConfig, false);
     setConfigValue('linkColorPropertyNames', 'LINK_COLOR_PROPS', fileConfig, false);
