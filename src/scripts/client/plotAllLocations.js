@@ -1,6 +1,5 @@
 import L from 'leaflet';
 import { addMarker, updateMarker } from './marker';
-// import fitMap from './fitMap';
 import addUrlParams from './utils/addUrlParams';
 import getProvidedValue from './utils/getProvidedValue';
 import 'whatwg-fetch';
@@ -16,22 +15,6 @@ const TIMING_INFO = false;
 // affected area https://leafletjs.com/reference-1.6.0.html#circle
 
 // _at time to get view of world ar time point
-
-
-// TODO remove as not used any longer
-// export function plotAllLocations(view, maintainZoom) {
-//     if (!maintainZoom) {
-//         view.loadingInstance.set(true);
-//     }
-//     if (view.configParams.groupIds.length) {
-//         getAllGroupLocations({groupIds: view.configParams.groupIds, view, maintainZoom})
-//     } else {
-//         if (view.configParams.locationGroupTypes.length) {
-//             getGroupTypeIds({view, geoFilterMode: 'CONTAINS'});
-//         }
-//         getAllLocations(view, maintainZoom);
-//     }
-// }
 
 function addGeoFilter(view, filterMode, geoBounds) {
     let filterCondition= '';
@@ -233,35 +216,6 @@ function getAllGroupLocations({groupIds, view, geoBounds, geoFilterMode}) {
         })
     }) 
 }
-
-// TODO do not need this mow as the grid covers the zoomless types option
-// function getAllLocations(view, maintainZoom) {
-//     const config = view.configParams;
-//     let locationTypesArray = getZoomLevelTypes(view, config.locationTypes);
-//     setZoomLayerLocationTypes(view)
-
-//     const locationTypeRequests = {};
-//     locationTypesArray.forEach( locationType => {
-//         locationTypeRequests[locationType] = false;
-//     });
-
-//     const locationTypeRequestComplete = (locationType) => {
-//         locationTypeRequests[locationType] = true;
-//         if (Object.values(locationTypeRequests).every( v => v)) {
-//             if(!maintainZoom) {
-//                 // fitMap(view);
-//             }
-//             if(!config.hideLinks) {
-//                 addLinks(view);
-//             }
-//             view.loadingInstance.set(false);
-//         }
-//     }
-
-//     locationTypesArray.forEach( locationType => {
-//         getLocations({view, locationType, callback: locationTypeRequestComplete.bind(null, locationType)});
-//     }) 
-// }
 
 export function getGridTileLocations({view, locationType, geoBounds, groupType}) {
     const config = view.configParams;
