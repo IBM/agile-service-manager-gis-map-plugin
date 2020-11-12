@@ -62,13 +62,11 @@ export function createGridTypeLayer({view, type, isGroupType, showDataTileCache}
                         lat: ne.lat,
                         lng: ne.lng
                     }
-                }
+                },
+                typeConfig: {isGroupType, ...typeConfig},
+                type
             };
-            if (isGroupType || typeConfig.locationTypes) {
-                tileLocationsDataConfig.groupType = type;
-            } else {
-                tileLocationsDataConfig.locationType = type;
-            }
+            
             const gridPolygon = bboxPolygon([nw.lat, nw.lng, se.lat, se.lng]);
             if (instance.visitedArea) {
                 if (booleanContains(instance.visitedArea, gridPolygon)) {

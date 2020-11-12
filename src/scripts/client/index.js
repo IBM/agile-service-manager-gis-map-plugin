@@ -47,6 +47,11 @@ import { endRequest, startRequest } from './requestHandler';
         markerTypes[type] = createMarkerType(type);
     })
 
+    // Create marker groups for each group location type
+    configParams.locationGroupTypes.forEach( type => {
+        markerTypes[type] = createMarkerType(type);
+    })
+
     // Create boundary groups for each geoBoundary type
     const boundaryTypes = {};
     if (!configParams.hideGeoBoundary) {
