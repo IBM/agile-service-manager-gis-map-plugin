@@ -64,10 +64,9 @@ function locationParams(view, config, geoFilterMode, geoBounds) {
 
 export function setZoomLayerLocationTypes(view) {
     const config = view.configParams;
-    if (config.locationTypesConfig && Object.keys(config.locationTypesConfig).length) {
-        // Zoom map provided don't get all location types
+    if (config.locationTypesConfig && config.locationTypesConfig.length) {
         view.clusterGroup.clearLayers();
-        config.zoomLevelTypeMap[view.currentZoomLevel].locationTypes.forEach( type => {
+        config.zoomLevelTypeMap[view.currentZoomLevel].markerTypes.forEach( type => {
             if (view.markerTypes[type]) {
                 view.clusterGroup.addLayer(view.markerTypes[type].clusterGroup);
             }
@@ -75,37 +74,21 @@ export function setZoomLayerLocationTypes(view) {
     }
 }
 
-// function getZoomLevelTypes (view, types) {
-//     const config = view.configParams;
-
-//     let typesArray = [];
-//     if (config.locationTypesConfig && Object.keys(config.locationTypesConfig).length) {
-//         // Zoom map provided don't get all location types
-//         const currentZoomTypes = config.zoomLevelTypeMap[view.currentZoomLevel].dataTypes;
-//         types.forEach( type => {
-//             if (currentZoomTypes.includes(type)) {
-//                 typesArray.push(type);
-//             }
-//         })
-//     } else {
-//         typesArray = types;
-//     }
-//     return typesArray;
-// }
-
-
-function getGroupType({view, type, typeConfig, geoBounds, geoFilterMode}) {
+function getGroupType({view, locationTypeConfig, geoFilterMode}) {
     const config = view.configParams;
-    const params = locationParams(view, config, geoFilterMode, geoBounds);
+    const params = locationParams(view, config, geoFilterMode, locationTypeConfig.geoBounds);
     
     const timestamp = new Date();
-    let requestId = `getGroupType-${type}-${timestamp.getTime()}`;
-    if (geoBounds) {
-        requestId += `-${JSON.stringify(geoBounds)}`;
+    let requestId = `getGroupType-${locationTypeConfig.entityType}-${timestamp.getTime()}`;
+    if (locationTypeConfig.geoBounds) {
+        requestId += `-${JSON.stringify(locationTypeConfig.geoBounds)}`;
     }
-    let url = `/proxy_service/topology/groups?_type=${type}`;
+    let url = `/proxy_service/topology/groups?_type=${locationTypeConfig.entityType}`;
     url += params;
     view.startRequest(view, requestId);
+    const getGroupMembers = locationTypeConfig.memberEntityTypes &&
+                            Array.isArray(locationTypeConfig.memberEntityTypes) &&
+                            locationTypeConfig.memberEntityTypes.length;
     fetch(url)
     .then(function(response) {
         return response.json()
@@ -113,33 +96,33 @@ function getGroupType({view, type, typeConfig, geoBounds, geoFilterMode}) {
         if (data.hasOwnProperty('_items')) {
             const groupIds = [];
             data._items.forEach(location => {
-                if (typeConfig.isGroupType || typeConfig.locationTypes) {
+                if (getGroupMembers) {
                     groupIds.push(location._id);
                 }
-                // if (location.geolocation) {
-                //     // N.B. This will only ever add location, deleted locations will remain
-                //     if(view.markerTypes[type].locationsMap[location._id]) {
-                //         updateMarker(view, type, location)
-                //     } else {
-                //         addMarker(view, type, location);
-                //     }
-                // }
+                if (locationTypeConfig.locationStyle === 'marker' && location.geolocation) {
+                    // N.B. This will only ever add location, deleted locations will remain
+                    if(view.markerTypes[locationTypeConfig.entityType].locationsMap[location._id]) {
+                        updateMarker(view, locationTypeConfig.entityType, location)
+                    } else {
+                        addMarker(view, locationTypeConfig.entityType, location);
+                    }
+                }
             });
             if (groupIds.length) {
-                getAllGroupLocations({groupIds, view, geoBounds, geoFilterMode});
+                getAllGroupLocations({groupIds, view, locationTypeConfig, geoFilterMode});
             } else {
                 view.loadingInstance.set(false);
             }
         }
         view.endRequest(view, requestId);
     }).catch(function(err) {
-        console.error(`Failed to get group type ids ${type} data: ${err}`);
+        console.error(`Failed to get group type ids ${locationTypeConfig.entityType} data: ${err}`);
         view.endRequest(view, requestId);
     })
 }
 
 
-function getAllGroupLocations({groupIds, view, geoBounds, geoFilterMode}) {
+function getAllGroupLocations({groupIds, view, locationTypeConfig, geoFilterMode}) {
     const config = view.configParams;
     const numIds = groupIds.length;
     const maxConcurrentRequests = 1;
@@ -162,7 +145,7 @@ function getAllGroupLocations({groupIds, view, geoBounds, geoFilterMode}) {
             view.loadingInstance.set(false);
         }
     }
-    const params = locationParams(view, config, geoFilterMode, geoBounds)
+    const params = locationParams(view, config, geoFilterMode, locationTypeConfig.geoBounds)
     const segmentSize = Math.ceil(numIds/numberOfRequests)
 
     requestIndexArray.forEach( reqIndex => {
@@ -180,8 +163,8 @@ function getAllGroupLocations({groupIds, view, geoBounds, geoFilterMode}) {
 
         const timestamp = new Date();
         let requestId = `getAllGroupLocations-${ids.slice(0, 5)}-${reqIndex}-${timestamp.getTime()}`;
-        if (geoBounds) {
-            requestId += `-${JSON.stringify(geoBounds)}`;
+        if (locationTypeConfig.geoBounds) {
+            requestId += `-${JSON.stringify(locationTypeConfig.geoBounds)}`;
         }
         view.startRequest(view, requestId);
         fetch(url)
@@ -223,18 +206,18 @@ function getAllGroupLocations({groupIds, view, geoBounds, geoFilterMode}) {
     }) 
 }
 
-export function getGridTileLocations({view, type, geoBounds, typeConfig}) {
+export function getGridTileLocations({view, locationTypeConfig}) {
     const config = view.configParams;
     const geoFilterMode = 'INTERSECT';
     setZoomLayerLocationTypes(view);
 
-    if (typeConfig.type === 'group' || typeConfig.isGroupType || typeConfig.locationTypes) {
-        getGroupType({view, type, typeConfig, geoBounds, geoFilterMode});
+    if (locationTypeConfig.vertexType === 'group') {
+        getGroupType({view, locationTypeConfig, geoFilterMode});
     } else {
         const timestamp = new Date();
-        let requestId = `getGridTileLocations-${type}-${timestamp.getTime()}`;
-        if (geoBounds) {
-            requestId += `-${JSON.stringify(geoBounds)}`;
+        let requestId = `getGridTileLocations-${locationTypeConfig.entityType}-${timestamp.getTime()}`;
+        if (locationTypeConfig.geoBounds) {
+            requestId += `-${JSON.stringify(locationTypeConfig.geoBounds)}`;
         }
         view.startRequest(view, requestId);
         const locationTypeRequestComplete = () => {
@@ -245,39 +228,39 @@ export function getGridTileLocations({view, type, geoBounds, typeConfig}) {
             view.endRequest(view, requestId);
         }
     
-        getLocations({view, type, callback: locationTypeRequestComplete, geoFilterMode, geoBounds});
+        getLocations({view, locationTypeConfig, callback: locationTypeRequestComplete, geoFilterMode});
     }
 }
 
-function getLocations({view, locationType, callback, geoBounds, geoFilterMode}) {
+function getLocations({view, locationTypeConfig, callback, geoFilterMode}) {
     const config = view.configParams;
-    const baseUrl = '/proxy_service/topology/resources?' + locationParams(view, config, geoFilterMode, geoBounds);
-    const url = baseUrl + '&_type=' + locationType;
+    const baseUrl = '/proxy_service/topology/resources?' + locationParams(view, config, geoFilterMode, locationTypeConfig.geoBounds);
+    const url = baseUrl + '&_type=' + locationTypeConfig.entityType;
     fetch(url)
     .then(function(response) {
         return response.json()
     }).then(function(data) {
         if (data.hasOwnProperty('_items')) {
-            TIMING_INFO && console.log(`Call to process ${locationType} started`);
+            TIMING_INFO && console.log(`Call to process ${locationTypeConfig.entityType} started`);
             const t0 = performance.now();
             data._items.forEach((location) => {
-                if (location.geolocation) {
+                if (location.geolocation && locationTypeConfig.locationStyle !== 'polygon') {
                         // N.B. This will only ever add location, deleted locations will remain
-                        if(view.markerTypes[locationType].locationsMap[location._id]) {
-                            updateMarker(view, locationType, location)
+                        if(view.markerTypes[locationTypeConfig.entityType].locationsMap[location._id]) {
+                            updateMarker(view, locationTypeConfig.entityType, location)
                         } else {
-                            addMarker(view, locationType, location);
+                            addMarker(view, locationTypeConfig.entityType, location);
                         }
                 }
             });
             const t1 = performance.now();
-            TIMING_INFO && console.log(`Call to process ${locationType} took ${t1 - t0} milliseconds.`);
+            TIMING_INFO && console.log(`Call to process ${locationTypeConfig.entityType} took ${t1 - t0} milliseconds.`);
         }
         if (callback && typeof callback === 'function') {
             callback();
         }
     }).catch(function(err) {
-        console.error(`Failed to request ${locationType} data: ${err}`);
+        console.error(`Failed to request ${locationTypeConfig.entityType} data: ${err}`);
         if (callback && typeof callback === 'function') {
             callback();
         }

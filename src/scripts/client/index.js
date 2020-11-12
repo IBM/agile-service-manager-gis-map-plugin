@@ -41,16 +41,12 @@ import { endRequest, startRequest } from './requestHandler';
         ]
     });
 
-    // Create marker groups for each location type
+    // Create marker groups for each marker entity type
     const markerTypes = {};
-    configParams.locationTypes.forEach( type => {
+    configParams.markerEntityTypes.forEach( type => {
         markerTypes[type] = createMarkerType(type);
     })
 
-    // Create marker groups for each group location type
-    configParams.locationGroupTypes.forEach( type => {
-        markerTypes[type] = createMarkerType(type);
-    })
 
     // Create boundary groups for each geoBoundary type
     const boundaryTypes = {};

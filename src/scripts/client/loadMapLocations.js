@@ -12,18 +12,15 @@ const showDataTileCache = false;
 
 export default function loadMapLocations(view) {
     const setUpGridTiles = function() {
-        if (Object.keys(view.configParams.locationTypesConfig).length) {
-            for(let type in view.configParams.locationTypesConfig) {
-                view.gridCache[type] = createGridTypeLayer({view, type, showDataTileCache});
+        if (view.configParams.locationTypesConfig.length) {
+            for(let i = 0; i < view.configParams.locationTypesConfig.length; i++) {
+                const locationTypeConfig = view.configParams.locationTypesConfig[i];
+                if (locationTypeConfig) {
+                    view.gridCache[i] = createGridTypeLayer({view, locationTypeConfig, showDataTileCache});
+                }
             }
         } else {
-            view.configParams.locationTypes.forEach(type => {
-                view.gridCache[type] = createGridTypeLayer({view, type, showDataTileCache});
-            });
-            view.configParams.locationGroupTypes.forEach(type => {
-                view.gridCache[type] = createGridTypeLayer({view, type, showDataTileCache, isGroupType: true});
-            })
-            
+            console.error('No known location types');
         }
     };
 

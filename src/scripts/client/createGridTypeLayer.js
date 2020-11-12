@@ -4,17 +4,15 @@ import booleanContains from '@turf/boolean-contains';
 import L from 'leaflet';
 import { getGridTileLocations } from './plotAllLocations';
 
-export function createGridTypeLayer({view, type, isGroupType, showDataTileCache}) {
+export function createGridTypeLayer({view, locationTypeConfig, showDataTileCache}) {
     const map = view.map;
     
-    const typeConfig = view.configParams.locationTypesConfig[type] || {};
-
     var tiles = new L.GridLayer({
         // tileSize: 512,
         tileSize: 1024,
         // Adjusted zoom level as min zoom 4 and max 19, config range 0 - 15 
-        maxZoom: typeConfig.maxZoom ? typeConfig.maxZoom + 4 : 19,
-        minZoom: typeConfig.minZoom ? typeConfig.minZoom + 4 : 4,
+        maxZoom: locationTypeConfig.maxZoom ? locationTypeConfig.maxZoom + 4 : 19,
+        minZoom: locationTypeConfig.minZoom ? locationTypeConfig.minZoom + 4 : 4,
     });
 
     const instance = {
@@ -63,8 +61,7 @@ export function createGridTypeLayer({view, type, isGroupType, showDataTileCache}
                         lng: ne.lng
                     }
                 },
-                typeConfig: {isGroupType, ...typeConfig},
-                type
+                locationTypeConfig
             };
             
             const gridPolygon = bboxPolygon([nw.lat, nw.lng, se.lat, se.lng]);
@@ -77,7 +74,7 @@ export function createGridTypeLayer({view, type, isGroupType, showDataTileCache}
                     if (calculatedUnion && calculatedUnion.geometry.type === 'Polygon') {
                         instance.visitedArea = calculatedUnion;
                         // Fetch the data for this tile here
-                        showDataTileCache && console.log('fetch data for tile', type);
+                        showDataTileCache && console.log('fetch data for tile', locationTypeConfig);
                         getGridTileLocations(tileLocationsDataConfig);
                     }
                 }

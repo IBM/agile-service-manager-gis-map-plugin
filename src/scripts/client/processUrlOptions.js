@@ -1,3 +1,4 @@
+import { addUniqueArrayValue, addUniqueArrayValues } from "./utils/addUniqueArrayValue";
 import parseLocationSearch from "./utils/parseLocationSearch";
 
 export default function processUrlOptions() {
@@ -13,6 +14,7 @@ export default function processUrlOptions() {
         initialViewLocation: window.INIT_VIEW_LOCATION,
         initialZoomLevel: parseInt(window.INIT_ZOOM_LEVEL),
         locationTypesConfig: JSON.parse(window.LOCATION_TYPES_CONFIG.replace(/&quot;/g,'"')),
+        markerEntityTypes: [],
         zoomLevelTypeMap: {},
         popupIgnoreProperties: window.POPUP_IGNORE_PROPERTIES ? window.POPUP_IGNORE_PROPERTIES.split(',') : [],
         tooltipProperties: window.TOOLTIP_PROPERTIES ? window.TOOLTIP_PROPERTIES.split(',') : [],
@@ -32,27 +34,47 @@ export default function processUrlOptions() {
     // Build up zoomLevelTypeMap structure
     for(let i = 0; i <= 15; i++) {
         configParams.zoomLevelTypeMap[i] = {
-            dataTypes: [],
-            locationTypes: [] 
+            markerTypes: [],
+            polygonTypes: [] 
         }
     }
 
-    if (configParams.locationTypesConfig && Object.keys(configParams.locationTypesConfig).length) {
-        for(let type in configParams.locationTypesConfig) {
-            let def = configParams.locationTypesConfig[type];
+    if (configParams.locationTypesConfig && configParams.locationTypesConfig.length) {
+        for(let typeIndex = 0; typeIndex < configParams.locationTypesConfig.length; typeIndex++) {
+            let def = configParams.locationTypesConfig[typeIndex];
+            if (typeof def.minZoom === undefined) {
+                def.minZoom = 0;
+            }
+            if (typeof def.maxZoom === undefined) {
+                def.maxZoom = 15;
+            }
             if (def && typeof def.minZoom !== undefined && typeof def.maxZoom !== undefined) {
                 for(let i = def.minZoom; i <= def.maxZoom; i++) {
-                    configParams.zoomLevelTypeMap[i].dataTypes.push(type);
-                    if(def.locationTypes) {
-                        configParams.zoomLevelTypeMap[i].locationTypes = [...configParams.zoomLevelTypeMap[i].locationTypes, ...def.locationTypes]
+                    if (def.vertexType === 'group') {
+                        if (def.locationStyle === 'marker') {
+                            configParams.markerEntityTypes = addUniqueArrayValue(configParams.markerEntityTypes, def.entityType);
+                            configParams.zoomLevelTypeMap[i].markerTypes = addUniqueArrayValue(configParams.zoomLevelTypeMap[i].markerTypes, def.entityType);
+                        }
+                        if (def.locationStyle === 'polygon') {
+                            configParams.zoomLevelTypeMap[i].polygonTypes = addUniqueArrayValue(configParams.zoomLevelTypeMap[i].polygonTypes, def.entityType);
+                        }
+                        if (def.memberEntityTypes && Array.isArray(def.memberEntityTypes)) {
+                            configParams.markerEntityTypes = addUniqueArrayValues(configParams.markerEntityTypes, def.memberEntityTypes);
+                            configParams.zoomLevelTypeMap[i].markerTypes = addUniqueArrayValues(configParams.zoomLevelTypeMap[i].markerTypes, def.memberEntityTypes);
+                        }
                     } else {
-                        configParams.zoomLevelTypeMap[i].locationTypes = [...configParams.zoomLevelTypeMap[i].locationTypes, type]
+                        if (def.locationStyle === 'polygon') {
+                            configParams.zoomLevelTypeMap[i].polygonTypes = addUniqueArrayValue(configParams.zoomLevelTypeMap[i].polygonTypes, def.entityType);
+                        } else {
+                            configParams.markerEntityTypes = addUniqueArrayValue(configParams.markerEntityTypes, def.entityType);
+                            configParams.zoomLevelTypeMap[i].markerTypes = addUniqueArrayValue(configParams.zoomLevelTypeMap[i].markerTypes, def.entityType);
+                        }
                     }
                 }
             }
         }
     }
-
+    
     if (urlParams && urlParams !== '') {
         if(urlParams['locationTypes'] && urlParams['locationTypes'] != '') {
             configParams.locationTypes = urlParams.locationTypes.split(',');
@@ -116,5 +138,6 @@ export default function processUrlOptions() {
         }
     }
 
+    console.log('Final configParams', configParams);
     return configParams;
 }
