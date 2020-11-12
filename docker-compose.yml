@@ -88,11 +88,6 @@ services:
       TOOLTIP_PROPERTIES: ''
       #=======================================================================================================
       #                             Mapping - location marker configuration
-      #
-      # LOCATION_TYPES:
-      #     Comma separated list of entityTypes in ASM that represent possible locations 
-      #     on the map. The types are used to pull locations from ASM. 
-      #     Default value: location
       # 
       # AFFECTED_RADIUS_PROPS:
       #     Comma separated list of property names in ASM that represent affected radius
@@ -110,8 +105,6 @@ services:
       #     the links that are drawn.
       #     Default value: ''
       #=======================================================================================================
-      LOCATION_TYPES: location
-      LOCATION_GROUP_TYPES: ''
       AFFECTED_RADIUS_PROPS: ''
       LINK_TYPES: '*'
       LINK_COLOR_PROPS: ''

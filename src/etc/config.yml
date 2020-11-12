@@ -92,17 +92,11 @@ tooltipProperties: ''
 #=======================================================================================================
 #                             Mapping - location marker configuration
 #
-# locationEntityTypes:
-#     Comma separated list of entityTypes in ASM that represent possible locations 
-#     on the map. The types are used to pull locations from ASM. 
-#     Default value: location
+# locationTypesConfig:
+#     Location data Type array for config required to draw locations on the map. This can include zoom min and max level range between 0 and 15. 
+#     If a group type is provided, vertexType: group must be set and the memberEntityTypes must be provided or locationStyle.
+#     Default value: {}
 #
-# locationGroupEntityTypes:
-#     Comma separated list of group entityTypes in ASM that represent possible groups of locations 
-#     on the map. The types are used to pull locations from ASM, but require the actualy location entityTypes
-#     to be added to the locationEntityTypes. 
-#     Default value: ''
-# 
 # affectedRadiusPropertyNames:
 #     Comma separated list of property names in ASM that represent affected radius
 #     of a location. This value represents the raidus in metres.
@@ -123,8 +117,23 @@ tooltipProperties: ''
 #     Specify if composite resources are using in the map location requests to ASM
 #     Default value: true
 #=======================================================================================================
-locationEntityTypes: site,city,province
-locationGroupEntityTypes: 'provinceInCountry,cityInProvince,siteInCity'
+locationTypesConfig:
+  - entityType: province
+    vertexType: group
+    minZoom: 0
+    maxZoom: 2
+    locationStyle: marker
+  - entityType: city
+    vertexType: group
+    minZoom: 3
+    maxZoom: 7
+    locationStyle: marker
+  - entityType: city
+    vertexType: group
+    minZoom: 8
+    maxZoom: 15
+    memberEntityTypes:
+     - site
 affectedRadiusPropertyNames: ''
 linkEdgeTypes: ''
 linkColorPropertyNames: ''
@@ -162,24 +171,7 @@ boundaryPropertyNames: ''
 #     Initial view zoom level when map loads
 #     Default value: 11
 #
-# zoomTypeMap:
-#     Location data Type map for zoom min and max level range between 0 and 15. If a group type is provided
-#     requires the addition of a locationTypes array with the expected location types for that group.
-#     Default value: {}
-#
 #=======================================================================================================
 updateRate: 900000
 initialViewLocation: '51.035535,-114.043873'
 initialZoomLevel: 7
-zoomTypeMap:
-  province:
-    minZoom: 0
-    maxZoom: 2
-  city:
-    minZoom: 3
-    maxZoom: 7
-  siteInCity:
-    locationTypes:
-      - site
-    minZoom: 8
-    maxZoom: 15

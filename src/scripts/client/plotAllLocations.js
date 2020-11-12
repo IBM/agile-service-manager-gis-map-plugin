@@ -281,7 +281,7 @@ function addLinks(view) {
     let combinedLocationMap = {};
     let combinedLocations = [];
 
-    view.configParams.locationTypes.forEach(locationType => {
+    view.configParams.markerEntityTypes.forEach(locationType => {
         // Merge all types
         combinedLocationMap = {...combinedLocationMap, ...view.markerTypes[locationType].locationsMap};
         combinedLocations = [...combinedLocations, ...view.markerTypes[locationType].locations]

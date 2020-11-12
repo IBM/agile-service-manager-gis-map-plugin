@@ -130,7 +130,6 @@ If you want to modify the default behaviour of the app, you can use the followin
 - initialZoomLevel [number]: Initial map zoom level on load
 - resourceId [String]: Enables a launch to a specific marker on the map using the ASM resource id
 - groupIds [comma separated list]: List of groupIds to use for locations, overrides the configured location type requests
-- locationTypes [comma separated list]: List of entityTypes to use for locations, overrides the configured value
 - geoBoundaryTypes [comma separated list]: List of entityTypes to use for geoBoundaries, overrides the configured value
 - locationLinkTypes [comma separated list]: List of relationshipTypes to draw, overrides the configured value
 - locationLimit [number]: Max number of location points to pull
