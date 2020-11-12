@@ -24,7 +24,7 @@ Object {
   "updateRate": 90000,
   "webServerPort": 1000,
   "webServerSecurePort": 3443,
-  "zoomTypeMap": Object {},
+  "locationTypesConfig": Object {},
 }
 `;
 
@@ -52,6 +52,6 @@ Object {
   "updateRate": 90000,
   "webServerPort": 3000,
   "webServerSecurePort": 3443,
-  "zoomTypeMap": Object {},
+  "locationTypesConfig": Object {},
 }
 `;

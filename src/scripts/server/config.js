@@ -51,7 +51,7 @@ function getDefaults() {
         'returnComposites': true,
         'initialViewLocation': '51.505,-0.09',
         'initialZoomLevel': 7,
-        'zoomTypeMap': {}
+        'locationTypesConfig': {}
     };
 }
 
@@ -160,7 +160,7 @@ function readConfig() {
     setConfigValue('returnComposites', 'RETURN_COMPOSITES', fileConfig, false);
     setConfigValue('initialViewLocation', 'INIT_VIEW_LOCATION', fileConfig, false);
     setConfigValue('initialZoomLevel', 'INIT_ZOOM_LEVEL', fileConfig, false);
-    setConfigValue('zoomTypeMap', 'ZOOM_TYPE_MAP', fileConfig, false, true);
+    setConfigValue('locationTypesConfig', 'LOCATION_TYPES_CONFIG', fileConfig, false, true);
 
     return settings;
 }

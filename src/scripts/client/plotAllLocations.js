@@ -64,7 +64,7 @@ function locationParams(view, config, geoFilterMode, geoBounds) {
 
 export function setZoomLayerLocationTypes(view) {
     const config = view.configParams;
-    if (config.zoomTypeMap && Object.keys(config.zoomTypeMap).length) {
+    if (config.locationTypesConfig && Object.keys(config.locationTypesConfig).length) {
         // Zoom map provided don't get all location types
         view.clusterGroup.clearLayers();
         config.zoomLevelTypeMap[view.currentZoomLevel].locationTypes.forEach( type => {
@@ -79,7 +79,7 @@ export function setZoomLayerLocationTypes(view) {
 //     const config = view.configParams;
 
 //     let typesArray = [];
-//     if (config.zoomTypeMap && Object.keys(config.zoomTypeMap).length) {
+//     if (config.locationTypesConfig && Object.keys(config.locationTypesConfig).length) {
 //         // Zoom map provided don't get all location types
 //         const currentZoomTypes = config.zoomLevelTypeMap[view.currentZoomLevel].dataTypes;
 //         types.forEach( type => {

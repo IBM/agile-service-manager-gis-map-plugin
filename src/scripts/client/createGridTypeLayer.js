@@ -7,7 +7,7 @@ import { getGridTileLocations } from './plotAllLocations';
 export function createGridTypeLayer({view, type, isGroupType, showDataTileCache}) {
     const map = view.map;
     
-    const typeConfig = view.configParams.zoomTypeMap[type] || {};
+    const typeConfig = view.configParams.locationTypesConfig[type] || {};
 
     var tiles = new L.GridLayer({
         // tileSize: 512,

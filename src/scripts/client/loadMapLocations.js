@@ -12,8 +12,8 @@ const showDataTileCache = false;
 
 export default function loadMapLocations(view) {
     const setUpGridTiles = function() {
-        if (Object.keys(view.configParams.zoomTypeMap).length) {
-            for(let type in view.configParams.zoomTypeMap) {
+        if (Object.keys(view.configParams.locationTypesConfig).length) {
+            for(let type in view.configParams.locationTypesConfig) {
                 view.gridCache[type] = createGridTypeLayer({view, type, showDataTileCache});
             }
         } else {

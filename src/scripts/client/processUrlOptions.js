@@ -12,7 +12,7 @@ export default function processUrlOptions() {
         updateRate: window.UPDATE_RATE,
         initialViewLocation: window.INIT_VIEW_LOCATION,
         initialZoomLevel: parseInt(window.INIT_ZOOM_LEVEL),
-        zoomTypeMap: JSON.parse(window.ZOOM_TYPE_MAP.replace(/&quot;/g,'"')),
+        locationTypesConfig: JSON.parse(window.LOCATION_TYPES_CONFIG.replace(/&quot;/g,'"')),
         zoomLevelTypeMap: {},
         popupIgnoreProperties: window.POPUP_IGNORE_PROPERTIES ? window.POPUP_IGNORE_PROPERTIES.split(',') : [],
         tooltipProperties: window.TOOLTIP_PROPERTIES ? window.TOOLTIP_PROPERTIES.split(',') : [],
@@ -37,9 +37,9 @@ export default function processUrlOptions() {
         }
     }
 
-    if (configParams.zoomTypeMap && Object.keys(configParams.zoomTypeMap).length) {
-        for(let type in configParams.zoomTypeMap) {
-            let def = configParams.zoomTypeMap[type];
+    if (configParams.locationTypesConfig && Object.keys(configParams.locationTypesConfig).length) {
+        for(let type in configParams.locationTypesConfig) {
+            let def = configParams.locationTypesConfig[type];
             if (def && typeof def.minZoom !== undefined && typeof def.maxZoom !== undefined) {
                 for(let i = def.minZoom; i <= def.maxZoom; i++) {
                     configParams.zoomLevelTypeMap[i].dataTypes.push(type);
