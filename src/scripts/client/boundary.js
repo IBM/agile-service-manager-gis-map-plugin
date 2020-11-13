@@ -2,6 +2,18 @@ import { severityColors } from "./utils/status";
 import L from 'leaflet';
 import getLocationPolygonLatLng from "./utils/getLocationPolygonLatLng";
 
+// L.PolygonClusterable = L.Polygon.extend({
+
+//     getLatLng: function() {
+//         console.log(this._bounds.getCenter(), 'PolygonClusterable', this);
+//         this._latlng = this._bounds.getCenter();
+//         return this._bounds.getCenter();
+//     },
+
+//     // dummy method.
+//     setLatLng: function() {}
+// });
+
 const setProperties = function(boundary, location, config) {
     let props = {
         id: location._id,
