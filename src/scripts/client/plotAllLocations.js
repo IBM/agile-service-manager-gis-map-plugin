@@ -80,6 +80,50 @@ export function setZoomLayerLocationTypes(view) {
     }
 }
 
+export function getGridTileLocations({view, locationTypeConfig}) {
+    const config = view.configParams;
+    const geoFilterMode = 'INTERSECT';
+    setZoomLayerLocationTypes(view);
+
+    if (locationTypeConfig.vertexType === 'group') {
+        getGroupType({view, locationTypeConfig, geoFilterMode});
+    } else {
+        const timestamp = new Date();
+        let requestId = `getGridTileLocations-${locationTypeConfig.entityType}-${timestamp.getTime()}`;
+        if (locationTypeConfig.geoBounds) {
+            requestId += `-${JSON.stringify(locationTypeConfig.geoBounds)}`;
+        }
+        view.startRequest(view, requestId);
+        const locationTypeRequestComplete = () => {
+            if(!config.hideLinks) {
+                addLinks(view);
+            }
+            view.loadingInstance.set(false);
+            view.endRequest(view, requestId);
+        }
+    
+        getLocations({view, locationTypeConfig, callback: locationTypeRequestComplete, geoFilterMode});
+    }
+}
+
+function addLocationToMap({view, locationTypeConfig, location}) {
+    if (location.geolocation && locationTypeConfig.locationStyle === 'polygon') {
+        // N.B. This will only ever add location, deleted locations will remain
+        if(view.boundaryTypes[locationTypeConfig.entityType].boundaries[location._id]) {
+            updateBoundary(view, locationTypeConfig.entityType, location)
+        } else {
+            addBoundary(view, locationTypeConfig.entityType, location);
+        }
+    } else if (location.geolocation && locationTypeConfig.locationStyle === 'marker') {
+        // N.B. This will only ever add location, deleted locations will remain
+        if(view.markerTypes[locationTypeConfig.entityType].locationsMap[location._id]) {
+            updateMarker(view, locationTypeConfig.entityType, location)
+        } else {
+            addMarker(view, locationTypeConfig.entityType, location);
+        }
+    }
+}
+
 function getGroupType({view, locationTypeConfig, geoFilterMode}) {
     const config = view.configParams;
     const params = locationParams(view, config, geoFilterMode, locationTypeConfig.geoBounds);
@@ -105,22 +149,7 @@ function getGroupType({view, locationTypeConfig, geoFilterMode}) {
                 if (getGroupMembers) {
                     groupIds.push(location._id);
                 }
-                if (locationTypeConfig.locationStyle === 'marker' && location.geolocation) {
-                    // N.B. This will only ever add location, deleted locations will remain
-                    if(view.markerTypes[locationTypeConfig.entityType].locationsMap[location._id]) {
-                        updateMarker(view, locationTypeConfig.entityType, location)
-                    } else {
-                        addMarker(view, locationTypeConfig.entityType, location);
-                    }
-                }
-                if (locationTypeConfig.locationStyle === 'polygon' && location.geolocation) {
-                    // N.B. This will only ever add location, deleted locations will remain
-                    if(view.boundaryTypes[locationTypeConfig.entityType].boundaries[location._id]) {
-                        updateBoundary(view, locationTypeConfig.entityType, location)
-                    } else {
-                        addBoundary(view, locationTypeConfig.entityType, location);
-                    }
-                }
+                addLocationToMap({view, locationTypeConfig, location});
             });
             if (groupIds.length) {
                 getAllGroupLocations({groupIds, view, locationTypeConfig, geoFilterMode});
@@ -220,32 +249,6 @@ function getAllGroupLocations({groupIds, view, locationTypeConfig, geoFilterMode
     }) 
 }
 
-export function getGridTileLocations({view, locationTypeConfig}) {
-    const config = view.configParams;
-    const geoFilterMode = 'INTERSECT';
-    setZoomLayerLocationTypes(view);
-
-    if (locationTypeConfig.vertexType === 'group') {
-        getGroupType({view, locationTypeConfig, geoFilterMode});
-    } else {
-        const timestamp = new Date();
-        let requestId = `getGridTileLocations-${locationTypeConfig.entityType}-${timestamp.getTime()}`;
-        if (locationTypeConfig.geoBounds) {
-            requestId += `-${JSON.stringify(locationTypeConfig.geoBounds)}`;
-        }
-        view.startRequest(view, requestId);
-        const locationTypeRequestComplete = () => {
-            if(!config.hideLinks) {
-                addLinks(view);
-            }
-            view.loadingInstance.set(false);
-            view.endRequest(view, requestId);
-        }
-    
-        getLocations({view, locationTypeConfig, callback: locationTypeRequestComplete, geoFilterMode});
-    }
-}
-
 function getLocations({view, locationTypeConfig, callback, geoFilterMode}) {
     const config = view.configParams;
     const baseUrl = '/proxy_service/topology/resources?' + locationParams(view, config, geoFilterMode, locationTypeConfig.geoBounds);
@@ -258,22 +261,7 @@ function getLocations({view, locationTypeConfig, callback, geoFilterMode}) {
             TIMING_INFO && console.log(`Call to process ${locationTypeConfig.entityType} started`);
             const t0 = performance.now();
             data._items.forEach((location) => {
-                if (locationTypeConfig.locationStyle === 'polygon' && location.geolocation) {
-                    // N.B. This will only ever add location, deleted locations will remain
-                    if(view.boundaryTypes[locationTypeConfig.entityType].boundaries[location._id]) {
-                        updateBoundary(view, locationTypeConfig.entityType, location)
-                    } else {
-                        addBoundary(view, locationTypeConfig.entityType, location);
-                    }
-                } else if (location.geolocation) {
-                    // N.B. This will only ever add location, deleted locations will remain
-                    if(view.markerTypes[locationTypeConfig.entityType].locationsMap[location._id]) {
-                        updateMarker(view, locationTypeConfig.entityType, location)
-                    } else {
-                        addMarker(view, locationTypeConfig.entityType, location);
-                    }
-                }
-                
+                addLocationToMap({view, locationTypeConfig, location})
             });
             const t1 = performance.now();
             TIMING_INFO && console.log(`Call to process ${locationTypeConfig.entityType} took ${t1 - t0} milliseconds.`);

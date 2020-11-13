@@ -45,6 +45,12 @@ export default function processUrlOptions() {
             if (typeof def.maxZoom === undefined) {
                 def.maxZoom = 15;
             }
+
+            // Default non group types to markers
+            if(def.vertexType !== 'group' && typeof def.locationStyle === undefined) {
+                def.locationStyle = 'marker';
+            }
+
             if (def && typeof def.minZoom !== undefined && typeof def.maxZoom !== undefined) {
                 for(let i = def.minZoom; i <= def.maxZoom; i++) {
                     if (def.vertexType === 'group') {
