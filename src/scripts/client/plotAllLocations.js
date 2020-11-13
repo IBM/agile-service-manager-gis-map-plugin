@@ -77,6 +77,12 @@ export function setZoomLayerLocationTypes(view) {
                 view.clusterGroup.addLayer(view.boundaryTypes[type].clusterGroup);
             }
         });
+
+        config.locationLinkTypes.forEach( type => {
+            if (view.linkTypes[type]) {
+                view.clusterGroup.addLayer(view.linkTypes[type].clusterGroup);
+            }
+        });
     }
 }
 
