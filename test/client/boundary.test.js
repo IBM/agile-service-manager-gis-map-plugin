@@ -20,7 +20,15 @@ describe('boundary', function() {
         const location = {
             _id: 'id123',
             name: 'myLocation',
-            entityTypes: ['myType']
+            entityTypes: ['myType'],
+            geolocation: {
+                northEastLongitude: -118.690646,
+                type: "geoshape",
+                geotype: "box",
+                soutWestLongitude: -118.690646,
+                northEastLatitude: 59.155706,
+                southWestLatitude: 59.155706
+            }
         };
         boundary.addBoundary(view, 'myType', location);
         expect(addLayer).toHaveBeenCalled();
@@ -45,7 +53,15 @@ describe('boundary', function() {
             _id: 'id123',
             name: 'myLocation',
             entityTypes: ['myType'],
-            tooltipProp: 'showThis'
+            tooltipProp: 'showThis',
+            geolocation: {
+                northEastLongitude: -118.690646,
+                type: "geoshape",
+                geotype: "box",
+                soutWestLongitude: -118.690646,
+                northEastLatitude: 59.155706,
+                southWestLatitude: 59.155706
+            }
         };
         boundary.addBoundary(view, 'myType', location);
         expect(addLayer).toHaveBeenCalled();
@@ -70,7 +86,15 @@ describe('boundary', function() {
             _id: 'id123',
             name: 'myLocation',
             entityTypes: ['myType'],
-            _hasStatus: 'major'
+            _hasStatus: 'major',
+            geolocation: {
+                northEastLongitude: -118.690646,
+                type: "geoshape",
+                geotype: "box",
+                soutWestLongitude: -118.690646,
+                northEastLatitude: 59.155706,
+                southWestLatitude: 59.155706
+            }
         };
         boundary.addBoundary(view, 'myType', location);
         expect(addLayer).toHaveBeenCalled();
@@ -97,7 +121,15 @@ describe('boundary', function() {
         const location = {
             _id: 'id123',
             name: 'myLocation',
-            entityTypes: ['myType']
+            entityTypes: ['myType'],
+            geolocation: {
+                northEastLongitude: -118.690646,
+                type: "geoshape",
+                geotype: "box",
+                soutWestLongitude: -118.690646,
+                northEastLatitude: 59.155706,
+                southWestLatitude: 59.155706
+            }
         };
         boundary.updateBoundary(view, 'myType', location);
         expect(view).toMatchSnapshot();
@@ -120,7 +152,15 @@ describe('boundary', function() {
         const location = {
             _id: 'id123',
             name: 'myLocation',
-            entityTypes: ['myType']
+            entityTypes: ['myType'],
+            geolocation: {
+                northEastLongitude: -118.690646,
+                type: "geoshape",
+                geotype: "box",
+                soutWestLongitude: -118.690646,
+                northEastLatitude: 59.155706,
+                southWestLatitude: 59.155706
+            }
         };
         boundary.updateBoundary(view, 'myType', location);
         expect(view).toMatchSnapshot();

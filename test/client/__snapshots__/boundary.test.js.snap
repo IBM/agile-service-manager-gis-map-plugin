@@ -9,7 +9,16 @@ Object {
           "calls": Array [
             Array [
               NewClass {
-                "_bounds": Object {},
+                "_bounds": Object {
+                  "_northEast": Object {
+                    "lat": 59.155706,
+                    "lng": -118.690646,
+                  },
+                  "_southWest": Object {
+                    "lat": 59.155706,
+                    "lng": -118.690646,
+                  },
+                },
                 "_events": Object {
                   "click": Array [
                     Object {
@@ -50,7 +59,24 @@ Object {
                 },
                 "_initHooksCalled": true,
                 "_latlngs": Array [
-                  Array [],
+                  Array [
+                    Object {
+                      "lat": 59.155706,
+                      "lng": -118.690646,
+                    },
+                    Object {
+                      "lat": 59.155706,
+                      "lng": -118.690646,
+                    },
+                    Object {
+                      "lat": 59.155706,
+                      "lng": -118.690646,
+                    },
+                    Object {
+                      "lat": 59.155706,
+                      "lng": -118.690646,
+                    },
+                  ],
                 ],
                 "_popup": NewClass {
                   "_content": "<h3>myLocation <img src=\\"/markers/marker-unknown.svg\\" style=\\"width:20px; height:20px\\" type=\\"image/svg\\" title=\\"State: unknown\\"></h3><h6>myType</h6>",
@@ -70,7 +96,7 @@ Object {
                   },
                 },
                 "options": Object {
-                  "color": "#03d3fc",
+                  "color": "#81e9fe",
                 },
               },
             ],
@@ -100,7 +126,16 @@ Object {
           "calls": Array [
             Array [
               NewClass {
-                "_bounds": Object {},
+                "_bounds": Object {
+                  "_northEast": Object {
+                    "lat": 59.155706,
+                    "lng": -118.690646,
+                  },
+                  "_southWest": Object {
+                    "lat": 59.155706,
+                    "lng": -118.690646,
+                  },
+                },
                 "_events": Object {
                   "click": Array [
                     Object {
@@ -141,7 +176,24 @@ Object {
                 },
                 "_initHooksCalled": true,
                 "_latlngs": Array [
-                  Array [],
+                  Array [
+                    Object {
+                      "lat": 59.155706,
+                      "lng": -118.690646,
+                    },
+                    Object {
+                      "lat": 59.155706,
+                      "lng": -118.690646,
+                    },
+                    Object {
+                      "lat": 59.155706,
+                      "lng": -118.690646,
+                    },
+                    Object {
+                      "lat": 59.155706,
+                      "lng": -118.690646,
+                    },
+                  ],
                 ],
                 "_popup": NewClass {
                   "_content": "<h3>myLocation <img src=\\"/markers/marker-major.svg\\" style=\\"width:20px; height:20px\\" type=\\"image/svg\\" title=\\"State: major\\"></h3><h6>myType</h6>",
@@ -191,7 +243,16 @@ Object {
           "calls": Array [
             Array [
               NewClass {
-                "_bounds": Object {},
+                "_bounds": Object {
+                  "_northEast": Object {
+                    "lat": 59.155706,
+                    "lng": -118.690646,
+                  },
+                  "_southWest": Object {
+                    "lat": 59.155706,
+                    "lng": -118.690646,
+                  },
+                },
                 "_events": Object {
                   "click": Array [
                     Object {
@@ -232,7 +293,24 @@ Object {
                 },
                 "_initHooksCalled": true,
                 "_latlngs": Array [
-                  Array [],
+                  Array [
+                    Object {
+                      "lat": 59.155706,
+                      "lng": -118.690646,
+                    },
+                    Object {
+                      "lat": 59.155706,
+                      "lng": -118.690646,
+                    },
+                    Object {
+                      "lat": 59.155706,
+                      "lng": -118.690646,
+                    },
+                    Object {
+                      "lat": 59.155706,
+                      "lng": -118.690646,
+                    },
+                  ],
                 ],
                 "_popup": NewClass {
                   "_content": "<h3>myLocation <img src=\\"/markers/marker-unknown.svg\\" style=\\"width:20px; height:20px\\" type=\\"image/svg\\" title=\\"State: unknown\\"></h3><h6>myType</h6><h7> tooltipProp: showThis</h7>",
@@ -252,7 +330,7 @@ Object {
                   },
                 },
                 "options": Object {
-                  "color": "#03d3fc",
+                  "color": "#81e9fe",
                 },
               },
             ],
@@ -297,10 +375,36 @@ Object {
     "myType": Object {
       "boundaries": Object {
         "id123": NewClass {
-          "_bounds": Object {},
+          "_bounds": Object {
+            "_northEast": Object {
+              "lat": 59.155706,
+              "lng": -118.690646,
+            },
+            "_southWest": Object {
+              "lat": 59.155706,
+              "lng": -118.690646,
+            },
+          },
           "_initHooksCalled": true,
           "_latlngs": Array [
-            Array [],
+            Array [
+              Object {
+                "lat": 59.155706,
+                "lng": -118.690646,
+              },
+              Object {
+                "lat": 59.155706,
+                "lng": -118.690646,
+              },
+              Object {
+                "lat": 59.155706,
+                "lng": -118.690646,
+              },
+              Object {
+                "lat": 59.155706,
+                "lng": -118.690646,
+              },
+            ],
           ],
           "feature": Object {
             "properties": Object {
@@ -313,7 +417,7 @@ Object {
             },
           },
           "options": Object {
-            "color": "#03d3fc",
+            "color": "#81e9fe",
           },
         },
       },
