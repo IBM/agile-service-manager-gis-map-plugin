@@ -39,19 +39,19 @@ export default function processUrlOptions() {
     if (configParams.locationTypesConfig && configParams.locationTypesConfig.length) {
         for(let typeIndex = 0; typeIndex < configParams.locationTypesConfig.length; typeIndex++) {
             let def = configParams.locationTypesConfig[typeIndex];
-            if (typeof def.minZoom === undefined) {
+            if (typeof def.minZoom === 'undefined') {
                 def.minZoom = 0;
             }
-            if (typeof def.maxZoom === undefined) {
+            if (typeof def.maxZoom === 'undefined') {
                 def.maxZoom = 15;
             }
 
             // Default non group types to markers
-            if(def.vertexType !== 'group' && typeof def.locationStyle === undefined) {
+            if(def.vertexType !== 'group' && typeof def.locationStyle === 'undefined') {
                 def.locationStyle = 'marker';
             }
 
-            if (def && typeof def.minZoom !== undefined && typeof def.maxZoom !== undefined) {
+            if (def && typeof def.minZoom !== 'undefined' && typeof def.maxZoom !== 'undefined') {
                 for(let i = def.minZoom; i <= def.maxZoom; i++) {
                     if (def.vertexType === 'group') {
                         if (def.locationStyle === 'marker') {
