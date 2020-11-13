@@ -14,8 +14,6 @@ function renderTemplate(fileName, request, response) {
         'popupIgnoreProperties': config.popupIgnoreProperties,
         'tooltipProperties': config.tooltipProperties,
         'asmUIURL': '' + config.asmUIURL,
-        'boundaryEntityTypes': config.boundaryEntityTypes,
-        'boundaryPropertyNames': config.boundaryPropertyNames,
         'linkEdgeTypes': config.linkEdgeTypes,
         'linkColorPropertyNames': config.linkColorPropertyNames,
         'affectedRadiusPropertyNames': config.affectedRadiusPropertyNames,

@@ -109,22 +109,6 @@ services:
       LINK_TYPES: '*'
       LINK_COLOR_PROPS: ''
       #=======================================================================================================
-      #                             Mapping - geo boundary configuration
-      #
-      # BOUNDARY_TYPES:
-      #     Comma separated list of entityTypes in ASM that represent possible geoBoundaries 
-      #     on the map. The types are used to pull boundaries from ASM. 
-      #     Default value: ''
-      #
-      # BOUNDARY_PROPS:
-      #     Comma separated list of property names in ASM that represent possible geoBoundaries 
-      #     value to be drawn on the map. This value should match the latlng specification described in
-      #     https://leafletjs.com/reference-1.6.0.html#polygon 
-      #     Default value: ''
-      #=======================================================================================================
-      BOUNDARY_TYPES: ''
-      BOUNDARY_PROPS: ''
-      #=======================================================================================================
       #                             Mapping - configuration
       #
       # UPDATE_RATE:

@@ -130,7 +130,6 @@ If you want to modify the default behaviour of the app, you can use the followin
 - initialZoomLevel [number]: Initial map zoom level on load
 - resourceId [String]: Enables a launch to a specific marker on the map using the ASM resource id
 - groupIds [comma separated list]: List of groupIds to use for locations, overrides the configured location type requests
-- geoBoundaryTypes [comma separated list]: List of entityTypes to use for geoBoundaries, overrides the configured value
 - locationLinkTypes [comma separated list]: List of relationshipTypes to draw, overrides the configured value
 - locationLimit [number]: Max number of location points to pull
 - tooltipProperties[comma separated list]: List of properties to include in the on hover tooltip, overrides the configured value
@@ -200,7 +199,7 @@ On the top right of the map, users can choose to filter certain layers of the ma
 ### Relationship links
 Relationships between resources can be pulled from ASM using the configuration parameter `LINK_TYPES or linkEdgeTypes`. These relationships will be shown on the map via a line if both end of the link are present on the map. The colouring of the link can be set using the configuration parameter `LINK_COLOR_PROPS or linkColorPropertyNames` which it will use if present on the relationship.
 
-### Geo Boundary
+### Geo Boundary (Changes made here to be updated)
 This is a new experimental feature, allow geographical areas to be drawn on the map. This requires the boundary definition to be supplied using the format suggested in the latlng specification described in
 https://leafletjs.com/reference-1.6.0.html#polygon. You can identify the resource types in ASM which are boundaries using the configuration parameter  `BOUNDARY_TYPES or boundaryEntityTypes` and you will also need to set the parameter name that hold the boundary definition. This is set using the configuration parameter `BOUNDARY_PROPS or boundaryPropertyNames`. Below is an example of this being applied to the map you will notice that the colouring matches the maximal severity colouring.
 

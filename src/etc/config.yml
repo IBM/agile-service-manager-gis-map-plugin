@@ -65,10 +65,10 @@ proxyServiceRootPath: /1.0/
 # asmUIURL:
 #     The base URL to ASM Topology viewer page, with resource Id substitution.
 #     The substitution will replace {RESOURCE_ID} with the select location marker id
-#     Default value: https://localhost/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-viewer?resourceId={RESOURCE_ID}
+#     Default value: https://localhost/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-viewer
 #
 #=======================================================================================================
-asmUIURL: https://localhost:8443/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-viewer?resourceId={RESOURCE_ID}
+asmUIURL: https://localhost/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-viewer
 
 
 
@@ -138,23 +138,6 @@ affectedRadiusPropertyNames: ''
 linkEdgeTypes: ''
 linkColorPropertyNames: ''
 returnComposites: true
-
-#=======================================================================================================
-#                             Mapping - geo boundary configuration
-#
-# boundaryEntityTypes:
-#     Comma separated list of entityTypes in ASM that represent possible geoBoundaries 
-#     on the map. The types are used to pull boundaries from ASM. 
-#     Default value: ''
-#
-# boundaryPropertyNames:
-#     Comma separated list of property names in ASM that represent possible geoBoundaries 
-#     value to be drawn on the map. This value should match the latlng specification described in
-#     https://leafletjs.com/reference-1.6.0.html#polygon 
-#     Default value: ''
-#=======================================================================================================
-boundaryEntityTypes: ''
-boundaryPropertyNames: ''
 
 #=======================================================================================================
 #                             Mapping - configuration

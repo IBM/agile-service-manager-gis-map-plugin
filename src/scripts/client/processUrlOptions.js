@@ -6,8 +6,6 @@ export default function processUrlOptions() {
     let url = window.asmUIURL + '?resourceId=';
     const configParams = {
         url,
-        geoBoundaryTypes: window.BOUNDARY_TYPES ? window.BOUNDARY_TYPES.split(',') : [],
-        boundaryProps: window.BOUNDARY_PROPS ? window.BOUNDARY_PROPS.split(',') : [],
         updateRate: window.UPDATE_RATE,
         initialViewLocation: window.INIT_VIEW_LOCATION,
         initialZoomLevel: parseInt(window.INIT_ZOOM_LEVEL),
@@ -77,10 +75,6 @@ export default function processUrlOptions() {
     }
     
     if (urlParams && urlParams !== '') {
-        if(urlParams['geoBoundaryTypes'] && urlParams['geoBoundaryTypes'] != '') {
-            configParams.geoBoundaryTypes = urlParams.geoBoundaryTypes.split(',');
-        }
-
         if(urlParams['locationLimit'] && urlParams['locationLimit'] != '') {
             configParams.locationLimit = urlParams.locationLimit;
         }
