@@ -1,6 +1,6 @@
 import { severityColors } from "./utils/status";
 import L from 'leaflet';
-import getProvidedValue from "./utils/getProvidedValue";
+import getLocationPolygonLatLng from "./utils/getLocationPolygonLatLng";
 
 const setProperties = function(boundary, location, config) {
     let props = {
@@ -26,11 +26,11 @@ const setProperties = function(boundary, location, config) {
         }
     });
 
-    var latlngs = getProvidedValue(config.boundaryProps, location) || [];
+    var latlngs = getLocationPolygonLatLng(location);
     let boundaryPolygon = boundary;
     if (!boundaryPolygon) {
         boundaryPolygon = L.polygon(latlngs, {
-            color: location._hasStatus ? severityColors[location._hasStatus] : '#03d3fc'
+            color: location._hasStatus ? severityColors[location._hasStatus] : '#81e9fe'
         });
         boundaryPolygon.on('mouseover', function () {
             this.openPopup();
@@ -43,7 +43,7 @@ const setProperties = function(boundary, location, config) {
         boundaryPolygon.setLatLngs(latlngs);
         boundaryPolygon.setPopupContent(tooltipContent);
         boundaryPolygon.setStyle({
-            color: location._hasStatus ? severityColors[location._hasStatus] : '#03d3fc'
+            color: location._hasStatus ? severityColors[location._hasStatus] : '#81e9fe'
         });
     }
     

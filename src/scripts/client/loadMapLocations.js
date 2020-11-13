@@ -1,5 +1,3 @@
-// import plotAllGeoBoundaries from "./plotAllGeoBoundaries";
-// import {plotAllLocations} from "./plotAllLocations";
 import { addMarker } from "./marker";
 import 'whatwg-fetch';
 import 'promise-polyfill/src/polyfill';
@@ -42,16 +40,10 @@ export default function loadMapLocations(view) {
                 // Zoom to marker
                 fitMap(view);
                 view.loadingInstance.set(false);
-
-                // TODO handle these correctly
-                // plotAllLocations(view, true);
-                // plotAllGeoBoundaries(view, true);
                 setUpGridTiles();
             }
         }).catch(function(err) {
             console.error(`Failed to request resourceId ${view.configParams.resourceId} data: ${err}`);
-            // plotAllLocations(view);
-            // plotAllGeoBoundaries(view);
             setUpGridTiles();
         })
     } else {

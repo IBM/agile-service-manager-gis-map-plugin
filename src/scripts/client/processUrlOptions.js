@@ -13,6 +13,7 @@ export default function processUrlOptions() {
         initialZoomLevel: parseInt(window.INIT_ZOOM_LEVEL),
         locationTypesConfig: JSON.parse(window.LOCATION_TYPES_CONFIG.replace(/&quot;/g,'"')),
         markerEntityTypes: [],
+        polygonEntityTypes: [],
         zoomLevelTypeMap: {},
         popupIgnoreProperties: window.POPUP_IGNORE_PROPERTIES ? window.POPUP_IGNORE_PROPERTIES.split(',') : [],
         tooltipProperties: window.TOOLTIP_PROPERTIES ? window.TOOLTIP_PROPERTIES.split(',') : [],
@@ -54,6 +55,7 @@ export default function processUrlOptions() {
                             configParams.zoomLevelTypeMap[i].markerTypes = addUniqueArrayValue(configParams.zoomLevelTypeMap[i].markerTypes, def.entityType);
                         }
                         if (def.locationStyle === 'polygon') {
+                            configParams.polygonEntityTypes = addUniqueArrayValue(configParams.polygonEntityTypes, def.entityType);
                             configParams.zoomLevelTypeMap[i].polygonTypes = addUniqueArrayValue(configParams.zoomLevelTypeMap[i].polygonTypes, def.entityType);
                         }
                         if (def.memberEntityTypes && Array.isArray(def.memberEntityTypes)) {
@@ -62,6 +64,7 @@ export default function processUrlOptions() {
                         }
                     } else {
                         if (def.locationStyle === 'polygon') {
+                            configParams.polygonEntityTypes = addUniqueArrayValue(configParams.polygonEntityTypes, def.entityType);
                             configParams.zoomLevelTypeMap[i].polygonTypes = addUniqueArrayValue(configParams.zoomLevelTypeMap[i].polygonTypes, def.entityType);
                         } else {
                             configParams.markerEntityTypes = addUniqueArrayValue(configParams.markerEntityTypes, def.entityType);

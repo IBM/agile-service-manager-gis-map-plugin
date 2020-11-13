@@ -51,7 +51,7 @@ import { endRequest, startRequest } from './requestHandler';
     // Create boundary groups for each geoBoundary type
     const boundaryTypes = {};
     if (!configParams.hideGeoBoundary) {
-        configParams.geoBoundaryTypes.forEach( type => {
+        configParams.polygonEntityTypes.forEach( type => {
             boundaryTypes[type] = createBoundaryType(type);
         })
     }

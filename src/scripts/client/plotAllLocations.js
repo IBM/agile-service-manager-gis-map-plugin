@@ -4,6 +4,7 @@ import addUrlParams from './utils/addUrlParams';
 import getProvidedValue from './utils/getProvidedValue';
 import 'whatwg-fetch';
 import 'promise-polyfill/src/polyfill';
+import { addBoundary, updateBoundary } from './boundary';
 
 const TIMING_INFO = false;
 
@@ -105,6 +106,14 @@ function getGroupType({view, locationTypeConfig, geoFilterMode}) {
                         updateMarker(view, locationTypeConfig.entityType, location)
                     } else {
                         addMarker(view, locationTypeConfig.entityType, location);
+                    }
+                }
+                if (locationTypeConfig.locationStyle === 'polygon' && location.geolocation) {
+                    // N.B. This will only ever add location, deleted locations will remain
+                    if(view.boundaryTypes[locationTypeConfig.entityType].boundaries[location._id]) {
+                        updateBoundary(view, locationTypeConfig.entityType, location)
+                    } else {
+                        addBoundary(view, locationTypeConfig.entityType, location);
                     }
                 }
             });
@@ -244,14 +253,22 @@ function getLocations({view, locationTypeConfig, callback, geoFilterMode}) {
             TIMING_INFO && console.log(`Call to process ${locationTypeConfig.entityType} started`);
             const t0 = performance.now();
             data._items.forEach((location) => {
-                if (location.geolocation && locationTypeConfig.locationStyle !== 'polygon') {
-                        // N.B. This will only ever add location, deleted locations will remain
-                        if(view.markerTypes[locationTypeConfig.entityType].locationsMap[location._id]) {
-                            updateMarker(view, locationTypeConfig.entityType, location)
-                        } else {
-                            addMarker(view, locationTypeConfig.entityType, location);
-                        }
+                if (locationTypeConfig.locationStyle === 'polygon' && location.geolocation) {
+                    // N.B. This will only ever add location, deleted locations will remain
+                    if(view.boundaryTypes[locationTypeConfig.entityType].boundaries[location._id]) {
+                        updateBoundary(view, locationTypeConfig.entityType, location)
+                    } else {
+                        addBoundary(view, locationTypeConfig.entityType, location);
+                    }
+                } else if (location.geolocation) {
+                    // N.B. This will only ever add location, deleted locations will remain
+                    if(view.markerTypes[locationTypeConfig.entityType].locationsMap[location._id]) {
+                        updateMarker(view, locationTypeConfig.entityType, location)
+                    } else {
+                        addMarker(view, locationTypeConfig.entityType, location);
+                    }
                 }
+                
             });
             const t1 = performance.now();
             TIMING_INFO && console.log(`Call to process ${locationTypeConfig.entityType} took ${t1 - t0} milliseconds.`);
