@@ -72,6 +72,11 @@ export function setZoomLayerLocationTypes(view) {
                 view.clusterGroup.addLayer(view.markerTypes[type].clusterGroup);
             }
         });
+        config.zoomLevelTypeMap[view.currentZoomLevel].polygonTypes.forEach( type => {
+            if (view.boundaryTypes[type]) {
+                view.clusterGroup.addLayer(view.boundaryTypes[type].clusterGroup);
+            }
+        });
     }
 }
 
