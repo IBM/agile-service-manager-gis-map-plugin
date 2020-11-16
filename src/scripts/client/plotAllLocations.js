@@ -5,6 +5,7 @@ import getProvidedValue from './utils/getProvidedValue';
 import 'whatwg-fetch';
 import 'promise-polyfill/src/polyfill';
 import { addBoundary, updateBoundary } from './boundary';
+import findLocationType from './utils/findLocationType';
 
 const TIMING_INFO = false;
 
@@ -228,12 +229,7 @@ function getAllGroupLocations({groupIds, view, locationTypeConfig, geoFilterMode
                             // N.B. This will only ever add location, deleted locations will remain
 
                             // Need to pick the type of the location
-                            let type = '';
-                            for(let i = 0; i < location.entityTypes.length && type === ''; i++) {
-                                if (view.markerTypes[location.entityTypes[i]]) {
-                                    type = location.entityTypes[i];
-                                }
-                            }
+                            let type = findLocationType({view, location});
   
                             if(type && view.markerTypes[type].locationsMap[location._id]) {
                                 updateMarker(view, type, location)

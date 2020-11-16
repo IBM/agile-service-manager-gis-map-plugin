@@ -2,7 +2,8 @@ import { addMarker } from "./marker";
 import 'whatwg-fetch';
 import 'promise-polyfill/src/polyfill';
 import { createGridTypeLayer } from "./createGridTypeLayer";
-import fitMap from "./fitMap";
+import findLocationType from "./utils/findLocationType";
+import setViewToLocation from "./utils/setViewToLocation";
 
 let intervalId = null;
 // Used to show caching
@@ -36,9 +37,11 @@ export default function loadMapLocations(view) {
             return response.json()
         }).then(function(data) {
             if (data.geolocation) {
-                addMarker(view, data.entityTypes[0], data);
+                let type = findLocationType({view, location: data});
+                addMarker(view, type, data);
+                
                 // Zoom to marker
-                fitMap(view);
+                setViewToLocation({view, location: data});
                 view.loadingInstance.set(false);
                 setUpGridTiles();
             }
