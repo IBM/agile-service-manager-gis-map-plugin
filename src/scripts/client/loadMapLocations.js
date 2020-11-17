@@ -3,7 +3,7 @@ import 'whatwg-fetch';
 import 'promise-polyfill/src/polyfill';
 import { createGridTypeLayer } from "./createGridTypeLayer";
 import findLocationType from "./utils/findLocationType";
-import setViewToLocation from "./utils/setViewToLocation";
+import {setViewToLocation} from "./utils/setView";
 
 let intervalId = null;
 // Used to show caching
@@ -41,7 +41,7 @@ export default function loadMapLocations(view) {
                 addMarker(view, type, data);
                 
                 // Zoom to marker
-                setViewToLocation({view, location: data});
+                setViewToLocation({view, location: data, useMaxZoom: false});
                 view.loadingInstance.set(false);
                 setUpGridTiles();
             }

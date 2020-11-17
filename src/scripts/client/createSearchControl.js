@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import fitMap from './fitMap';
+import { setViewToMarker } from './utils/setView';
 
 export default function createSearchControl(view) {
     const searchLayers = [];
@@ -8,22 +8,22 @@ export default function createSearchControl(view) {
     })
     const searchControl = L.control.search({
         layer: L.layerGroup(searchLayers),
-        marker: false,
-        moveToLocation: function (latlng, title, map) {
-            map.setView(latlng, 16); // access the zoom
-            latlng.layer.openPopup();
-            view.clusterGroup.zoomToShowLayer(latlng, () => {
-                latlng.openPopup();
-            })
-        }
+        marker: false
     });
 
     searchControl.on('search:locationfound', function (e) {
-        view.map.setView(e.latlng, 16);
-        if (e.layer._popup)
+        console.log('locationfound', e);
+        let type = '';
+        if (e && e.layer && e.layer.feature &&
+            e.layer.feature.properties && e.layer.feature.properties.type) {
+            type = e.layer.feature.properties.type;
+        }
+        
+        setViewToMarker({view, latlng: e.latlng, type, useMaxZoom: true});
+        if (e.layer._popup){
+            console.log('openPopup');
             e.layer.openPopup();
-    }).on('search:collapsed', function () {
-        fitMap(view);
+        }
     });
     return searchControl;
 }
