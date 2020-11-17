@@ -12,7 +12,6 @@ export default function createSearchControl(view) {
     });
 
     searchControl.on('search:locationfound', function (e) {
-        console.log('locationfound', e);
         let type = '';
         if (e && e.layer && e.layer.feature &&
             e.layer.feature.properties && e.layer.feature.properties.type) {
@@ -21,7 +20,6 @@ export default function createSearchControl(view) {
         
         setViewToMarker({view, latlng: e.latlng, type, useMaxZoom: true});
         if (e.layer._popup){
-            console.log('openPopup');
             e.layer.openPopup();
         }
     });
