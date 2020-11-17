@@ -8,7 +8,8 @@ export default function createSearchControl(view) {
     })
     const searchControl = L.control.search({
         layer: L.layerGroup(searchLayers),
-        marker: false
+        marker: false,
+        autoCollapse: true
     });
 
     searchControl.on('search:locationfound', function (e) {
