@@ -18,6 +18,7 @@ import addWeatherLayers from './addWeatherLayers';
 import getZoomLevel from './utils/getZoomLevel';
 import { setZoomLayerLocationTypes } from './plotAllLocations';
 import { endRequest, startRequest } from './requestHandler';
+import updateUrl from './updateUrl';
 
 (function() {
     const configParams = processUrlOptions();
@@ -145,6 +146,9 @@ import { endRequest, startRequest } from './requestHandler';
         map.on('zoomend', function () {
             view.currentZoomLevel = getZoomLevel(view);
             setZoomLayerLocationTypes(view);
+        });
+        map.on('moveend', function () {
+            updateUrl({view});
         });
         loadMapLocations(view);
     });

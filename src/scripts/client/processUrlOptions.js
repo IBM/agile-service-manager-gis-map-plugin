@@ -118,12 +118,12 @@ export default function processUrlOptions() {
             configParams.updateRate = urlParams.updateRate;
         }
 
-        if(urlParams['initialViewLocation'] && urlParams['initialViewLocation'] != '') {
-            configParams.initialViewLocation = urlParams.initialViewLocation;
+        if(urlParams['viewLocation'] && urlParams['viewLocation'] != '') {
+            configParams.initialViewLocation = urlParams.viewLocation;
         }
 
-        if(urlParams['initialZoomLevel'] && urlParams['initialZoomLevel'] != '') {
-            configParams.initialZoomLevel = parseInt(urlParams.initialZoomLevel);
+        if(urlParams['zoomLevel'] && urlParams['zoomLevel'] != '') {
+            configParams.initialZoomLevel = parseInt(urlParams.zoomLevel);
         }
 
         if(urlParams['openWeatherMapApiId'] && urlParams['openWeatherMapApiId'] != '') {
