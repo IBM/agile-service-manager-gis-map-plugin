@@ -20,46 +20,46 @@ services:
       #=======================================================================================================
       #               Connection information for the ASM topology service REST API.
       #
-      # PS_HOST:
+      # ASM_HOST:
       #     The name or IP address of the server which hosts the 
       #     ASM topology serviceREST API. 
       #     Default value: localhost
       #
-      # PS_PORT:
+      # ASM_PORT:
       #     The port number on the host server which is used to access 
       #     the ASM topology service REST API via HTTPS. The value must be 
       #     an integer.
       #     Default value: 443
       #
-      # PS_TENANT:
+      # ASM_TENANT:
       #     The unique tenant ID to use in ASM topology service REST 
       #     requests in order to specify which tenant's data is 
       #     required.
       #     Default value: cfd95b7e-3bc7-4006-a4a8-a73a79c71255
       #
-      # PS_USERNAME:
+      # ASM_USERNAME:
       #     The username to use for accessing the ASM backend service, 
       #     if authentication is enabled.
       #     Default value: asm
       #
-      # PS_PASSWORD:
+      # ASM_PASSWORD:
       #     The password to use for accessing the ASM backend service,
       #     if authentication is enabled.
       #     Default value: asm
       #
-      # PS_ROOT_PATH:
+      # ASM_ROOT_PATH:
       #     The root URL path for the ASM topology service REST API. This 
       #     must be set to match the corresponding ASM topology service 
       #     configuration.
       #     Default value: /1.0/
       #
       #=======================================================================================================
-      PS_HOST: localhost
-      PS_PORT: 443
-      PS_TENANT: cfd95b7e-3bc7-4006-a4a8-a73a79c71255
-      PS_USERNAME: asm
-      PS_PASSWORD: asm
-      PS_ROOT_PATH: '/1.0/'
+      ASM_HOST: localhost
+      ASM_PORT: 443
+      ASM_TENANT: cfd95b7e-3bc7-4006-a4a8-a73a79c71255
+      ASM_USERNAME: asm
+      ASM_PASSWORD: asm
+      ASM_ROOT_PATH: '/1.0/'
       #=======================================================================================================
       #               Connection information for link back to ASM UI.
       #

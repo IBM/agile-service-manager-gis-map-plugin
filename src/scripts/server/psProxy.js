@@ -50,8 +50,8 @@ var proxyReqOptDecoratorFactory = function(tenantId, username, password) {
  */
 function init(app) {
     // Define the host and path mappings for the REST API proxy
-    var remoteHost = 'https://' + config.proxyServiceHost + ':' + config.proxyServicePort;
-    var remotePath = config.proxyServiceRootPath;
+    var remoteHost = 'https://' + config.asmHost + ':' + config.asmPort;
+    var remotePath = config.asmRootPath;
     if (remotePath.endsWith('/')) {
         remotePath = remotePath.substring(0, remotePath.length - 1);
     }
@@ -61,9 +61,9 @@ function init(app) {
     app.use('/proxy_service', proxy(remoteHost, {
         timeout: 120000,
         proxyReqPathResolver: proxyReqPathResolverFactory(remotePath),
-        proxyReqOptDecorator: proxyReqOptDecoratorFactory(config.proxyServiceTenantId,
-                                                          config.proxyServiceUsername,
-                                                          config.proxyServicePassword)
+        proxyReqOptDecorator: proxyReqOptDecoratorFactory(config.asmTenantId,
+                                                          config.asmUsername,
+                                                          config.asmPassword)
     }));
 
     // Define an exception handler for the REST API proxy

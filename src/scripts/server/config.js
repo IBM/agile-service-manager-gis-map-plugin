@@ -31,12 +31,12 @@ function getDefaults() {
     return {
         'webServerPort': 3000,
         'webServerSecurePort': 3443,
-        'proxyServiceHost': 'localhost',
-        'proxyServicePort': 443,
-        'proxyServiceTenantId': 'cfd95b7e-3bc7-4006-a4a8-a73a79c71255',
-        'proxyServiceUsername': 'asm',
-        'proxyServicePassword': 'asm',
-        'proxyServiceRootPath': '/1.0/',
+        'asmHost': 'localhost',
+        'asmPort': 443,
+        'asmTenantId': 'cfd95b7e-3bc7-4006-a4a8-a73a79c71255',
+        'asmUsername': 'asm',
+        'asmPassword': 'asm',
+        'asmRootPath': '/1.0/',
         'asmUIURL': 'https://localhost/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-viewer?resourceId={RESOURCE_ID}',
         'popupIgnoreProperties': '_executionTime,_modifiedAt,_observedAt,_startedAt,beginTime,changeTime,createTime,_compositeId,_compositeOfIds,_createdAt,_status',
         'tooltipProperties': '',
@@ -136,12 +136,12 @@ function readConfig() {
     // Merge settings from the various sources
     setConfigValue('webServerPort', 'UI_SERVER_PORT', fileConfig, true);
     setConfigValue('webServerSecurePort', 'UI_SERVER_SECURE_PORT', fileConfig, true);
-    setConfigValue('proxyServiceHost', 'PS_HOST', fileConfig, false);
-    setConfigValue('proxyServicePort', 'PS_PORT', fileConfig, true);
-    setConfigValue('proxyServiceTenantId', 'PS_TENANT', fileConfig, false);
-    setConfigValue('proxyServiceUsername', 'PS_USERNAME', fileConfig, false);
-    setConfigValue('proxyServicePassword', 'PS_PASSWORD', fileConfig, false);
-    setConfigValue('proxyServiceRootPath', 'PS_ROOT_PATH', fileConfig, false);
+    setConfigValue('asmHost', 'ASM_HOST', fileConfig, false);
+    setConfigValue('asmPort', 'ASM_PORT', fileConfig, true);
+    setConfigValue('asmTenantId', 'ASM_TENANT', fileConfig, false);
+    setConfigValue('asmUsername', 'ASM_USERNAME', fileConfig, false);
+    setConfigValue('asmPassword', 'ASM_PASSWORD', fileConfig, false);
+    setConfigValue('asmRootPath', 'ASM_ROOT_PATH', fileConfig, false);
     setConfigValue('asmUIURL', 'ASM_UI_URL', fileConfig, false);
     setConfigValue('popupIgnoreProperties', 'POPUP_IGNORE_PROPERTIES', fileConfig, false);
     setConfigValue('tooltipProperties', 'TOOLTIP_PROPERTIES', fileConfig, false);
