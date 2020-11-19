@@ -87,28 +87,13 @@ export function setZoomLayerLocationTypes(view) {
 }
 
 export function getGridTileLocations({view, locationTypeConfig}) {
-    const config = view.configParams;
     const geoFilterMode = 'INTERSECT';
     setZoomLayerLocationTypes(view);
 
     if (locationTypeConfig.vertexType === 'group') {
         getGroupType({view, locationTypeConfig, geoFilterMode});
-    } else {
-        const timestamp = new Date();
-        let requestId = `getGridTileLocations-${locationTypeConfig.entityType}-${timestamp.getTime()}`;
-        if (locationTypeConfig.geoBounds) {
-            requestId += `-${JSON.stringify(locationTypeConfig.geoBounds)}`;
-        }
-        view.startRequest(view, requestId);
-        const locationTypeRequestComplete = () => {
-            if(!config.hideLinks) {
-                addLinks(view);
-            }
-            view.loadingInstance.set(false);
-            view.endRequest(view, requestId);
-        }
-    
-        getLocations({view, locationTypeConfig, callback: locationTypeRequestComplete, geoFilterMode});
+    } else {    
+        getLocations({view, locationTypeConfig, geoFilterMode});
     }
 }
 
@@ -250,8 +235,21 @@ function getAllGroupLocations({groupIds, view, locationTypeConfig, geoFilterMode
     }) 
 }
 
-function getLocations({view, locationTypeConfig, callback, geoFilterMode}) {
+function getLocations({view, locationTypeConfig, geoFilterMode}) {
     const config = view.configParams;
+    const timestamp = new Date();
+    let requestId = `getGridTileLocations-${locationTypeConfig.entityType}-${timestamp.getTime()}`;
+    if (locationTypeConfig.geoBounds) {
+        requestId += `-${JSON.stringify(locationTypeConfig.geoBounds)}`;
+    }
+    view.startRequest(view, requestId);
+    const locationTypeRequestComplete = () => {
+        if(!config.hideLinks) {
+            addLinks(view);
+        }
+        view.loadingInstance.set(false);
+        view.endRequest(view, requestId);
+    };
     const baseUrl = '/proxy_service/topology/resources?' + locationParams(view, config, geoFilterMode, locationTypeConfig.geoBounds);
     const url = baseUrl + '&_type=' + locationTypeConfig.entityType;
     fetch(url)
@@ -267,13 +265,9 @@ function getLocations({view, locationTypeConfig, callback, geoFilterMode}) {
             const t1 = performance.now();
             TIMING_INFO && console.log(`Call to process ${locationTypeConfig.entityType} took ${t1 - t0} milliseconds.`);
         }
-        if (callback && typeof callback === 'function') {
-            callback();
-        }
+        locationTypeRequestComplete();
     }).catch(function(err) {
         console.error(`Failed to request ${locationTypeConfig.entityType} data: ${err}`);
-        if (callback && typeof callback === 'function') {
-            callback();
-        }
+        locationTypeRequestComplete();
     })
 }
