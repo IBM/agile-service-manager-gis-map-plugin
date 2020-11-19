@@ -3,6 +3,11 @@ import bboxPolygon from '@turf/bbox-polygon';
 import centroid from '@turf/centroid';
 
 export default function getLocationLatLng(location) {
+    if (location && location.geometry) {
+        if (location.geometry.type === 'Point') {
+            return new L.LatLng(location.geometry.coordinates[1], location.geometry.coordinates[0]);
+        }
+    }
     if (location && location.geolocation) {
         if(location.geolocation.geotype === 'box') {
             const boxPolygon = bboxPolygon([
