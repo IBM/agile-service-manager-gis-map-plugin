@@ -10,7 +10,7 @@ const setProperties = function(view, type, location, knownMarker) {
     let props = {
         id: location._id,
         name: location.name,
-        type: location.entityTypes[0],
+        type: type,
         url: config.url + location._id
     };
     if (location.hasOwnProperty('_hasStatus') && location._hasStatus != null) {
