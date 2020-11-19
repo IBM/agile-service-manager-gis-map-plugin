@@ -49,7 +49,7 @@ var proxyReqOptDecoratorFactory = function(tenantId, username, password) {
  * @param   {Object}   app   the express app object
  */
 function init(app) {
-    // Define the host and path mappings for the REST API proxy
+    // Define the host and path mappings for the ASM REST API proxy
     var remoteHost = 'https://' + config.asmHost + ':' + config.asmPort;
     var remotePath = config.asmRootPath;
     if (remotePath.endsWith('/')) {
@@ -66,7 +66,7 @@ function init(app) {
                                                           config.asmPassword)
     }));
 
-    // Define an exception handler for the REST API proxy
+    // Define an exception handler for the ASM REST API proxy
     app.use('/proxy_service', function(err, req, res) {
         console.log('ERROR:   ' + JSON.stringify(err, null, 2));
         res.status(500);
@@ -79,6 +79,32 @@ function init(app) {
             }
         });
     });
+
+    if (config.locationServiceHost) {
+        // Define the host and path mappings for the Location service
+        var locationRemoteHost = 'http://' + config.locationServiceHost + ':' + config.locationServicePort;
+        console.info("INIT " + locationRemoteHost);
+
+        // Define the /proxy_service routing behaviour
+        app.use('/location_service', proxy(locationRemoteHost, {
+            timeout: 120000
+        }));
+
+        // Define an exception handler for the REST API proxy
+        app.use('/location_service', function(err, req, res) {
+            console.log('ERROR:   ' + JSON.stringify(err, null, 2));
+            res.status(500);
+            res.json({
+                '_error': {
+                    'messageId': err.errno,
+                    'level': 'error',
+                    'message': 'The data request failed',
+                    'description': JSON.stringify(err, null, 2)
+                }
+            });
+        });
+    }
+    
 }
 
 // Define the public functionality of this module

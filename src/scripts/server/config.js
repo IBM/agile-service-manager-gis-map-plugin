@@ -37,6 +37,8 @@ function getDefaults() {
         'asmUsername': 'asm',
         'asmPassword': 'asm',
         'asmRootPath': '/1.0/',
+        'locationServiceHost': '',
+        'locationServicePort': 4443,
         'asmUIURL': 'https://localhost/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-viewer?resourceId={RESOURCE_ID}',
         'popupIgnoreProperties': '_executionTime,_modifiedAt,_observedAt,_startedAt,beginTime,changeTime,createTime,_compositeId,_compositeOfIds,_createdAt,_status',
         'tooltipProperties': '',
@@ -142,6 +144,8 @@ function readConfig() {
     setConfigValue('asmUsername', 'ASM_USERNAME', fileConfig, false);
     setConfigValue('asmPassword', 'ASM_PASSWORD', fileConfig, false);
     setConfigValue('asmRootPath', 'ASM_ROOT_PATH', fileConfig, false);
+    setConfigValue('locationServiceHost', 'LOCATION_HOST', fileConfig, false);
+    setConfigValue('locationServicePort', 'LOCATION_PORT', fileConfig, true);
     setConfigValue('asmUIURL', 'ASM_UI_URL', fileConfig, false);
     setConfigValue('popupIgnoreProperties', 'POPUP_IGNORE_PROPERTIES', fileConfig, false);
     setConfigValue('tooltipProperties', 'TOOLTIP_PROPERTIES', fileConfig, false);
