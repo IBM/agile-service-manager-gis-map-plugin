@@ -3,5 +3,6 @@ export default function updateUrl({view}) {
     const center = view.map.getCenter();
     queryParams.set("zoomLevel", view.currentZoomLevel);
     queryParams.set("viewLocation", `${center.lat.toFixed(4)},${center.lng.toFixed(4)}`);   
-    history.pushState(null, null, "?"+queryParams.toString());
+    // history.pushState(null, null, "?"+queryParams.toString());
+    history.replaceState(null, null, "?"+queryParams.toString());
 }
