@@ -7,7 +7,7 @@ import {setViewToLocation} from "./utils/setView";
 
 let intervalId = null;
 // Used to show caching
-const showDataTileCache = false;
+const showDataTileCache = true;
 
 export default function loadMapLocations(view) {
     const setUpGridTiles = function() {

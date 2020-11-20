@@ -9,7 +9,9 @@ export function createGridTypeLayer({view, locationTypeConfig, showDataTileCache
     
     var tiles = new L.GridLayer({
         // tileSize: 512,
-        tileSize: 1024,
+        // tileSize: 1024,
+        // tileSize: 2048,
+        tileSize: 4096,
         // Adjusted zoom level as min zoom 4 and max 19, config range 0 - 15 
         maxZoom: locationTypeConfig.maxZoom ? locationTypeConfig.maxZoom + 4 : 19,
         minZoom: locationTypeConfig.minZoom ? locationTypeConfig.minZoom + 4 : 4,
