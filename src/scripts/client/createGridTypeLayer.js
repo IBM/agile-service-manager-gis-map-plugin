@@ -1,8 +1,22 @@
 import bboxPolygon from '@turf/bbox-polygon';
 import union from '@turf/union';
+import {polygon} from '@turf/helpers';
 import booleanContains from '@turf/boolean-contains';
 import L from 'leaflet';
 import { getGridTileLocations } from './plotAllLocations';
+
+function isCached (visitedArea, gridPolygon) {
+    if (visitedArea.geometry.type === 'Polygon') {
+        return booleanContains(visitedArea, gridPolygon);
+    } else if (visitedArea.geometry.type === 'MultiPolygon') {
+        let cached = false;
+        for(let i = 0; i < visitedArea.geometry.coordinates.length && !cached; i++) {
+            cached = booleanContains(polygon(visitedArea.geometry.coordinates[i]), gridPolygon);
+        }
+        return cached;
+    }
+    return false;
+}
 
 export function createGridTypeLayer({view, locationTypeConfig, showDataTileCache}) {
     const map = view.map;
@@ -68,12 +82,12 @@ export function createGridTypeLayer({view, locationTypeConfig, showDataTileCache
             
             const gridPolygon = bboxPolygon([nw.lat, nw.lng, se.lat, se.lng]);
             if (instance.visitedArea) {
-                if (booleanContains(instance.visitedArea, gridPolygon)) {
+                if (isCached(instance.visitedArea, gridPolygon)) {
                     cachedTile = true;
                 } else {
                     // Add to visted area
                     const calculatedUnion = union(instance.visitedArea, gridPolygon);
-                    if (calculatedUnion && calculatedUnion.geometry.type === 'Polygon') {
+                    if (calculatedUnion && (calculatedUnion.geometry.type === 'Polygon' || calculatedUnion.geometry.type === 'MultiPolygon')) {
                         instance.visitedArea = calculatedUnion;
                         // Fetch the data for this tile here
                         showDataTileCache && console.log('fetch data for tile', locationTypeConfig);
