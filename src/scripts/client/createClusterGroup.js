@@ -41,6 +41,7 @@ export default function createClusterGroup(map, config) {
         },
         spiderfyOnMaxZoom: true,
         maxClusterRadius: 80,
+        chunkedLoading: true,
         removeOutsideVisibleBounds: true
     });
 
