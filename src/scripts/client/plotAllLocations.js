@@ -102,7 +102,7 @@ export function getGridTileLocations({view, locationTypeConfig, geoBounds}) {
     }
 }
 
-function addLocationToMap({view, locationTypeConfig, location}) {
+function addLocationToMap({view, locationTypeConfig, location, aggreationZoomLevel}) {
     if (location.geolocation && locationTypeConfig.locationStyle === 'polygon') {
         // N.B. This will only ever add location, deleted locations will remain
         if(view.boundaryTypes[locationTypeConfig.entityType].boundaries[location._id]) {
@@ -113,9 +113,9 @@ function addLocationToMap({view, locationTypeConfig, location}) {
     } else if ((location.geolocation || location.geometry ) && locationTypeConfig.locationStyle === 'marker') {
         // N.B. This will only ever add location, deleted locations will remain
         if(view.markerTypes[locationTypeConfig.entityType].locationsMap[location._id]) {
-            updateMarker(view, locationTypeConfig.entityType, location)
+            updateMarker(view, locationTypeConfig.entityType, location, aggreationZoomLevel)
         } else {
-            addMarker(view, locationTypeConfig.entityType, location);
+            addMarker(view, locationTypeConfig.entityType, location, aggreationZoomLevel);
         }
     }
 }
@@ -336,7 +336,7 @@ function getLocationsPostGisTag({view, locationTypeConfig, geoBounds}) {
             data.features.forEach((feature) => {
                 if (feature && feature.properties && feature.geometry) {
                     const location = {...feature.properties, ...{geometry: feature.geometry, _id: feature.properties.name, entityTypes: locationTypeConfig.entityType}};
-                    addLocationToMap({view, locationTypeConfig, location})
+                    addLocationToMap({view, locationTypeConfig, location, aggreationZoomLevel: locationTypeConfig.aggreationZoomLevel || null})
                 }
             });
         }

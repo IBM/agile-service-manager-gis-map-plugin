@@ -4,15 +4,19 @@ import { severityColors } from './utils/status';
 import getProvidedValue from './utils/getProvidedValue';
 import getLocationLatLng from './utils/getLocationLatLng';
 
-const setProperties = function(view, type, location, knownMarker) {
+const setProperties = function(view, type, location, knownMarker, aggreationZoomLevel) {
     const config = view.configParams;
     const markerLocationsMap = view.markerTypes[type] && view.markerTypes[type].locationsMap || {};
     let props = {
         id: location._id,
         name: location.name,
-        type: type,
-        url: config.url + location._id
+        type: type
     };
+    if (aggreationZoomLevel) {
+        props.aggreationZoomLevel = aggreationZoomLevel;
+    } else {
+        props.url = config.url + location._id;
+    }
     if (location.hasOwnProperty('_hasStatus') && location._hasStatus != null) {
         props['state'] = location._hasStatus;
     } else {
@@ -107,12 +111,12 @@ const addAffectRadiusMarker = function(view, type, location, props) {
     }
 } 
 
-export function addMarker(view, type, location) {
+export function addMarker(view, type, location, aggreationZoomLevel) {
     const markerLocations = view.markerTypes[type] && view.markerTypes[type].locations || [];
     const markers = view.markerTypes[type] && view.markerTypes[type].markers || {};
     const clusterGroup = view.markerTypes[type] && view.markerTypes[type].clusterGroup || null;
 
-    const marker = setProperties(view, type, location);
+    const marker = setProperties(view, type, location, false, aggreationZoomLevel);
 
     markerLocations.push(location);
     if(clusterGroup) {
@@ -123,8 +127,8 @@ export function addMarker(view, type, location) {
     markers[location._id] = marker;
 }
 
-export function updateMarker(view, type, location) {
+export function updateMarker(view, type, location, aggreationZoomLevel) {
     const markers = view.markerTypes[type].markers || {};
     const marker = markers[location._id];
-    setProperties(view, type, location, marker);
+    setProperties(view, type, location, marker, aggreationZoomLevel);
 }
