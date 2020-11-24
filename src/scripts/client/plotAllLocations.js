@@ -90,7 +90,11 @@ export function getGridTileLocations({view, locationTypeConfig, geoBounds}) {
     const geoFilterMode = 'INTERSECT';
     setZoomLayerLocationTypes(view);
     if (locationTypeConfig.source === 'locationService') {
-        getLocationsPostGis({view, locationTypeConfig, geoBounds, geoFilterMode});
+        if (locationTypeConfig.tag) {
+            getLocationsPostGisTag({view, locationTypeConfig, geoBounds, geoFilterMode});
+        } else {
+            getLocationsPostGis({view, locationTypeConfig, geoBounds, geoFilterMode});
+        }
     } else if (locationTypeConfig.vertexType === 'group') {
         getGroupType({view, locationTypeConfig, geoBounds, geoFilterMode});
     } else {    
@@ -297,7 +301,41 @@ function getLocationsPostGis({view, locationTypeConfig, geoBounds}) {
             data.features.forEach((feature) => {
                 if (feature && feature.properties && feature.geometry) {
                     const location = {...feature.properties, ...{geometry: feature.geometry}};
-                    console.log('location', location);
+                    addLocationToMap({view, locationTypeConfig, location})
+                }
+            });
+        }
+        locationTypeRequestComplete();
+    }).catch(function(err) {
+        console.error(`Failed to request ${locationTypeConfig.entityType} data: ${err}`);
+        locationTypeRequestComplete();
+    })
+}
+
+function getLocationsPostGisTag({view, locationTypeConfig, geoBounds}) {
+    const config = view.configParams;
+    const timestamp = new Date();
+    let requestId = `getLocationsPostGisTag-${locationTypeConfig.entityType}-${timestamp.getTime()}`;
+    if (geoBounds) {
+        requestId += `-${JSON.stringify(geoBounds)}`;
+    }
+    view.startRequest(view, requestId);
+    const locationTypeRequestComplete = () => {
+        if(!config.hideLinks) {
+            addLinks(view);
+        }
+        view.loadingInstance.set(false);
+        view.endRequest(view, requestId);
+    };
+    const url = '/location_service/tag?tag=' + locationTypeConfig.tag + '&lonMin=' + geoBounds._southWest.lng + '&latMin=' + geoBounds._southWest.lat + '&lonMax=' + geoBounds._northEast.lng + '&latMax=' + geoBounds._northEast.lat
+    fetch(url)
+    .then(function(response) {
+        return response.json()
+    }).then(function(data) {
+        if (data && data.features && Array.isArray(data.features)) {
+            data.features.forEach((feature) => {
+                if (feature && feature.properties && feature.geometry) {
+                    const location = {...feature.properties, ...{geometry: feature.geometry, _id: feature.properties.name, entityTypes: locationTypeConfig.entityType}};
                     addLocationToMap({view, locationTypeConfig, location})
                 }
             });

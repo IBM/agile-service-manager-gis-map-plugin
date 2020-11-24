@@ -13,52 +13,53 @@
 #     Default value: 3443
 #=======================================================================================================
 webServerPort: 3000
-webServerSecurePort: 3443
+webServerSecurePort: 4443
 
 #=======================================================================================================
 #               Connection information for the ASM topology service REST API.
 #
-# proxyServiceHost:
+# asmHost:
 #     The name or IP address of the server which hosts the 
 #     ASM topology serviceREST API. 
 #     Default value: localhost
 #
-# proxyServicePort:
+# asmPort:
 #     The port number on the host server which is used to access 
 #     the ASM topology service REST API via HTTPS. The value must be 
 #     an integer.
 #     Default value: 443
 #
-# proxyServiceTenantId:
+# asmTenantId:
 #     The unique tenant ID to use in ASM topology service REST 
 #     requests in order to specify which tenant's data is 
 #     required.
 #     Default value: cfd95b7e-3bc7-4006-a4a8-a73a79c71255
 #
-# proxyServiceUsername:
+# asmUsername:
 #     The username to use for accessing the ASM backend service, 
 #     if authentication is enabled.
 #     Default value: asm
 #
-# proxyServicePassword:
+# asmPassword:
 #     The password to use for accessing the ASM backend service,
 #     if authentication is enabled.
 #     Default value: asm
 #
-# proxyServiceRootPath:
+# asmRootPath:
 #     The root URL path for the ASM topology service REST API. This 
 #     must be set to match the corresponding ASM topology service 
 #     configuration.
 #     Default value: /1.0/
 #
 #=======================================================================================================
-proxyServiceHost: localhost
-proxyServicePort: 443
-proxyServiceTenantId: cfd95b7e-3bc7-4006-a4a8-a73a79c71255
-proxyServiceUsername: asm
-proxyServicePassword: asm
-proxyServiceRootPath: /1.0/
-
+asmHost: asm-dev1.fyre.ibm.com
+asmPort: 443
+asmTenantId: cfd95b7e-3bc7-4006-a4a8-a73a79c71255
+asmUsername: asm
+asmPassword: asm
+asmRootPath: '/1.0/'
+locationServiceHost: asm-dev1.fyre.ibm.com
+locationServicePort: 4443
 #=======================================================================================================
 #               Connection information for link back to ASM UI.
 #
@@ -68,7 +69,7 @@ proxyServiceRootPath: /1.0/
 #     Default value: https://localhost/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-viewer
 #
 #=======================================================================================================
-asmUIURL: https://localhost/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-viewer
+asmUIURL: https://asm-dev1.fyre.ibm.com/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-viewer
 
 
 
@@ -86,7 +87,7 @@ asmUIURL: https://localhost/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-
 #     Default value: ''
 #
 #=======================================================================================================
-popupIgnoreProperties: _executionTime,_modifiedAt,_observedAt,_startedAt,beginTime,changeTime,createTime,_compositeId,_compositeOfIds,_createdAt,_status
+popupIgnoreProperties: geolocation,_executionTime,_modifiedAt,_observedAt,_startedAt,beginTime,changeTime,createTime,_compositeId,_compositeOfIds,_createdAt,_status
 tooltipProperties: ''
 
 #=======================================================================================================
@@ -118,24 +119,49 @@ tooltipProperties: ''
 #     Default value: true
 #=======================================================================================================
 locationTypesConfig:
+  # - entityType: undergroundStation
+  #   vertexType: resource
+  # - entityType: interchangeStation
+  #   vertexType: resource
+  # - entityType: railStation
+  #   vertexType: resource
+  # - entityType: province
+  #   vertexType: group
+  #   minZoom: 0
+  #   maxZoom: 2
+  #   locationStyle: marker
+  # - entityType: city
+  #   vertexType: group
+  #   minZoom: 3
+  #   maxZoom: 7
+  #   locationStyle: marker
+  # - entityType: city
+  #   vertexType: group
+  #   minZoom: 8
+  #   maxZoom: 15
+  #   memberEntityTypes:
+  #    - site
   - entityType: province
-    vertexType: group
+    source: locationService
+    tag: province%
+    vertexType: resource
     minZoom: 0
     maxZoom: 2
     locationStyle: marker
   - entityType: city
-    vertexType: group
+    source: locationService
+    tag: city%
+    vertexType: resource
     minZoom: 3
     maxZoom: 7
     locationStyle: marker
-  - entityType: city
-    vertexType: group
+  - entityType: site
+    source: locationService
+    vertexType: resource
     minZoom: 8
     maxZoom: 15
-    memberEntityTypes:
-     - site
 affectedRadiusPropertyNames: ''
-linkEdgeTypes: ''
+linkEdgeTypes: '*'
 linkColorPropertyNames: ''
 returnComposites: true
 
@@ -157,4 +183,4 @@ returnComposites: true
 #=======================================================================================================
 updateRate: 900000
 initialViewLocation: '51.035535,-114.043873'
-initialZoomLevel: 7
+initialZoomLevel: 3
