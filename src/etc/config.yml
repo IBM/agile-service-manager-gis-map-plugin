@@ -52,13 +52,13 @@ webServerSecurePort: 4443
 #     Default value: /1.0/
 #
 #=======================================================================================================
-asmHost: localhost
+asmHost: asm-dev1.fyre.ibm.com
 asmPort: 443
 asmTenantId: cfd95b7e-3bc7-4006-a4a8-a73a79c71255
 asmUsername: asm
 asmPassword: asm
 asmRootPath: '/1.0/'
-locationServiceHost: localhost
+locationServiceHost: asm-dev1.fyre.ibm.com
 locationServicePort: 4443
 #=======================================================================================================
 #               Connection information for link back to ASM UI.
@@ -69,7 +69,7 @@ locationServicePort: 4443
 #     Default value: https://localhost/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-viewer
 #
 #=======================================================================================================
-asmUIURL: https://localhost/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-viewer
+asmUIURL: https://asm-dev1.fyre.ibm.com/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-viewer
 
 
 
@@ -144,7 +144,8 @@ locationTypesConfig:
   - entityType: province
     source: locationService
     aggreationZoomLevel: 3
-    tag: province%
+    # tag: province%
+    provinceApi: true
     vertexType: resource
     minZoom: 0
     maxZoom: 2

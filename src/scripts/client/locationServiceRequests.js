@@ -34,8 +34,8 @@ export function baseLocationServiceRequest({view, locationTypeConfig, geoBounds,
 
 function getPostGisGeoBounds({geoBounds}) {
     if (geoBounds) {
-        return '&lonMin=' + geoBounds._southWest.lng + '&latMin=' + geoBounds._southWest.lat +
-                '&lonMax=' + geoBounds._northEast.lng + '&latMax=' + geoBounds._northEast.lat;
+        return '&lngMin=' + geoBounds._southWest.lng + '&latMin=' + geoBounds._southWest.lat +
+                '&lngMax=' + geoBounds._northEast.lng + '&latMax=' + geoBounds._northEast.lat;
     }
     return ''
 }
@@ -64,7 +64,7 @@ export function getLocationsPostGisTag({view, locationTypeConfig, geoBounds}) {
 
 
 export function getLocationsPostGisProvince({view, locationTypeConfig, geoBounds}) {
-    const url = '/location_service/provinces/?' + locationTypeConfig.tag + getPostGisGeoBounds({geoBounds});
+    const url = '/location_service/provinces?' + locationTypeConfig.tag + getPostGisGeoBounds({geoBounds});
     const processFeature =  function(feature) {
         if (feature && feature.properties && feature.geometry) {
             const location = {...feature.properties, ...{geometry: feature.geometry, _id: feature.properties.name, entityTypes: locationTypeConfig.entityType}};
