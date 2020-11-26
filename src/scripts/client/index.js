@@ -112,7 +112,8 @@ import updateUrl from './updateUrl';
         addWeatherLayers(overlays, configParams.openWeatherMapApiId);
     }
 
-    const layerControl = L.control.layers(null, overlays).addTo(map);
+    // Layer control
+    // const layerControl = L.control.layers(null, overlays).addTo(map);
 
     const loadingInstance = Loading.create(document.getElementById('my-loading'));
     const inlineLoadingInstance = InlineLoading.create(document.getElementById('my-inline-loading'))
@@ -120,7 +121,7 @@ import updateUrl from './updateUrl';
 
     const view = {
         map,
-        layerControl,
+        // layerControl,
         markerTypes,
         boundaryTypes,
         linkTypes,
