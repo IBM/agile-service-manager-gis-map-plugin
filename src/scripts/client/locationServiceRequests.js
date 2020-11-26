@@ -55,7 +55,14 @@ export function getLocationsPostGisTag({view, locationTypeConfig, geoBounds}) {
     const url = '/location_service/tag?tag=' + locationTypeConfig.tag + getPostGisGeoBounds({geoBounds});
     const processFeature =  function(feature) {
         if (feature && feature.properties && feature.geometry) {
-            const location = {...feature.properties, ...{geometry: feature.geometry, _id: feature.properties.name, entityTypes: locationTypeConfig.entityType}};
+            const location = {
+                ...feature.properties,
+                ...{
+                    geometry: feature.geometry,
+                    _id: feature.properties.name, 
+                    entityTypes: locationTypeConfig.entityType,
+                    name: feature.properties.name.replace(locationTypeConfig.tag.replace('%', ''), ''),
+                }};
             addLocationToMap({view, locationTypeConfig, location, aggreationZoomLevel: locationTypeConfig.aggreationZoomLevel || null})
         }
     };
