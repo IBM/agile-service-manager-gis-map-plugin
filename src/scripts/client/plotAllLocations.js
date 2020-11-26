@@ -5,6 +5,7 @@ import 'promise-polyfill/src/polyfill';
 import { addBoundary, updateBoundary } from './boundary';
 import findLocationType from './utils/findLocationType';
 import { addLinks } from './links';
+import { getLocationsPostGis, getLocationsPostGisProvince, getLocationsPostGisTag } from './locationServiceRequests';
 
 const TIMING_INFO = false;
 
@@ -90,7 +91,9 @@ export function getGridTileLocations({view, locationTypeConfig, geoBounds}) {
     const geoFilterMode = 'INTERSECT';
     setZoomLayerLocationTypes(view);
     if (locationTypeConfig.source === 'locationService') {
-        if (locationTypeConfig.tag) {
+        if (locationTypeConfig.provinceApi) {
+            getLocationsPostGisProvince({view, locationTypeConfig, geoBounds, geoFilterMode});
+        } else if (locationTypeConfig.tag) {
             getLocationsPostGisTag({view, locationTypeConfig, geoBounds, geoFilterMode});
         } else {
             getLocationsPostGis({view, locationTypeConfig, geoBounds, geoFilterMode});
@@ -102,7 +105,7 @@ export function getGridTileLocations({view, locationTypeConfig, geoBounds}) {
     }
 }
 
-function addLocationToMap({view, locationTypeConfig, location, aggreationZoomLevel}) {
+export function addLocationToMap({view, locationTypeConfig, location, aggreationZoomLevel}) {
     if (location.geolocation && locationTypeConfig.locationStyle === 'polygon') {
         // N.B. This will only ever add location, deleted locations will remain
         if(view.boundaryTypes[locationTypeConfig.entityType].boundaries[location._id]) {
@@ -269,76 +272,6 @@ function getLocations({view, locationTypeConfig, geoBounds, geoFilterMode}) {
             });
             const t1 = performance.now();
             TIMING_INFO && console.log(`Call to process ${locationTypeConfig.entityType} took ${t1 - t0} milliseconds.`);
-        }
-        locationTypeRequestComplete();
-    }).catch(function(err) {
-        console.error(`Failed to request ${locationTypeConfig.entityType} data: ${err}`);
-        locationTypeRequestComplete();
-    })
-}
-
-function getLocationsPostGis({view, locationTypeConfig, geoBounds}) {
-    const config = view.configParams;
-    const timestamp = new Date();
-    let requestId = `getLocationsPostGis-${locationTypeConfig.entityType}-${timestamp.getTime()}`;
-    if (geoBounds) {
-        requestId += `-${JSON.stringify(geoBounds)}`;
-    }
-    view.startRequest(view, requestId);
-    const locationTypeRequestComplete = () => {
-        if(!config.hideLinks) {
-            addLinks(view);
-        }
-        view.loadingInstance.set(false);
-        view.endRequest(view, requestId);
-    };
-    const url = '/location_service/sites?entityType=' + locationTypeConfig.entityType + '&lonMin=' + geoBounds._southWest.lng + '&latMin=' + geoBounds._southWest.lat + '&lonMax=' + geoBounds._northEast.lng + '&latMax=' + geoBounds._northEast.lat
-    fetch(url)
-    .then(function(response) {
-        return response.json()
-    }).then(function(data) {
-        if (data && data.features && Array.isArray(data.features)) {
-            data.features.forEach((feature) => {
-                if (feature && feature.properties && feature.geometry) {
-                    const location = {...feature.properties, ...{geometry: feature.geometry}};
-                    addLocationToMap({view, locationTypeConfig, location})
-                }
-            });
-        }
-        locationTypeRequestComplete();
-    }).catch(function(err) {
-        console.error(`Failed to request ${locationTypeConfig.entityType} data: ${err}`);
-        locationTypeRequestComplete();
-    })
-}
-
-function getLocationsPostGisTag({view, locationTypeConfig, geoBounds}) {
-    const config = view.configParams;
-    const timestamp = new Date();
-    let requestId = `getLocationsPostGisTag-${locationTypeConfig.entityType}-${timestamp.getTime()}`;
-    if (geoBounds) {
-        requestId += `-${JSON.stringify(geoBounds)}`;
-    }
-    view.startRequest(view, requestId);
-    const locationTypeRequestComplete = () => {
-        if(!config.hideLinks) {
-            addLinks(view);
-        }
-        view.loadingInstance.set(false);
-        view.endRequest(view, requestId);
-    };
-    const url = '/location_service/tag?tag=' + locationTypeConfig.tag + '&lonMin=' + geoBounds._southWest.lng + '&latMin=' + geoBounds._southWest.lat + '&lonMax=' + geoBounds._northEast.lng + '&latMax=' + geoBounds._northEast.lat
-    fetch(url)
-    .then(function(response) {
-        return response.json()
-    }).then(function(data) {
-        if (data && data.features && Array.isArray(data.features)) {
-            data.features.forEach((feature) => {
-                if (feature && feature.properties && feature.geometry) {
-                    const location = {...feature.properties, ...{geometry: feature.geometry, _id: feature.properties.name, entityTypes: locationTypeConfig.entityType}};
-                    addLocationToMap({view, locationTypeConfig, location, aggreationZoomLevel: locationTypeConfig.aggreationZoomLevel || null})
-                }
-            });
         }
         locationTypeRequestComplete();
     }).catch(function(err) {
