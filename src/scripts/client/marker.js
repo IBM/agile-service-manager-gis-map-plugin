@@ -29,7 +29,14 @@ const setProperties = function(view, type, location, knownMarker, aggreationZoom
 
     let tooltipContent = '';
     let stateimage = '<img src="/markers/marker-' + props.state + '.svg" style="width:20px; height:20px" type="image/svg" title="State: ' + props.state + '">';
-    tooltipContent += '<h3>' + props.name + ' ' + stateimage + '</h3><h6> ' + props.type + '</h6>';
+    tooltipContent += '<h3>' + props.name + ' ' + stateimage + '</h3>';
+
+    if (location.count) {
+        props.count = location.count;
+        tooltipContent += '<h6> type: ' + props.type + ' count: ' + props.count + '</h6>';
+    } else {
+        tooltipContent += '<h6> ' + props.type + '</h6>';
+    }
 
     config.tooltipProperties.forEach( prop => {
         if (prop && location[prop] !== '' && typeof location[prop] !== 'undefined') {
