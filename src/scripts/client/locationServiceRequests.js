@@ -41,7 +41,7 @@ function getPostGisGeoBounds({geoBounds}) {
 }
 
 export function getLocationsPostGis({view, locationTypeConfig, geoBounds}) {
-    const url = '/location_service/sites-roll?entityType=' + locationTypeConfig.entityType + getPostGisGeoBounds({geoBounds});
+    const url = '/location_service/sites?entityType=' + locationTypeConfig.entityType + getPostGisGeoBounds({geoBounds});
     const processFeature =  function(feature) {
         if (feature && feature.properties && feature.geometry) {
             const location = {...feature.properties, ...{geometry: feature.geometry}};
@@ -52,7 +52,7 @@ export function getLocationsPostGis({view, locationTypeConfig, geoBounds}) {
 }
 
 export function getLocationsPostGisTag({view, locationTypeConfig, geoBounds}) {
-    const url = '/location_service/tag-roll?tag=' + locationTypeConfig.tag + getPostGisGeoBounds({geoBounds});
+    const url = '/location_service/tag?tag=' + locationTypeConfig.tag + getPostGisGeoBounds({geoBounds});
     const processFeature =  function(feature) {
         if (feature && feature.properties && feature.geometry) {
             const location = {
@@ -71,7 +71,7 @@ export function getLocationsPostGisTag({view, locationTypeConfig, geoBounds}) {
 
 
 export function getLocationsPostGisProvince({view, locationTypeConfig, geoBounds}) {
-    const url = '/location_service/provinces-roll?' + getPostGisGeoBounds({geoBounds});
+    const url = '/location_service/provinces?' + getPostGisGeoBounds({geoBounds});
     const processFeature =  function(feature) {
         if (feature && feature.properties && feature.geometry) {
             const location = {...feature.properties, ...{geometry: feature.geometry, _id: feature.properties.name, entityTypes: locationTypeConfig.entityType}};
