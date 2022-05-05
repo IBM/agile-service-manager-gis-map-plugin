@@ -64,7 +64,7 @@ export default function plotALlGeoBoundaries(view, maintainZoom) {
             .then(function(response) {
                 return response.json()
             }).then(function(data) {
-                if (data.hasOwnProperty('_items')) {
+                if (data._items && Array.isArray(data._items)) {
                     data._items.forEach((location) => {
                         const boundaryPropValue = getProvidedValue(view.configParams.boundaryProps, location);
                         if (boundaryPropValue && Array.isArray(boundaryPropValue)) {

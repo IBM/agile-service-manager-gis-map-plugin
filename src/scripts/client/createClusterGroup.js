@@ -49,7 +49,7 @@ export default function createClusterGroup(map, config) {
         .then(function(response) {
             return response.json()
         }).then(function(data) {
-            if (data.hasOwnProperty('uniqueId')) {
+            if (data.uniqueId) {
                 let tmpUrl = marker.sourceTarget.feature.properties.url;
                 tmpUrl = tmpUrl.replace('{RESOURCE_ID}', marker.sourceTarget.feature.properties.id);
                 let tooltipContent = '<div style="width:auto">';
@@ -60,7 +60,7 @@ export default function createClusterGroup(map, config) {
 
                 // sort te entries so the table displays nicely...
                 for (var key in Object.entries(data).sort().reduce((o, [k, v]) => (o[k] = v, o), {})) {
-                    if (!data.hasOwnProperty(key)) continue;
+                    if (!Object.prototype.hasOwnProperty.call(data, key)) continue;
                     if (key !== 'name' && key !== 'entityTypes' && config.popupIgnoreProperties.indexOf(key) === -1) {
                         tooltipContent += '<tr valign="middle"><td class="tooltip_key">' + key + '</td><td class="tooltipTableCell">' + data[key] + '</td></tr>';
                     }
