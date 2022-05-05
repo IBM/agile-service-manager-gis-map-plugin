@@ -21,7 +21,7 @@
     "lint"
   ],
   "dependencies": {
-    "carbon-components": "^10.11.1",
+    "carbon-components": "^10.56.0",
     "consolidate": "^0.15.1",
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.0",
