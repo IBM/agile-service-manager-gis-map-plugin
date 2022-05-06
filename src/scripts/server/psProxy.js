@@ -24,7 +24,7 @@ var proxyReqOptDecoratorFactory = function(tenantId, username, password) {
     let encodedHeader = null;
     if (username && username !== '' && password && password !== '') {
         var plainHeader = username + ':' + password;
-        encodedHeader = new Buffer(plainHeader).toString('base64');
+        encodedHeader = new Buffer.from(plainHeader, 'utf-8').toString('base64');
     }
 
     return function(proxyReq) {
