@@ -68,7 +68,7 @@ function parseConfigFile() {
         if (fs.existsSync(configFile)) {
             console.info('INFO:    Reading YAML config file: %s', configFile);
             let ymlFile = fs.readFileSync(configFile, 'utf8');
-            storedSettings = yaml.safeLoad(ymlFile);
+            storedSettings = yaml.load(ymlFile);
         } else {
             console.info('INFO:    Reading application config from environment variables');
         }

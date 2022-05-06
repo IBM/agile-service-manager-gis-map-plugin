@@ -5,7 +5,7 @@ export default function getProvidedValue(propertyNames, data) {
     if (propertyNames && Array.isArray(propertyNames) && data) {
         for(let i = 0; i < propertyNames.length && value === null; i++) {
             const propName = propertyNames[i];
-            if (propName && data.hasOwnProperty(propName) && data[propName] !== '' && data[propName] !== null) {
+            if (propName && Object.prototype.hasOwnProperty.call(data, propName) && data[propName] !== '' && data[propName] !== null) {
                 value = data[propName];
             }
         }

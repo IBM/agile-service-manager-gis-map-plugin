@@ -79,7 +79,7 @@ function getAllGroupLocations(view, maintainZoom) {
         .then(function(response) {
             return response.json()
         }).then(function(data) {
-            if (data.hasOwnProperty('_items')) {
+            if (data._items && Array.isArray(data._items)) {
                 console.log(`Call to process ${groupId} started`);
                 const t0 = performance.now();
                 data._items.forEach((location) => {
@@ -145,7 +145,7 @@ function getAllLocations(view, maintainZoom) {
         .then(function(response) {
             return response.json()
         }).then(function(data) {
-            if (data.hasOwnProperty('_items')) {
+            if (data._items && Array.isArray(data._items)) {
                 console.log(`Call to process ${locationType} started`);
                 const t0 = performance.now();
                 data._items.forEach((location) => {
@@ -192,7 +192,7 @@ function addLinks(view) {
     });
 
     combinedLocations.forEach((location) => {
-        if (location && location.hasOwnProperty('_references') && Array.isArray(location._references)) {
+        if (location && location._references && Array.isArray(location._references)) {
             location._references.forEach((edge) => {
                 if (edge._id && combinedLocationMap[edge._fromId] && combinedLocationMap[edge._toId] && processedEdgeIds.indexOf(edge._id) === -1) {
                     let color = getProvidedValue(view.configParams.linkColorProps, edge) || '#000000';

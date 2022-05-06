@@ -12,7 +12,7 @@ const setProperties = function(view, type, location, knownMarker) {
         type: location.entityTypes[0],
         url: config.url + location._id
     };
-    if (location.hasOwnProperty('_hasStatus') && location._hasStatus != null) {
+    if (Object.prototype.hasOwnProperty.call(location, '_hasStatus') && location._hasStatus != null) {
         props['state'] = location._hasStatus;
     } else {
         props['state'] = "unknown";
