@@ -10,7 +10,7 @@ const setProperties = function(boundary, location, config) {
         type: location.entityTypes[0],
         url: config.url + location._id
     };
-    if (typeof location._hasStatus !== 'undefined' && location._hasStatus != null) {
+    if (Object.prototype.hasOwnProperty.call(location, '_hasStatus') && location._hasStatus != null) {
         props['state'] = location._hasStatus;
     } else {
         props['state'] = "unknown";
