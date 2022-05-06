@@ -1,6 +1,6 @@
-FROM node:12
+FROM node:16
 
-LABEL version="1.0.0"
+LABEL version="1.1.0"
 
 EXPOSE 3000
 EXPOSE 3443

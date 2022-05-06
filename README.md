@@ -12,9 +12,9 @@ Open source project to provide geographical mapping with [IBM Agile Service Mana
 - [Building & Running](#building--running)
   - [Building](#building)
   - [Running with Node.js](#running-with-nodejs)
-  - [Running on Docker](#running-on-docker)
+  - [Running with Docker](#running-on-docker)
     - [Building Docker image](#building-docker-image)
-  - [Running Docker](#running-docker)
+    - [Running Docker](#running-docker)
 - [Using the mapper](#using-the-mapper)
   - [Default page](#default-page)
   - [URL options](#url-options)
@@ -38,7 +38,7 @@ Having a geographical map of resource locations, their relationships and state h
 
 This app queries ASM for a set of specified resource types with the specified latitude and longitude properties and then displays and their locations as markers on the map. For example, if your servers have latitude and longitude properties, then the app can display the locations of your servers. 
 
-Below is an example of an ASM resource that inludes location information as 'lat' and 'long' properties. To display this location, the app needs to be configured to query ASM for resources of type 'businessLocation' and to use 'lat' and 'long' as location properties. This can either be set in the [docker-compose.yml](docker-compose.yml) file if using docker, or in the `config.yaml` file found in `src/etc/config.yml`. Note that multiple location types and location properties can be configured if you need to display more than one type of location. 
+Below is an example of an ASM resource that includes location information as 'lat' and 'long' properties. To display this location, the app needs to be configured to query ASM for resources of type 'businessLocation' and to use 'lat' and 'long' as location properties. This can either be set in the [docker-compose.yml](docker-compose.yml) file if using docker, or in the `config.yaml` file found in `src/etc/config.yml`. Note that multiple location types and location properties can be configured if you need to display more than one type of location. 
 
 #### Example ASM resource
 ```
@@ -80,8 +80,9 @@ npm start
 ```
 This will start the application and you will see console log output indicating the configuration used to start the app and the ports it is running on.
 
-### Running on Docker
-The latest version of the app is available to download for Dockerhub and start using immediate. To do this jump straight to [Running Docker](#Running-Docker).
+### Running with Docker
+If you wish to run the project using Docker containers you will need to do the first build the image using the steps in [Building Docker image](#Building-Docker-image).
+After that jump to [Running Docker](#Running-Docker) to start the container version of the project.
 
 #### Building Docker image
 To build the docker image first follow the instructions in the [Building](#Building) step. Then run the following commands.
@@ -92,13 +93,12 @@ docker image build . -t agile-service-manager-gis-map-plugin:latest
 
 This will create the new Docker image `agile-service-manager-gis-map-plugin`. To use this image follow the instructions in the [Running Docker](#Running-Docker) step.
 
-
-### Running Docker
-Running the docker image, requires using the image from Dockerhub or a locally built image from step [Building Docker image](#Building-Docker-image).
+#### Running Docker
+Running the docker image, requires using a locally built image from step [Building Docker image](#Building-Docker-image).
 
 This project includes an example [docker-compose.yml](docker-compose.yml) file which can be used with [docker-compose](https://docs.docker.com/compose/) to run the image with the required configuration. Before you run the image make sure that you modify the values of the [docker-compose.yml](docker-compose.yml) to match your systems requirements. The file includes full documentation of each of the configuration options, if you don't provide a value a default will be used.
 
-If you are running the Dockerhub image you will need to modify the file to replace the image name that is used. You can comment out the local image name and use the Dockerhub path.
+If you are storing the image in a remote repository you will need to modify the file to replace the image name that is used. You can comment out the local image name and use the remote repository path.
 Example
 ```
 version: '2.1'
@@ -121,7 +121,7 @@ docker-compose up -d
 If you open up the mapper page with no URL parameters, it will pull all of the specified locations from ASM and display them. This will be based on the configuration settings used to configure the app.
 
 ### URL options
-If you want to modify the default behaviour of the app, you can use the following URL options in combination to change the map output.
+If you want to modify the default behavior of the app, you can use the following URL options in combination to change the map output.
 
 - hideLinks [boolean]: doesn't draw links on map
 - hideGeoBoundary [boolean]: doesn't draw geoBoundaries on map
@@ -182,7 +182,7 @@ Locations from ASM will be plotted on the map with a pin, that matched the latit
 ![marker](./readme-images/marker.png "Marker")
 ![cluster](./readme-images/cluster.png "Cluster")
 ### Tooltip
-Hovering the mouse over a marker will cause a tooltip to appear showing basic information about the resource. This tooltip can be customised to include other properties that are useful to have quick access too. These extra tooltip properties can be added via the URL following the steps indicated in [URL options](#URL-options), or can be applied to the app configuration at start time with the configuration parameter `TOOLTIP_PROPERTIES or tooltipProperties`. Below shows an example of this tooltip with the addition property zone included.
+Hovering the mouse over a marker will cause a tooltip to appear showing basic information about the resource. This tooltip can be customized to include other properties that are useful to have quick access too. These extra tooltip properties can be added via the URL following the steps indicated in [URL options](#URL-options), or can be applied to the app configuration at start time with the configuration parameter `TOOLTIP_PROPERTIES or tooltipProperties`. Below shows an example of this tooltip with the addition property zone included.
 
 ![tooltip](./readme-images/tooltip.png "Tooltip")
 
@@ -199,16 +199,16 @@ On the top left of the map, users can search of locations and this will zoom to 
 On the top right of the map, users can choose to filter certain layers of the map to be on or off. This allows the map to be focused on the important locations for a specific task.
 
 ### Relationship links
-Relationships between resources can be pulled from ASM using the configuration parameter `LINK_TYPES or linkEdgeTypes`. These relationships will be shown on the map via a line if both end of the link are present on the map. The colouring of the link can be set using the configuration parameter `LINK_COLOR_PROPS or linkColorPropertyNames` which it will use if present on the relationship.
+Relationships between resources can be pulled from ASM using the configuration parameter `LINK_TYPES or linkEdgeTypes`. These relationships will be shown on the map via a line if both end of the link are present on the map. The coloring of the link can be set using the configuration parameter `LINK_COLOR_PROPS or linkColorPropertyNames` which it will use if present on the relationship.
 
 ### Geo Boundary
 This is a new experimental feature, allow geographical areas to be drawn on the map. This requires the boundary definition to be supplied using the format suggested in the latlng specification described in
-https://leafletjs.com/reference-1.6.0.html#polygon. You can identify the resource types in ASM which are boundaries using the configuration parameter  `BOUNDARY_TYPES or boundaryEntityTypes` and you will also need to set the parameter name that hold the boundary definition. This is set using the configuration parameter `BOUNDARY_PROPS or boundaryPropertyNames`. Below is an example of this being applied to the map you will notice that the colouring matches the maximal severity colouring.
+https://leafletjs.com/reference-1.6.0.html#polygon. You can identify the resource types in ASM which are boundaries using the configuration parameter  `BOUNDARY_TYPES or boundaryEntityTypes` and you will also need to set the parameter name that hold the boundary definition. This is set using the configuration parameter `BOUNDARY_PROPS or boundaryPropertyNames`. Below is an example of this being applied to the map you will notice that the coloring matches the maximal severity coloring.
 
 ![Boundary](./readme-images/boundary.png "Boundary")
 
 ### Affected radius
-This is a new experimental feature, to allow you to add an affect radius in metres to a given resource location. This will automatically apply the affect radius if the property provided of the location has a valid value. To set this property us the configuration parameter `AFFECTED_RADIUS_PROPS or affectedRadiusPropertyNames`. Below is an example of the radius being applied, you will notice that the colouring matches the maximal severity colouring.
+This is a new experimental feature, to allow you to add an affect radius in meters to a given resource location. This will automatically apply the affect radius if the property provided of the location has a valid value. To set this property us the configuration parameter `AFFECTED_RADIUS_PROPS or affectedRadiusPropertyNames`. Below is an example of the radius being applied, you will notice that the coloring matches the maximal severity coloring.
 
 ![Radius](./readme-images/radius.png "Radius")
 
