@@ -2,9 +2,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master, develop ]
+    branches: [ main ]
   pull_request:
-    branches: [ master, develop ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -13,10 +13,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js 12.x
+    - name: Use Node.js 16.x
       uses: actions/setup-node@v1
       with:
-        node-version: '12.x'
+        node-version: '16.x'
     - run: npm install
     - run: npm run lint
     - run: npm run build --if-present
