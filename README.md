@@ -9,6 +9,7 @@ Open source project to provide geographical mapping with [IBM Agile Service Mana
   - [Using Agile Service Manager GIS Map Plugin](#using-agile-service-manager-gis-map-plugin)
     - [Example ASM resource](#example-asm-resource)
     - [Example docker-compose.yaml extract](#example-docker-composeyaml-extract)
+  - [Contributing and raising issues](#contributing-and-raising-issues)
 - [Building & Running](#building--running)
   - [Building](#building)
   - [Running with Node.js](#running-with-nodejs)
@@ -60,6 +61,10 @@ LOCATION_TYPES: location,businessLocation
 LONG_PROPS: longitude,long
 LAT_PROPS: latitude,lat
 ```
+
+## Contributing and raising issues
+
+If you wish to contribute to the project or have any issues or questions please read [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Building & Running
 The app can be run directly with Node.js or a Docker image can be built and run using docker-compose.
