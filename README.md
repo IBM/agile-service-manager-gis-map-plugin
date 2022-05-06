@@ -1,5 +1,5 @@
 # Agile Service Manager GIS Map Plugin
-Open source project to provide geographical mapping with [IBM Agile Service Manager](https://www.ibm.com/support/knowledgecenter/SS9LQB_1.1.7/welcome_page/kc_welcome-444.html) using [OpenStreetMap](https://www.openstreetmap.org/about) and [Leaflet.js](https://leafletjs.com/)
+Open source project to provide geographical mapping with [IBM Agile Service Manager](https://www.ibm.com/docs/en/nasm/1.1.13) using [OpenStreetMap](https://www.openstreetmap.org/about) and [Leaflet.js](https://leafletjs.com/)
 
 ![map overview](./readme-images/map-overview.png "Map Overview")
 
@@ -9,6 +9,7 @@ Open source project to provide geographical mapping with [IBM Agile Service Mana
   - [Using Agile Service Manager GIS Map Plugin](#using-agile-service-manager-gis-map-plugin)
     - [Example ASM resource](#example-asm-resource)
     - [Example docker-compose.yaml extract](#example-docker-composeyaml-extract)
+  - [Contributing and raising issues](#contributing-and-raising-issues)
 - [Building & Running](#building--running)
   - [Building](#building)
   - [Running with Node.js](#running-with-nodejs)
@@ -34,11 +35,14 @@ Open source project to provide geographical mapping with [IBM Agile Service Mana
 
 
 ## Using Agile Service Manager GIS Map Plugin
-Having a geographical map of resource locations, their relationships and state helps operations teams quickly identify the cause and impact of problems with their environment. This is a Node.js project that displays a geographical map having obtained data from ASM's topology service. It can be run directly using Node or a docker image can be run, with a docker-compose configuration. 
+Having a geographical map of resource locations, their relationships and state helps operations teams quickly identify the cause and impact of problems with their environment. This is a Node.js project that displays a geographical map having obtained data from ASM's topology service.  It can be run directly using Node or a docker image can be run, with a docker-compose configuration. 
+
+Currently this project is known to support ASM versions 1.1.10 - 1.1.13. Previous versions may have API changes that don't support the latest project features. This project is designed to be a proof of concept implementation and will not scale well to very large datasets, so caution should be taken if using this project.
 
 This app queries ASM for a set of specified resource types with the specified latitude and longitude properties and then displays and their locations as markers on the map. For example, if your servers have latitude and longitude properties, then the app can display the locations of your servers. 
 
 Below is an example of an ASM resource that includes location information as 'lat' and 'long' properties. To display this location, the app needs to be configured to query ASM for resources of type 'businessLocation' and to use 'lat' and 'long' as location properties. This can either be set in the [docker-compose.yml](docker-compose.yml) file if using docker, or in the `config.yaml` file found in `src/etc/config.yml`. Note that multiple location types and location properties can be configured if you need to display more than one type of location. 
+
 
 #### Example ASM resource
 ```
@@ -60,6 +64,10 @@ LOCATION_TYPES: location,businessLocation
 LONG_PROPS: longitude,long
 LAT_PROPS: latitude,lat
 ```
+
+## Contributing and raising issues
+
+If you wish to contribute to the project or have any issues or questions please read [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Building & Running
 The app can be run directly with Node.js or a Docker image can be built and run using docker-compose.

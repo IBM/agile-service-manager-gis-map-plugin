@@ -63,12 +63,11 @@ proxyServiceRootPath: /1.0/
 #               Connection information for link back to ASM UI.
 #
 # asmUIURL:
-#     The base URL to ASM Topology viewer page, with resource Id substitution.
-#     The substitution will replace {RESOURCE_ID} with the select location marker id
-#     Default value: https://localhost:16311/ibm/console/inasm/topology.jsp?resourceId={RESOURCE_ID}
+#     The base URL to ASM Topology viewer page. This will add the resourceId for the given location.
+#     Default value: https://localhost/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-viewer
 #
 #=======================================================================================================
-asmUIURL: https://localhost:16311/ibm/console/inasm/topology.jsp?resourceId={RESOURCE_ID}
+asmUIURL: https://localhost/aiops/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/topology-viewer
 
 
 #=======================================================================================================
