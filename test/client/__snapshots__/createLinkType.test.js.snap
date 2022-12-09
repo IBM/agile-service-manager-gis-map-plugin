@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`createLinkType create 1`] = `
-Object {
+{
   "clusterGroup": NewClass {
     "_initHooksCalled": true,
-    "_layers": Object {},
-    "options": Object {},
+    "_layers": {},
+    "options": {},
   },
   "linkType": "myType",
-  "links": Object {},
+  "links": {},
 }
 `;

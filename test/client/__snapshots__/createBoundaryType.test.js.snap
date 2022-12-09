@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`createBoundaryType create 1`] = `
-Object {
-  "boundaries": Object {},
+{
+  "boundaries": {},
   "boundaryType": "myType",
   "clusterGroup": NewClass {
     "_initHooksCalled": true,
-    "_layers": Object {},
-    "options": Object {},
+    "_layers": {},
+    "options": {},
   },
 }
 `;

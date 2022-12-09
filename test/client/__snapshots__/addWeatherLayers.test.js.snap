@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`addWeatherLayers add overlay 1`] = `
-Object {
+{
   "Clouds": NewClass {
-    "_events": Object {
-      "tileunload": Array [
-        Object {
+    "_events": {
+      "tileunload": [
+        {
           "ctx": undefined,
           "fn": [Function],
         },
@@ -13,11 +13,11 @@ Object {
     },
     "_initHooksCalled": true,
     "_url": "https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=myKey",
-    "options": Object {
-      "attribution": "Weather from <a href=\\"http://openweathermap.org/\\" alt=\\"World Map and worldwide Weather Forecast online\\">OpenWeatherMap</a>",
+    "options": {
+      "attribution": "Weather from <a href="http://openweathermap.org/" alt="World Map and worldwide Weather Forecast online">OpenWeatherMap</a>",
       "maxClusterRadius": 120,
       "maxZoom": 19,
-      "subdomains": Array [
+      "subdomains": [
         "a",
         "b",
         "c",
@@ -25,9 +25,9 @@ Object {
     },
   },
   "Precipitation": NewClass {
-    "_events": Object {
-      "tileunload": Array [
-        Object {
+    "_events": {
+      "tileunload": [
+        {
           "ctx": undefined,
           "fn": [Function],
         },
@@ -35,11 +35,11 @@ Object {
     },
     "_initHooksCalled": true,
     "_url": "https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=myKey",
-    "options": Object {
-      "attribution": "Weather from <a href=\\"http://openweathermap.org/\\" alt=\\"World Map and worldwide Weather Forecast online\\">OpenWeatherMap</a>",
+    "options": {
+      "attribution": "Weather from <a href="http://openweathermap.org/" alt="World Map and worldwide Weather Forecast online">OpenWeatherMap</a>",
       "maxClusterRadius": 120,
       "maxZoom": 19,
-      "subdomains": Array [
+      "subdomains": [
         "a",
         "b",
         "c",
@@ -47,9 +47,9 @@ Object {
     },
   },
   "Sea level pressure": NewClass {
-    "_events": Object {
-      "tileunload": Array [
-        Object {
+    "_events": {
+      "tileunload": [
+        {
           "ctx": undefined,
           "fn": [Function],
         },
@@ -57,11 +57,11 @@ Object {
     },
     "_initHooksCalled": true,
     "_url": "https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=myKey",
-    "options": Object {
-      "attribution": "Weather from <a href=\\"http://openweathermap.org/\\" alt=\\"World Map and worldwide Weather Forecast online\\">OpenWeatherMap</a>",
+    "options": {
+      "attribution": "Weather from <a href="http://openweathermap.org/" alt="World Map and worldwide Weather Forecast online">OpenWeatherMap</a>",
       "maxClusterRadius": 120,
       "maxZoom": 19,
-      "subdomains": Array [
+      "subdomains": [
         "a",
         "b",
         "c",
@@ -69,9 +69,9 @@ Object {
     },
   },
   "Temperature": NewClass {
-    "_events": Object {
-      "tileunload": Array [
-        Object {
+    "_events": {
+      "tileunload": [
+        {
           "ctx": undefined,
           "fn": [Function],
         },
@@ -79,11 +79,11 @@ Object {
     },
     "_initHooksCalled": true,
     "_url": "https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=myKey",
-    "options": Object {
-      "attribution": "Weather from <a href=\\"http://openweathermap.org/\\" alt=\\"World Map and worldwide Weather Forecast online\\">OpenWeatherMap</a>",
+    "options": {
+      "attribution": "Weather from <a href="http://openweathermap.org/" alt="World Map and worldwide Weather Forecast online">OpenWeatherMap</a>",
       "maxClusterRadius": 120,
       "maxZoom": 19,
-      "subdomains": Array [
+      "subdomains": [
         "a",
         "b",
         "c",
@@ -91,9 +91,9 @@ Object {
     },
   },
   "Wind speed": NewClass {
-    "_events": Object {
-      "tileunload": Array [
-        Object {
+    "_events": {
+      "tileunload": [
+        {
           "ctx": undefined,
           "fn": [Function],
         },
@@ -101,11 +101,11 @@ Object {
     },
     "_initHooksCalled": true,
     "_url": "https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=myKey",
-    "options": Object {
-      "attribution": "Weather from <a href=\\"http://openweathermap.org/\\" alt=\\"World Map and worldwide Weather Forecast online\\">OpenWeatherMap</a>",
+    "options": {
+      "attribution": "Weather from <a href="http://openweathermap.org/" alt="World Map and worldwide Weather Forecast online">OpenWeatherMap</a>",
       "maxClusterRadius": 120,
       "maxZoom": 19,
-      "subdomains": Array [
+      "subdomains": [
         "a",
         "b",
         "c",
