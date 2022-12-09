@@ -1,77 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`marker addMarker, has status 1`] = `
-Object {
-  "configParams": Object {
-    "latProps": Array [
+{
+  "configParams": {
+    "latProps": [
       "lat",
     ],
-    "longProps": Array [
+    "longProps": [
       "long",
     ],
-    "tooltipProperties": Array [],
+    "tooltipProperties": [],
   },
-  "markerTypes": Object {
-    "myType": Object {
-      "affectedRadiusMarkers": Array [],
-      "clusterGroup": Object {
+  "markerTypes": {
+    "myType": {
+      "affectedRadiusMarkers": [],
+      "clusterGroup": {
         "addLayer": [MockFunction] {
-          "calls": Array [
-            Array [
+          "calls": [
+            [
               NewClass {
-                "_events": Object {
-                  "click": Array [
-                    Object {
+                "_events": {
+                  "click": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "keypress": Array [
-                    Object {
+                  "keypress": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "mouseout": Array [
-                    Object {
+                  "mouseout": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "mouseover": Array [
-                    Object {
+                  "mouseover": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "move": Array [
-                    Object {
+                  "move": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "remove": Array [
-                    Object {
+                  "remove": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
                 },
                 "_initHooksCalled": true,
-                "_latlng": Object {
+                "_latlng": {
                   "lat": 2,
                   "lng": 1,
                 },
                 "_popup": NewClass {
-                  "_content": "<h3>myLocation <img src=\\"/markers/marker-warning.svg\\" style=\\"width:20px; height:20px\\" type=\\"image/svg\\" title=\\"State: warning\\"></h3><h6> myType</h6>",
+                  "_content": "<h3>myLocation <img src="/markers/marker-warning.svg" style="width:20px; height:20px" type="image/svg" title="State: warning"></h3><h6> myType</h6>",
                   "_initHooksCalled": true,
                   "_source": [Circular],
-                  "options": Object {},
+                  "options": {},
                 },
                 "_popupHandlersAdded": true,
-                "feature": Object {
+                "feature": {
                   "geometry": undefined,
-                  "properties": Object {
+                  "properties": {
                     "id": "id123",
                     "name": "myLocation",
                     "state": "warning",
@@ -80,21 +80,21 @@ Object {
                   },
                   "type": "Point",
                 },
-                "options": Object {
+                "options": {
                   "icon": NewClass {
                     "_initHooksCalled": true,
-                    "options": Object {
+                    "options": {
                       "className": "leaflet-data-marker",
-                      "html": "<svg version=\\"1\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 149 178\\"><path fill=\\"#475bd6\\" stroke=\\"#FFF\\" stroke-width=\\"6\\" stroke-miterlimit=\\"10\\" d=\\"M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z\\"/><circle fill=\\"#ffffff\\" cx=\\"74\\" cy=\\"75\\" r=\\"61\\"/><circle fill=\\"#FFFFFF\\" cx=\\"74\\" cy=\\"75\\" r=\\"30\\"/><svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-11.3 -6 55 55\\"><path fill=\\"#408BFC\\" d=\\"M26.002 4H5.998A1.998 1.998 0 0 0 4 5.998v20.004A1.998 1.998 0 0 0 5.998 28h20.004A1.998 1.998 0 0 0 28 26.002V5.998A1.998 1.998 0 0 0 26.002 4zM14.875 8h2.25v10h-2.25zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24z\\"/><path d=\\"M14.875 8h2.25v10h-2.25zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24z\\" opacity=\\"0\\"/></svg></svg>",
-                      "iconAnchor": Array [
+                      "html": "<svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149 178"><path fill="#475bd6" stroke="#FFF" stroke-width="6" stroke-miterlimit="10" d="M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z"/><circle fill="#ffffff" cx="74" cy="75" r="61"/><circle fill="#FFFFFF" cx="74" cy="75" r="30"/><svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.3 -6 55 55"><path fill="#408BFC" d="M26.002 4H5.998A1.998 1.998 0 0 0 4 5.998v20.004A1.998 1.998 0 0 0 5.998 28h20.004A1.998 1.998 0 0 0 28 26.002V5.998A1.998 1.998 0 0 0 26.002 4zM14.875 8h2.25v10h-2.25zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24z"/><path d="M14.875 8h2.25v10h-2.25zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24z" opacity="0"/></svg></svg>",
+                      "iconAnchor": [
                         12,
                         32,
                       ],
-                      "iconSize": Array [
+                      "iconSize": [
                         36,
                         41,
                       ],
-                      "popupAnchor": Array [
+                      "popupAnchor": [
                         0,
                         -28,
                       ],
@@ -105,8 +105,8 @@ Object {
               },
             ],
           ],
-          "results": Array [
-            Object {
+          "results": [
+            {
               "type": "return",
               "value": undefined,
             },
@@ -119,80 +119,80 @@ Object {
 `;
 
 exports[`marker addMarker, has tooltip props 1`] = `
-Object {
-  "configParams": Object {
-    "latProps": Array [
+{
+  "configParams": {
+    "latProps": [
       "lat",
     ],
-    "longProps": Array [
+    "longProps": [
       "long",
     ],
-    "tooltipProperties": Array [
+    "tooltipProperties": [
       "tooltipProp",
       "tryToShowThis",
     ],
   },
-  "markerTypes": Object {
-    "myType": Object {
-      "affectedRadiusMarkers": Array [],
-      "clusterGroup": Object {
+  "markerTypes": {
+    "myType": {
+      "affectedRadiusMarkers": [],
+      "clusterGroup": {
         "addLayer": [MockFunction] {
-          "calls": Array [
-            Array [
+          "calls": [
+            [
               NewClass {
-                "_events": Object {
-                  "click": Array [
-                    Object {
+                "_events": {
+                  "click": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "keypress": Array [
-                    Object {
+                  "keypress": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "mouseout": Array [
-                    Object {
+                  "mouseout": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "mouseover": Array [
-                    Object {
+                  "mouseover": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "move": Array [
-                    Object {
+                  "move": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "remove": Array [
-                    Object {
+                  "remove": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
                 },
                 "_initHooksCalled": true,
-                "_latlng": Object {
+                "_latlng": {
                   "lat": 2,
                   "lng": 1,
                 },
                 "_popup": NewClass {
-                  "_content": "<h3>myLocation <img src=\\"/markers/marker-unknown.svg\\" style=\\"width:20px; height:20px\\" type=\\"image/svg\\" title=\\"State: unknown\\"></h3><h6> myType</h6><h7> tooltipProp: showThis</h7>",
+                  "_content": "<h3>myLocation <img src="/markers/marker-unknown.svg" style="width:20px; height:20px" type="image/svg" title="State: unknown"></h3><h6> myType</h6><h7> tooltipProp: showThis</h7>",
                   "_initHooksCalled": true,
                   "_source": [Circular],
-                  "options": Object {},
+                  "options": {},
                 },
                 "_popupHandlersAdded": true,
-                "feature": Object {
+                "feature": {
                   "geometry": undefined,
-                  "properties": Object {
+                  "properties": {
                     "id": "id123",
                     "name": "myLocation",
                     "state": "unknown",
@@ -201,21 +201,21 @@ Object {
                   },
                   "type": "Point",
                 },
-                "options": Object {
+                "options": {
                   "icon": NewClass {
                     "_initHooksCalled": true,
-                    "options": Object {
+                    "options": {
                       "className": "leaflet-data-marker",
-                      "html": "<svg version=\\"1\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 149 178\\"><path fill=\\"#180068\\" stroke=\\"#FFF\\" stroke-width=\\"6\\" stroke-miterlimit=\\"10\\" d=\\"M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z\\"/><circle fill=\\"#ffffff\\" cx=\\"74\\" cy=\\"75\\" r=\\"61\\"/><circle fill=\\"#FFFFFF\\" cx=\\"74\\" cy=\\"75\\" r=\\"30\\"/><svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-11.3 -6 55 55\\"><path fill=\\"#8F8B8B\\" d=\\"M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.591a1.994 1.994 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.994 1.994 0 0 0 0-2.82zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24zm1.125-6.752v1.877h-2.25V15H17a1.875 1.875 0 0 0 0-3.75h-2a1.877 1.877 0 0 0-1.875 1.875v.5h-2.25v-.5A4.13 4.13 0 0 1 15 9h2a4.125 4.125 0 0 1 .125 8.248z\\"/><path d=\\"M16 21a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 21zm1.125-3.752A4.125 4.125 0 0 0 17 9h-2a4.13 4.13 0 0 0-4.125 4.125v.5h2.25v-.5A1.877 1.877 0 0 1 15 11.25h2A1.875 1.875 0 0 1 17 15h-2.125v4.125h2.25z\\" opacity=\\"0\\"/></svg></svg>",
-                      "iconAnchor": Array [
+                      "html": "<svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149 178"><path fill="#180068" stroke="#FFF" stroke-width="6" stroke-miterlimit="10" d="M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z"/><circle fill="#ffffff" cx="74" cy="75" r="61"/><circle fill="#FFFFFF" cx="74" cy="75" r="30"/><svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.3 -6 55 55"><path fill="#8F8B8B" d="M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.591a1.994 1.994 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.994 1.994 0 0 0 0-2.82zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24zm1.125-6.752v1.877h-2.25V15H17a1.875 1.875 0 0 0 0-3.75h-2a1.877 1.877 0 0 0-1.875 1.875v.5h-2.25v-.5A4.13 4.13 0 0 1 15 9h2a4.125 4.125 0 0 1 .125 8.248z"/><path d="M16 21a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 21zm1.125-3.752A4.125 4.125 0 0 0 17 9h-2a4.13 4.13 0 0 0-4.125 4.125v.5h2.25v-.5A1.877 1.877 0 0 1 15 11.25h2A1.875 1.875 0 0 1 17 15h-2.125v4.125h2.25z" opacity="0"/></svg></svg>",
+                      "iconAnchor": [
                         12,
                         32,
                       ],
-                      "iconSize": Array [
+                      "iconSize": [
                         36,
                         41,
                       ],
-                      "popupAnchor": Array [
+                      "popupAnchor": [
                         0,
                         -28,
                       ],
@@ -226,8 +226,8 @@ Object {
               },
             ],
           ],
-          "results": Array [
-            Object {
+          "results": [
+            {
               "type": "return",
               "value": undefined,
             },
@@ -240,100 +240,100 @@ Object {
 `;
 
 exports[`marker addMarker, known affectedRadiusMarkers, with no radius 1`] = `
-Object {
-  "configParams": Object {
-    "affectedRadiusProps": Array [
+{
+  "configParams": {
+    "affectedRadiusProps": [
       "radius",
     ],
-    "latProps": Array [
+    "latProps": [
       "lat",
     ],
-    "longProps": Array [
+    "longProps": [
       "long",
     ],
-    "tooltipProperties": Array [],
+    "tooltipProperties": [],
   },
-  "markerTypes": Object {
-    "myType": Object {
-      "affectedRadiusMarkers": Object {},
-      "affectedRadiusMarkersLayer": Object {
+  "markerTypes": {
+    "myType": {
+      "affectedRadiusMarkers": {},
+      "affectedRadiusMarkersLayer": {
         "removeLayer": [MockFunction] {
-          "calls": Array [
-            Array [
+          "calls": [
+            [
               NewClass {
                 "_initHooksCalled": true,
                 "_latlng": null,
                 "_mRadius": 10,
-                "options": Object {},
+                "options": {},
               },
             ],
           ],
-          "results": Array [
-            Object {
+          "results": [
+            {
               "type": "return",
               "value": undefined,
             },
           ],
         },
       },
-      "clusterGroup": Object {
+      "clusterGroup": {
         "addLayer": [MockFunction] {
-          "calls": Array [
-            Array [
+          "calls": [
+            [
               NewClass {
-                "_events": Object {
-                  "click": Array [
-                    Object {
+                "_events": {
+                  "click": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "keypress": Array [
-                    Object {
+                  "keypress": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "mouseout": Array [
-                    Object {
+                  "mouseout": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "mouseover": Array [
-                    Object {
+                  "mouseover": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "move": Array [
-                    Object {
+                  "move": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "remove": Array [
-                    Object {
+                  "remove": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
                 },
                 "_initHooksCalled": true,
-                "_latlng": Object {
+                "_latlng": {
                   "lat": 2,
                   "lng": 1,
                 },
                 "_popup": NewClass {
-                  "_content": "<h3>myLocation <img src=\\"/markers/marker-unknown.svg\\" style=\\"width:20px; height:20px\\" type=\\"image/svg\\" title=\\"State: unknown\\"></h3><h6> myType</h6>",
+                  "_content": "<h3>myLocation <img src="/markers/marker-unknown.svg" style="width:20px; height:20px" type="image/svg" title="State: unknown"></h3><h6> myType</h6>",
                   "_initHooksCalled": true,
                   "_source": [Circular],
-                  "options": Object {},
+                  "options": {},
                 },
                 "_popupHandlersAdded": true,
-                "feature": Object {
+                "feature": {
                   "geometry": undefined,
-                  "properties": Object {
+                  "properties": {
                     "id": "id123",
                     "name": "myLocation",
                     "state": "unknown",
@@ -342,21 +342,21 @@ Object {
                   },
                   "type": "Point",
                 },
-                "options": Object {
+                "options": {
                   "icon": NewClass {
                     "_initHooksCalled": true,
-                    "options": Object {
+                    "options": {
                       "className": "leaflet-data-marker",
-                      "html": "<svg version=\\"1\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 149 178\\"><path fill=\\"#180068\\" stroke=\\"#FFF\\" stroke-width=\\"6\\" stroke-miterlimit=\\"10\\" d=\\"M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z\\"/><circle fill=\\"#ffffff\\" cx=\\"74\\" cy=\\"75\\" r=\\"61\\"/><circle fill=\\"#FFFFFF\\" cx=\\"74\\" cy=\\"75\\" r=\\"30\\"/><svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-11.3 -6 55 55\\"><path fill=\\"#8F8B8B\\" d=\\"M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.591a1.994 1.994 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.994 1.994 0 0 0 0-2.82zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24zm1.125-6.752v1.877h-2.25V15H17a1.875 1.875 0 0 0 0-3.75h-2a1.877 1.877 0 0 0-1.875 1.875v.5h-2.25v-.5A4.13 4.13 0 0 1 15 9h2a4.125 4.125 0 0 1 .125 8.248z\\"/><path d=\\"M16 21a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 21zm1.125-3.752A4.125 4.125 0 0 0 17 9h-2a4.13 4.13 0 0 0-4.125 4.125v.5h2.25v-.5A1.877 1.877 0 0 1 15 11.25h2A1.875 1.875 0 0 1 17 15h-2.125v4.125h2.25z\\" opacity=\\"0\\"/></svg></svg>",
-                      "iconAnchor": Array [
+                      "html": "<svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149 178"><path fill="#180068" stroke="#FFF" stroke-width="6" stroke-miterlimit="10" d="M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z"/><circle fill="#ffffff" cx="74" cy="75" r="61"/><circle fill="#FFFFFF" cx="74" cy="75" r="30"/><svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.3 -6 55 55"><path fill="#8F8B8B" d="M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.591a1.994 1.994 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.994 1.994 0 0 0 0-2.82zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24zm1.125-6.752v1.877h-2.25V15H17a1.875 1.875 0 0 0 0-3.75h-2a1.877 1.877 0 0 0-1.875 1.875v.5h-2.25v-.5A4.13 4.13 0 0 1 15 9h2a4.125 4.125 0 0 1 .125 8.248z"/><path d="M16 21a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 21zm1.125-3.752A4.125 4.125 0 0 0 17 9h-2a4.13 4.13 0 0 0-4.125 4.125v.5h2.25v-.5A1.877 1.877 0 0 1 15 11.25h2A1.875 1.875 0 0 1 17 15h-2.125v4.125h2.25z" opacity="0"/></svg></svg>",
+                      "iconAnchor": [
                         12,
                         32,
                       ],
-                      "iconSize": Array [
+                      "iconSize": [
                         36,
                         41,
                       ],
-                      "popupAnchor": Array [
+                      "popupAnchor": [
                         0,
                         -28,
                       ],
@@ -367,8 +367,8 @@ Object {
               },
             ],
           ],
-          "results": Array [
-            Object {
+          "results": [
+            {
               "type": "return",
               "value": undefined,
             },
@@ -381,31 +381,31 @@ Object {
 `;
 
 exports[`marker addMarker, known affectedRadiusMarkers, with radius 1`] = `
-Object {
-  "configParams": Object {
-    "affectedRadiusProps": Array [
+{
+  "configParams": {
+    "affectedRadiusProps": [
       "radius",
     ],
-    "latProps": Array [
+    "latProps": [
       "lat",
     ],
-    "longProps": Array [
+    "longProps": [
       "long",
     ],
-    "tooltipProperties": Array [],
+    "tooltipProperties": [],
   },
-  "markerTypes": Object {
-    "myType": Object {
-      "affectedRadiusMarkers": Object {
+  "markerTypes": {
+    "myType": {
+      "affectedRadiusMarkers": {
         "id123": NewClass {
           "_initHooksCalled": true,
-          "_latlng": Object {
+          "_latlng": {
             "lat": 2,
             "lng": 1,
           },
           "_mRadius": 5,
-          "feature": Object {
-            "properties": Object {
+          "feature": {
+            "properties": {
               "id": "id123",
               "name": "myLocation",
               "state": "unknown",
@@ -413,69 +413,69 @@ Object {
               "url": "undefinedid123",
             },
           },
-          "options": Object {
+          "options": {
             "color": "#3388ff",
           },
         },
       },
-      "clusterGroup": Object {
+      "clusterGroup": {
         "addLayer": [MockFunction] {
-          "calls": Array [
-            Array [
+          "calls": [
+            [
               NewClass {
-                "_events": Object {
-                  "click": Array [
-                    Object {
+                "_events": {
+                  "click": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "keypress": Array [
-                    Object {
+                  "keypress": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "mouseout": Array [
-                    Object {
+                  "mouseout": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "mouseover": Array [
-                    Object {
+                  "mouseover": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "move": Array [
-                    Object {
+                  "move": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "remove": Array [
-                    Object {
+                  "remove": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
                 },
                 "_initHooksCalled": true,
-                "_latlng": Object {
+                "_latlng": {
                   "lat": 2,
                   "lng": 1,
                 },
                 "_popup": NewClass {
-                  "_content": "<h3>myLocation <img src=\\"/markers/marker-unknown.svg\\" style=\\"width:20px; height:20px\\" type=\\"image/svg\\" title=\\"State: unknown\\"></h3><h6> myType</h6>",
+                  "_content": "<h3>myLocation <img src="/markers/marker-unknown.svg" style="width:20px; height:20px" type="image/svg" title="State: unknown"></h3><h6> myType</h6>",
                   "_initHooksCalled": true,
                   "_source": [Circular],
-                  "options": Object {},
+                  "options": {},
                 },
                 "_popupHandlersAdded": true,
-                "feature": Object {
+                "feature": {
                   "geometry": undefined,
-                  "properties": Object {
+                  "properties": {
                     "id": "id123",
                     "name": "myLocation",
                     "state": "unknown",
@@ -484,21 +484,21 @@ Object {
                   },
                   "type": "Point",
                 },
-                "options": Object {
+                "options": {
                   "icon": NewClass {
                     "_initHooksCalled": true,
-                    "options": Object {
+                    "options": {
                       "className": "leaflet-data-marker",
-                      "html": "<svg version=\\"1\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 149 178\\"><path fill=\\"#180068\\" stroke=\\"#FFF\\" stroke-width=\\"6\\" stroke-miterlimit=\\"10\\" d=\\"M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z\\"/><circle fill=\\"#ffffff\\" cx=\\"74\\" cy=\\"75\\" r=\\"61\\"/><circle fill=\\"#FFFFFF\\" cx=\\"74\\" cy=\\"75\\" r=\\"30\\"/><svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-11.3 -6 55 55\\"><path fill=\\"#8F8B8B\\" d=\\"M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.591a1.994 1.994 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.994 1.994 0 0 0 0-2.82zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24zm1.125-6.752v1.877h-2.25V15H17a1.875 1.875 0 0 0 0-3.75h-2a1.877 1.877 0 0 0-1.875 1.875v.5h-2.25v-.5A4.13 4.13 0 0 1 15 9h2a4.125 4.125 0 0 1 .125 8.248z\\"/><path d=\\"M16 21a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 21zm1.125-3.752A4.125 4.125 0 0 0 17 9h-2a4.13 4.13 0 0 0-4.125 4.125v.5h2.25v-.5A1.877 1.877 0 0 1 15 11.25h2A1.875 1.875 0 0 1 17 15h-2.125v4.125h2.25z\\" opacity=\\"0\\"/></svg></svg>",
-                      "iconAnchor": Array [
+                      "html": "<svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149 178"><path fill="#180068" stroke="#FFF" stroke-width="6" stroke-miterlimit="10" d="M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z"/><circle fill="#ffffff" cx="74" cy="75" r="61"/><circle fill="#FFFFFF" cx="74" cy="75" r="30"/><svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.3 -6 55 55"><path fill="#8F8B8B" d="M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.591a1.994 1.994 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.994 1.994 0 0 0 0-2.82zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24zm1.125-6.752v1.877h-2.25V15H17a1.875 1.875 0 0 0 0-3.75h-2a1.877 1.877 0 0 0-1.875 1.875v.5h-2.25v-.5A4.13 4.13 0 0 1 15 9h2a4.125 4.125 0 0 1 .125 8.248z"/><path d="M16 21a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 21zm1.125-3.752A4.125 4.125 0 0 0 17 9h-2a4.13 4.13 0 0 0-4.125 4.125v.5h2.25v-.5A1.877 1.877 0 0 1 15 11.25h2A1.875 1.875 0 0 1 17 15h-2.125v4.125h2.25z" opacity="0"/></svg></svg>",
+                      "iconAnchor": [
                         12,
                         32,
                       ],
-                      "iconSize": Array [
+                      "iconSize": [
                         36,
                         41,
                       ],
-                      "popupAnchor": Array [
+                      "popupAnchor": [
                         0,
                         -28,
                       ],
@@ -509,8 +509,8 @@ Object {
               },
             ],
           ],
-          "results": Array [
-            Object {
+          "results": [
+            {
               "type": "return",
               "value": undefined,
             },
@@ -523,31 +523,31 @@ Object {
 `;
 
 exports[`marker addMarker, no affectedRadiusMarkers, with radius 1`] = `
-Object {
-  "configParams": Object {
-    "affectedRadiusProps": Array [
+{
+  "configParams": {
+    "affectedRadiusProps": [
       "radius",
     ],
-    "latProps": Array [
+    "latProps": [
       "lat",
     ],
-    "longProps": Array [
+    "longProps": [
       "long",
     ],
-    "tooltipProperties": Array [],
+    "tooltipProperties": [],
   },
-  "markerTypes": Object {
-    "myType": Object {
-      "affectedRadiusMarkers": Object {
+  "markerTypes": {
+    "myType": {
+      "affectedRadiusMarkers": {
         "id123": NewClass {
           "_initHooksCalled": true,
-          "_latlng": Object {
+          "_latlng": {
             "lat": 2,
             "lng": 1,
           },
           "_mRadius": 5,
-          "feature": Object {
-            "properties": Object {
+          "feature": {
+            "properties": {
               "id": "id123",
               "name": "myLocation",
               "state": "unknown",
@@ -555,25 +555,25 @@ Object {
               "url": "undefinedid123",
             },
           },
-          "options": Object {
+          "options": {
             "color": "#3388ff",
             "radius": 5,
           },
         },
       },
-      "affectedRadiusMarkersLayer": Object {
+      "affectedRadiusMarkersLayer": {
         "addLayer": [MockFunction] {
-          "calls": Array [
-            Array [
+          "calls": [
+            [
               NewClass {
                 "_initHooksCalled": true,
-                "_latlng": Object {
+                "_latlng": {
                   "lat": 2,
                   "lng": 1,
                 },
                 "_mRadius": 5,
-                "feature": Object {
-                  "properties": Object {
+                "feature": {
+                  "properties": {
                     "id": "id123",
                     "name": "myLocation",
                     "state": "unknown",
@@ -581,79 +581,79 @@ Object {
                     "url": "undefinedid123",
                   },
                 },
-                "options": Object {
+                "options": {
                   "color": "#3388ff",
                   "radius": 5,
                 },
               },
             ],
           ],
-          "results": Array [
-            Object {
+          "results": [
+            {
               "type": "return",
               "value": undefined,
             },
           ],
         },
       },
-      "clusterGroup": Object {
+      "clusterGroup": {
         "addLayer": [MockFunction] {
-          "calls": Array [
-            Array [
+          "calls": [
+            [
               NewClass {
-                "_events": Object {
-                  "click": Array [
-                    Object {
+                "_events": {
+                  "click": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "keypress": Array [
-                    Object {
+                  "keypress": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "mouseout": Array [
-                    Object {
+                  "mouseout": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "mouseover": Array [
-                    Object {
+                  "mouseover": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "move": Array [
-                    Object {
+                  "move": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "remove": Array [
-                    Object {
+                  "remove": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
                 },
                 "_initHooksCalled": true,
-                "_latlng": Object {
+                "_latlng": {
                   "lat": 2,
                   "lng": 1,
                 },
                 "_popup": NewClass {
-                  "_content": "<h3>myLocation <img src=\\"/markers/marker-unknown.svg\\" style=\\"width:20px; height:20px\\" type=\\"image/svg\\" title=\\"State: unknown\\"></h3><h6> myType</h6>",
+                  "_content": "<h3>myLocation <img src="/markers/marker-unknown.svg" style="width:20px; height:20px" type="image/svg" title="State: unknown"></h3><h6> myType</h6>",
                   "_initHooksCalled": true,
                   "_source": [Circular],
-                  "options": Object {},
+                  "options": {},
                 },
                 "_popupHandlersAdded": true,
-                "feature": Object {
+                "feature": {
                   "geometry": undefined,
-                  "properties": Object {
+                  "properties": {
                     "id": "id123",
                     "name": "myLocation",
                     "state": "unknown",
@@ -662,21 +662,21 @@ Object {
                   },
                   "type": "Point",
                 },
-                "options": Object {
+                "options": {
                   "icon": NewClass {
                     "_initHooksCalled": true,
-                    "options": Object {
+                    "options": {
                       "className": "leaflet-data-marker",
-                      "html": "<svg version=\\"1\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 149 178\\"><path fill=\\"#180068\\" stroke=\\"#FFF\\" stroke-width=\\"6\\" stroke-miterlimit=\\"10\\" d=\\"M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z\\"/><circle fill=\\"#ffffff\\" cx=\\"74\\" cy=\\"75\\" r=\\"61\\"/><circle fill=\\"#FFFFFF\\" cx=\\"74\\" cy=\\"75\\" r=\\"30\\"/><svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-11.3 -6 55 55\\"><path fill=\\"#8F8B8B\\" d=\\"M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.591a1.994 1.994 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.994 1.994 0 0 0 0-2.82zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24zm1.125-6.752v1.877h-2.25V15H17a1.875 1.875 0 0 0 0-3.75h-2a1.877 1.877 0 0 0-1.875 1.875v.5h-2.25v-.5A4.13 4.13 0 0 1 15 9h2a4.125 4.125 0 0 1 .125 8.248z\\"/><path d=\\"M16 21a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 21zm1.125-3.752A4.125 4.125 0 0 0 17 9h-2a4.13 4.13 0 0 0-4.125 4.125v.5h2.25v-.5A1.877 1.877 0 0 1 15 11.25h2A1.875 1.875 0 0 1 17 15h-2.125v4.125h2.25z\\" opacity=\\"0\\"/></svg></svg>",
-                      "iconAnchor": Array [
+                      "html": "<svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149 178"><path fill="#180068" stroke="#FFF" stroke-width="6" stroke-miterlimit="10" d="M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z"/><circle fill="#ffffff" cx="74" cy="75" r="61"/><circle fill="#FFFFFF" cx="74" cy="75" r="30"/><svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.3 -6 55 55"><path fill="#8F8B8B" d="M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.591a1.994 1.994 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.994 1.994 0 0 0 0-2.82zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24zm1.125-6.752v1.877h-2.25V15H17a1.875 1.875 0 0 0 0-3.75h-2a1.877 1.877 0 0 0-1.875 1.875v.5h-2.25v-.5A4.13 4.13 0 0 1 15 9h2a4.125 4.125 0 0 1 .125 8.248z"/><path d="M16 21a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 21zm1.125-3.752A4.125 4.125 0 0 0 17 9h-2a4.13 4.13 0 0 0-4.125 4.125v.5h2.25v-.5A1.877 1.877 0 0 1 15 11.25h2A1.875 1.875 0 0 1 17 15h-2.125v4.125h2.25z" opacity="0"/></svg></svg>",
+                      "iconAnchor": [
                         12,
                         32,
                       ],
-                      "iconSize": Array [
+                      "iconSize": [
                         36,
                         41,
                       ],
-                      "popupAnchor": Array [
+                      "popupAnchor": [
                         0,
                         -28,
                       ],
@@ -687,8 +687,8 @@ Object {
               },
             ],
           ],
-          "results": Array [
-            Object {
+          "results": [
+            {
               "type": "return",
               "value": undefined,
             },
@@ -701,78 +701,78 @@ Object {
 `;
 
 exports[`marker addMarker, no markers + hideAffectedRadius 1`] = `
-Object {
-  "configParams": Object {
+{
+  "configParams": {
     "hideAffectedRadius": true,
-    "latProps": Array [
+    "latProps": [
       "lat",
     ],
-    "longProps": Array [
+    "longProps": [
       "long",
     ],
-    "tooltipProperties": Array [],
+    "tooltipProperties": [],
   },
-  "markerTypes": Object {
-    "myType": Object {
-      "affectedRadiusMarkers": Array [],
-      "clusterGroup": Object {
+  "markerTypes": {
+    "myType": {
+      "affectedRadiusMarkers": [],
+      "clusterGroup": {
         "addLayer": [MockFunction] {
-          "calls": Array [
-            Array [
+          "calls": [
+            [
               NewClass {
-                "_events": Object {
-                  "click": Array [
-                    Object {
+                "_events": {
+                  "click": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "keypress": Array [
-                    Object {
+                  "keypress": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "mouseout": Array [
-                    Object {
+                  "mouseout": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "mouseover": Array [
-                    Object {
+                  "mouseover": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "move": Array [
-                    Object {
+                  "move": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "remove": Array [
-                    Object {
+                  "remove": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
                 },
                 "_initHooksCalled": true,
-                "_latlng": Object {
+                "_latlng": {
                   "lat": 2,
                   "lng": 1,
                 },
                 "_popup": NewClass {
-                  "_content": "<h3>myLocation <img src=\\"/markers/marker-unknown.svg\\" style=\\"width:20px; height:20px\\" type=\\"image/svg\\" title=\\"State: unknown\\"></h3><h6> myType</h6>",
+                  "_content": "<h3>myLocation <img src="/markers/marker-unknown.svg" style="width:20px; height:20px" type="image/svg" title="State: unknown"></h3><h6> myType</h6>",
                   "_initHooksCalled": true,
                   "_source": [Circular],
-                  "options": Object {},
+                  "options": {},
                 },
                 "_popupHandlersAdded": true,
-                "feature": Object {
+                "feature": {
                   "geometry": undefined,
-                  "properties": Object {
+                  "properties": {
                     "id": "id123",
                     "name": "myLocation",
                     "state": "unknown",
@@ -781,21 +781,21 @@ Object {
                   },
                   "type": "Point",
                 },
-                "options": Object {
+                "options": {
                   "icon": NewClass {
                     "_initHooksCalled": true,
-                    "options": Object {
+                    "options": {
                       "className": "leaflet-data-marker",
-                      "html": "<svg version=\\"1\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 149 178\\"><path fill=\\"#180068\\" stroke=\\"#FFF\\" stroke-width=\\"6\\" stroke-miterlimit=\\"10\\" d=\\"M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z\\"/><circle fill=\\"#ffffff\\" cx=\\"74\\" cy=\\"75\\" r=\\"61\\"/><circle fill=\\"#FFFFFF\\" cx=\\"74\\" cy=\\"75\\" r=\\"30\\"/><svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-11.3 -6 55 55\\"><path fill=\\"#8F8B8B\\" d=\\"M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.591a1.994 1.994 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.994 1.994 0 0 0 0-2.82zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24zm1.125-6.752v1.877h-2.25V15H17a1.875 1.875 0 0 0 0-3.75h-2a1.877 1.877 0 0 0-1.875 1.875v.5h-2.25v-.5A4.13 4.13 0 0 1 15 9h2a4.125 4.125 0 0 1 .125 8.248z\\"/><path d=\\"M16 21a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 21zm1.125-3.752A4.125 4.125 0 0 0 17 9h-2a4.13 4.13 0 0 0-4.125 4.125v.5h2.25v-.5A1.877 1.877 0 0 1 15 11.25h2A1.875 1.875 0 0 1 17 15h-2.125v4.125h2.25z\\" opacity=\\"0\\"/></svg></svg>",
-                      "iconAnchor": Array [
+                      "html": "<svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149 178"><path fill="#180068" stroke="#FFF" stroke-width="6" stroke-miterlimit="10" d="M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z"/><circle fill="#ffffff" cx="74" cy="75" r="61"/><circle fill="#FFFFFF" cx="74" cy="75" r="30"/><svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.3 -6 55 55"><path fill="#8F8B8B" d="M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.591a1.994 1.994 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.994 1.994 0 0 0 0-2.82zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24zm1.125-6.752v1.877h-2.25V15H17a1.875 1.875 0 0 0 0-3.75h-2a1.877 1.877 0 0 0-1.875 1.875v.5h-2.25v-.5A4.13 4.13 0 0 1 15 9h2a4.125 4.125 0 0 1 .125 8.248z"/><path d="M16 21a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 21zm1.125-3.752A4.125 4.125 0 0 0 17 9h-2a4.13 4.13 0 0 0-4.125 4.125v.5h2.25v-.5A1.877 1.877 0 0 1 15 11.25h2A1.875 1.875 0 0 1 17 15h-2.125v4.125h2.25z" opacity="0"/></svg></svg>",
+                      "iconAnchor": [
                         12,
                         32,
                       ],
-                      "iconSize": Array [
+                      "iconSize": [
                         36,
                         41,
                       ],
-                      "popupAnchor": Array [
+                      "popupAnchor": [
                         0,
                         -28,
                       ],
@@ -806,8 +806,8 @@ Object {
               },
             ],
           ],
-          "results": Array [
-            Object {
+          "results": [
+            {
               "type": "return",
               "value": undefined,
             },
@@ -820,77 +820,77 @@ Object {
 `;
 
 exports[`marker addMarker, no markers 1`] = `
-Object {
-  "configParams": Object {
-    "latProps": Array [
+{
+  "configParams": {
+    "latProps": [
       "lat",
     ],
-    "longProps": Array [
+    "longProps": [
       "long",
     ],
-    "tooltipProperties": Array [],
+    "tooltipProperties": [],
   },
-  "markerTypes": Object {
-    "myType": Object {
-      "affectedRadiusMarkers": Array [],
-      "clusterGroup": Object {
+  "markerTypes": {
+    "myType": {
+      "affectedRadiusMarkers": [],
+      "clusterGroup": {
         "addLayer": [MockFunction] {
-          "calls": Array [
-            Array [
+          "calls": [
+            [
               NewClass {
-                "_events": Object {
-                  "click": Array [
-                    Object {
+                "_events": {
+                  "click": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "keypress": Array [
-                    Object {
+                  "keypress": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "mouseout": Array [
-                    Object {
+                  "mouseout": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "mouseover": Array [
-                    Object {
+                  "mouseover": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "move": Array [
-                    Object {
+                  "move": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
-                  "remove": Array [
-                    Object {
+                  "remove": [
+                    {
                       "ctx": undefined,
                       "fn": [Function],
                     },
                   ],
                 },
                 "_initHooksCalled": true,
-                "_latlng": Object {
+                "_latlng": {
                   "lat": 2,
                   "lng": 1,
                 },
                 "_popup": NewClass {
-                  "_content": "<h3>myLocation <img src=\\"/markers/marker-unknown.svg\\" style=\\"width:20px; height:20px\\" type=\\"image/svg\\" title=\\"State: unknown\\"></h3><h6> myType</h6>",
+                  "_content": "<h3>myLocation <img src="/markers/marker-unknown.svg" style="width:20px; height:20px" type="image/svg" title="State: unknown"></h3><h6> myType</h6>",
                   "_initHooksCalled": true,
                   "_source": [Circular],
-                  "options": Object {},
+                  "options": {},
                 },
                 "_popupHandlersAdded": true,
-                "feature": Object {
+                "feature": {
                   "geometry": undefined,
-                  "properties": Object {
+                  "properties": {
                     "id": "id123",
                     "name": "myLocation",
                     "state": "unknown",
@@ -899,21 +899,21 @@ Object {
                   },
                   "type": "Point",
                 },
-                "options": Object {
+                "options": {
                   "icon": NewClass {
                     "_initHooksCalled": true,
-                    "options": Object {
+                    "options": {
                       "className": "leaflet-data-marker",
-                      "html": "<svg version=\\"1\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 149 178\\"><path fill=\\"#180068\\" stroke=\\"#FFF\\" stroke-width=\\"6\\" stroke-miterlimit=\\"10\\" d=\\"M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z\\"/><circle fill=\\"#ffffff\\" cx=\\"74\\" cy=\\"75\\" r=\\"61\\"/><circle fill=\\"#FFFFFF\\" cx=\\"74\\" cy=\\"75\\" r=\\"30\\"/><svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-11.3 -6 55 55\\"><path fill=\\"#8F8B8B\\" d=\\"M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.591a1.994 1.994 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.994 1.994 0 0 0 0-2.82zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24zm1.125-6.752v1.877h-2.25V15H17a1.875 1.875 0 0 0 0-3.75h-2a1.877 1.877 0 0 0-1.875 1.875v.5h-2.25v-.5A4.13 4.13 0 0 1 15 9h2a4.125 4.125 0 0 1 .125 8.248z\\"/><path d=\\"M16 21a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 21zm1.125-3.752A4.125 4.125 0 0 0 17 9h-2a4.13 4.13 0 0 0-4.125 4.125v.5h2.25v-.5A1.877 1.877 0 0 1 15 11.25h2A1.875 1.875 0 0 1 17 15h-2.125v4.125h2.25z\\" opacity=\\"0\\"/></svg></svg>",
-                      "iconAnchor": Array [
+                      "html": "<svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149 178"><path fill="#180068" stroke="#FFF" stroke-width="6" stroke-miterlimit="10" d="M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z"/><circle fill="#ffffff" cx="74" cy="75" r="61"/><circle fill="#FFFFFF" cx="74" cy="75" r="30"/><svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.3 -6 55 55"><path fill="#8F8B8B" d="M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.591a1.994 1.994 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.994 1.994 0 0 0 0-2.82zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24zm1.125-6.752v1.877h-2.25V15H17a1.875 1.875 0 0 0 0-3.75h-2a1.877 1.877 0 0 0-1.875 1.875v.5h-2.25v-.5A4.13 4.13 0 0 1 15 9h2a4.125 4.125 0 0 1 .125 8.248z"/><path d="M16 21a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 21zm1.125-3.752A4.125 4.125 0 0 0 17 9h-2a4.13 4.13 0 0 0-4.125 4.125v.5h2.25v-.5A1.877 1.877 0 0 1 15 11.25h2A1.875 1.875 0 0 1 17 15h-2.125v4.125h2.25z" opacity="0"/></svg></svg>",
+                      "iconAnchor": [
                         12,
                         32,
                       ],
-                      "iconSize": Array [
+                      "iconSize": [
                         36,
                         41,
                       ],
-                      "popupAnchor": Array [
+                      "popupAnchor": [
                         0,
                         -28,
                       ],
@@ -924,8 +924,8 @@ Object {
               },
             ],
           ],
-          "results": Array [
-            Object {
+          "results": [
+            {
               "type": "return",
               "value": undefined,
             },
@@ -938,65 +938,65 @@ Object {
 `;
 
 exports[`marker addMarker, no type cluster group 1`] = `
-Object {
-  "clusterGroup": Object {
+{
+  "clusterGroup": {
     "addLayer": [MockFunction] {
-      "calls": Array [
-        Array [
+      "calls": [
+        [
           NewClass {
-            "_events": Object {
-              "click": Array [
-                Object {
+            "_events": {
+              "click": [
+                {
                   "ctx": undefined,
                   "fn": [Function],
                 },
               ],
-              "keypress": Array [
-                Object {
+              "keypress": [
+                {
                   "ctx": undefined,
                   "fn": [Function],
                 },
               ],
-              "mouseout": Array [
-                Object {
+              "mouseout": [
+                {
                   "ctx": undefined,
                   "fn": [Function],
                 },
               ],
-              "mouseover": Array [
-                Object {
+              "mouseover": [
+                {
                   "ctx": undefined,
                   "fn": [Function],
                 },
               ],
-              "move": Array [
-                Object {
+              "move": [
+                {
                   "ctx": undefined,
                   "fn": [Function],
                 },
               ],
-              "remove": Array [
-                Object {
+              "remove": [
+                {
                   "ctx": undefined,
                   "fn": [Function],
                 },
               ],
             },
             "_initHooksCalled": true,
-            "_latlng": Object {
+            "_latlng": {
               "lat": 2,
               "lng": 1,
             },
             "_popup": NewClass {
-              "_content": "<h3>myLocation <img src=\\"/markers/marker-unknown.svg\\" style=\\"width:20px; height:20px\\" type=\\"image/svg\\" title=\\"State: unknown\\"></h3><h6> myType</h6>",
+              "_content": "<h3>myLocation <img src="/markers/marker-unknown.svg" style="width:20px; height:20px" type="image/svg" title="State: unknown"></h3><h6> myType</h6>",
               "_initHooksCalled": true,
               "_source": [Circular],
-              "options": Object {},
+              "options": {},
             },
             "_popupHandlersAdded": true,
-            "feature": Object {
+            "feature": {
               "geometry": undefined,
-              "properties": Object {
+              "properties": {
                 "id": "id123",
                 "name": "myLocation",
                 "state": "unknown",
@@ -1005,21 +1005,21 @@ Object {
               },
               "type": "Point",
             },
-            "options": Object {
+            "options": {
               "icon": NewClass {
                 "_initHooksCalled": true,
-                "options": Object {
+                "options": {
                   "className": "leaflet-data-marker",
-                  "html": "<svg version=\\"1\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 149 178\\"><path fill=\\"#180068\\" stroke=\\"#FFF\\" stroke-width=\\"6\\" stroke-miterlimit=\\"10\\" d=\\"M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z\\"/><circle fill=\\"#ffffff\\" cx=\\"74\\" cy=\\"75\\" r=\\"61\\"/><circle fill=\\"#FFFFFF\\" cx=\\"74\\" cy=\\"75\\" r=\\"30\\"/><svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-11.3 -6 55 55\\"><path fill=\\"#8F8B8B\\" d=\\"M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.591a1.994 1.994 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.994 1.994 0 0 0 0-2.82zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24zm1.125-6.752v1.877h-2.25V15H17a1.875 1.875 0 0 0 0-3.75h-2a1.877 1.877 0 0 0-1.875 1.875v.5h-2.25v-.5A4.13 4.13 0 0 1 15 9h2a4.125 4.125 0 0 1 .125 8.248z\\"/><path d=\\"M16 21a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 21zm1.125-3.752A4.125 4.125 0 0 0 17 9h-2a4.13 4.13 0 0 0-4.125 4.125v.5h2.25v-.5A1.877 1.877 0 0 1 15 11.25h2A1.875 1.875 0 0 1 17 15h-2.125v4.125h2.25z\\" opacity=\\"0\\"/></svg></svg>",
-                  "iconAnchor": Array [
+                  "html": "<svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149 178"><path fill="#180068" stroke="#FFF" stroke-width="6" stroke-miterlimit="10" d="M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z"/><circle fill="#ffffff" cx="74" cy="75" r="61"/><circle fill="#FFFFFF" cx="74" cy="75" r="30"/><svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.3 -6 55 55"><path fill="#8F8B8B" d="M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.591a1.994 1.994 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.994 1.994 0 0 0 0-2.82zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24zm1.125-6.752v1.877h-2.25V15H17a1.875 1.875 0 0 0 0-3.75h-2a1.877 1.877 0 0 0-1.875 1.875v.5h-2.25v-.5A4.13 4.13 0 0 1 15 9h2a4.125 4.125 0 0 1 .125 8.248z"/><path d="M16 21a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 21zm1.125-3.752A4.125 4.125 0 0 0 17 9h-2a4.13 4.13 0 0 0-4.125 4.125v.5h2.25v-.5A1.877 1.877 0 0 1 15 11.25h2A1.875 1.875 0 0 1 17 15h-2.125v4.125h2.25z" opacity="0"/></svg></svg>",
+                  "iconAnchor": [
                     12,
                     32,
                   ],
-                  "iconSize": Array [
+                  "iconSize": [
                     36,
                     41,
                   ],
-                  "popupAnchor": Array [
+                  "popupAnchor": [
                     0,
                     -28,
                   ],
@@ -1030,58 +1030,58 @@ Object {
           },
         ],
       ],
-      "results": Array [
-        Object {
+      "results": [
+        {
           "type": "return",
           "value": undefined,
         },
       ],
     },
   },
-  "configParams": Object {
-    "latProps": Array [
+  "configParams": {
+    "latProps": [
       "lat",
     ],
-    "longProps": Array [
+    "longProps": [
       "long",
     ],
-    "tooltipProperties": Array [],
+    "tooltipProperties": [],
   },
-  "markerTypes": Object {
-    "myType": Object {
-      "affectedRadiusMarkers": Array [],
+  "markerTypes": {
+    "myType": {
+      "affectedRadiusMarkers": [],
     },
   },
 }
 `;
 
 exports[`marker updateMarker, known markers 1`] = `
-Object {
-  "configParams": Object {
-    "latProps": Array [
+{
+  "configParams": {
+    "latProps": [
       "lat",
     ],
-    "longProps": Array [
+    "longProps": [
       "long",
     ],
-    "tooltipProperties": Array [],
+    "tooltipProperties": [],
   },
-  "markerTypes": Object {
-    "myType": Object {
-      "affectedRadiusMarkers": Array [],
-      "clusterGroup": Object {
+  "markerTypes": {
+    "myType": {
+      "affectedRadiusMarkers": [],
+      "clusterGroup": {
         "addLayer": [MockFunction],
       },
-      "markers": Object {
+      "markers": {
         "id123": NewClass {
           "_initHooksCalled": true,
-          "_latlng": Object {
+          "_latlng": {
             "lat": 2,
             "lng": 1,
           },
-          "feature": Object {
+          "feature": {
             "geometry": undefined,
-            "properties": Object {
+            "properties": {
               "id": "id123",
               "name": "myLocation",
               "state": "unknown",
@@ -1090,21 +1090,21 @@ Object {
             },
             "type": "Point",
           },
-          "options": Object {
+          "options": {
             "icon": NewClass {
               "_initHooksCalled": true,
-              "options": Object {
+              "options": {
                 "className": "leaflet-data-marker",
-                "html": "<svg version=\\"1\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 149 178\\"><path fill=\\"#180068\\" stroke=\\"#FFF\\" stroke-width=\\"6\\" stroke-miterlimit=\\"10\\" d=\\"M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z\\"/><circle fill=\\"#ffffff\\" cx=\\"74\\" cy=\\"75\\" r=\\"61\\"/><circle fill=\\"#FFFFFF\\" cx=\\"74\\" cy=\\"75\\" r=\\"30\\"/><svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-11.3 -6 55 55\\"><path fill=\\"#8F8B8B\\" d=\\"M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.591a1.994 1.994 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.994 1.994 0 0 0 0-2.82zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24zm1.125-6.752v1.877h-2.25V15H17a1.875 1.875 0 0 0 0-3.75h-2a1.877 1.877 0 0 0-1.875 1.875v.5h-2.25v-.5A4.13 4.13 0 0 1 15 9h2a4.125 4.125 0 0 1 .125 8.248z\\"/><path d=\\"M16 21a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 21zm1.125-3.752A4.125 4.125 0 0 0 17 9h-2a4.13 4.13 0 0 0-4.125 4.125v.5h2.25v-.5A1.877 1.877 0 0 1 15 11.25h2A1.875 1.875 0 0 1 17 15h-2.125v4.125h2.25z\\" opacity=\\"0\\"/></svg></svg>",
-                "iconAnchor": Array [
+                "html": "<svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149 178"><path fill="#180068" stroke="#FFF" stroke-width="6" stroke-miterlimit="10" d="M126 23l-6-6A69 69 0 0 0 74 1a69 69 0 0 0-51 22A70 70 0 0 0 1 74c0 21 7 38 22 52l43 47c6 6 11 6 16 0l48-51c12-13 18-29 18-48 0-20-8-37-22-51z"/><circle fill="#ffffff" cx="74" cy="75" r="61"/><circle fill="#FFFFFF" cx="74" cy="75" r="30"/><svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.3 -6 55 55"><path fill="#8F8B8B" d="M29.416 14.59L17.41 2.585a1.994 1.994 0 0 0-2.82 0L2.585 14.591a1.994 1.994 0 0 0 0 2.819L14.59 29.416a1.994 1.994 0 0 0 2.819 0L29.416 17.41a1.994 1.994 0 0 0 0-2.82zM16 24a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 16 24zm1.125-6.752v1.877h-2.25V15H17a1.875 1.875 0 0 0 0-3.75h-2a1.877 1.877 0 0 0-1.875 1.875v.5h-2.25v-.5A4.13 4.13 0 0 1 15 9h2a4.125 4.125 0 0 1 .125 8.248z"/><path d="M16 21a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 21zm1.125-3.752A4.125 4.125 0 0 0 17 9h-2a4.13 4.13 0 0 0-4.125 4.125v.5h2.25v-.5A1.877 1.877 0 0 1 15 11.25h2A1.875 1.875 0 0 1 17 15h-2.125v4.125h2.25z" opacity="0"/></svg></svg>",
+                "iconAnchor": [
                   12,
                   32,
                 ],
-                "iconSize": Array [
+                "iconSize": [
                   36,
                   41,
                 ],
-                "popupAnchor": Array [
+                "popupAnchor": [
                   0,
                   -28,
                 ],
@@ -1119,20 +1119,20 @@ Object {
 `;
 
 exports[`marker updateMarker, no markers 1`] = `
-Object {
-  "configParams": Object {
-    "latProps": Array [
+{
+  "configParams": {
+    "latProps": [
       "lat",
     ],
-    "longProps": Array [
+    "longProps": [
       "long",
     ],
-    "tooltipProperties": Array [],
+    "tooltipProperties": [],
   },
-  "markerTypes": Object {
-    "myType": Object {
-      "affectedRadiusMarkers": Array [],
-      "clusterGroup": Object {
+  "markerTypes": {
+    "myType": {
+      "affectedRadiusMarkers": [],
+      "clusterGroup": {
         "addLayer": [MockFunction],
       },
     },

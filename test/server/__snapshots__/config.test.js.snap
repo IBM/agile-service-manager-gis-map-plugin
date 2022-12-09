@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`config readConfig: read config from YAML file 1`] = `
-Object {
+{
   "affectedRadiusPropertyNames": "",
   "asmUIURL": "https://localhost:16311/ibm/console/inasm/topology.jsp?resourceId={RESOURCE_ID}",
   "boundaryEntityTypes": "",
@@ -27,7 +27,7 @@ Object {
 `;
 
 exports[`config readConfig: use defaults if YAML file does not exist 1`] = `
-Object {
+{
   "affectedRadiusPropertyNames": "",
   "asmUIURL": "https://localhost:16311/ibm/console/inasm/topology.jsp?resourceId={RESOURCE_ID}",
   "boundaryEntityTypes": "",

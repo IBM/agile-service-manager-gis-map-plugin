@@ -1,21 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`createMarkerType create 1`] = `
-Object {
-  "affectedRadiusMarkers": Object {},
+{
+  "affectedRadiusMarkers": {},
   "affectedRadiusMarkersLayer": NewClass {
     "_initHooksCalled": true,
-    "_layers": Object {},
-    "options": Object {},
+    "_layers": {},
+    "options": {},
   },
   "clusterGroup": NewClass {
     "_initHooksCalled": true,
-    "_layers": Object {},
-    "options": Object {},
+    "_layers": {},
+    "options": {},
   },
-  "locations": Array [],
-  "locationsMap": Object {},
+  "locations": [],
+  "locationsMap": {},
   "markerType": "myType",
-  "markers": Object {},
+  "markers": {},
 }
 `;
