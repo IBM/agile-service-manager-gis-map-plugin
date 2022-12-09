@@ -1,6 +1,8 @@
 # Agile Service Manager GIS Map Plugin
 Open source project to provide geographical mapping with [IBM Agile Service Manager](https://www.ibm.com/docs/en/nasm/1.1.13) using [OpenStreetMap](https://www.openstreetmap.org/about) and [Leaflet.js](https://leafletjs.com/)
 
+[![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/6773/badge)](https://bestpractices.coreinfrastructure.org/projects/6773)
+
 ![map overview](./readme-images/map-overview.png "Map Overview")
 
 ## Contents
